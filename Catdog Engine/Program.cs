@@ -1,6 +1,8 @@
 ﻿using System;
 
-namespace Catdog_Engine {
+using CatdogEngine.ScreenSystem;
+
+namespace CatdogEngine {
 #if WINDOWS || LINUX
     /// <summary>
     /// The main class.
@@ -13,7 +15,7 @@ namespace Catdog_Engine {
         [STAThread]
         static void Main()
         {
-            using (var game = new Game1())
+            using (var game = new ScreenManager())
                 game.Run();
         }
     }
