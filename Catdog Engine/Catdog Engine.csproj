@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\logoscreen.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

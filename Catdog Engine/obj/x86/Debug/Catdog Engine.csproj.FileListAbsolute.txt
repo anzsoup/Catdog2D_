@@ -23,3 +23,28 @@ D:\Catdog Engine\Catdog Engine\bin\Windows\Debug\SharpDX.RawInput.xml
 D:\Catdog Engine\Catdog Engine\bin\Windows\Debug\SharpDX.Direct3D9.xml
 D:\Catdog Engine\Catdog Engine\obj\x86\Debug\Catdog Engine.exe
 D:\Catdog Engine\Catdog Engine\obj\x86\Debug\Catdog Engine.pdb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\obj\x86\Debug\Catdog Engine.exe
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\obj\x86\Debug\Catdog Engine.pdb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Catdog Engine.exe
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Catdog Engine.pdb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\MonoGame.Framework.dll
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.MediaFoundation.dll
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.dll
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.XAudio2.dll
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.Direct3D11.dll
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.DXGI.dll
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.Direct2D1.dll
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.XInput.dll
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.RawInput.dll
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.Direct3D9.dll
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\MonoGame.Framework.xml
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.MediaFoundation.xml
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.xml
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.XAudio2.xml
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.Direct3D11.xml
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.DXGI.xml
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.Direct2D1.xml
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.XInput.xml
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.RawInput.xml
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\SharpDX.Direct3D9.xml
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\obj\x86\Debug\Catdog Engine.csprojResolveAssemblyReference.cache

@@ -13,16 +13,12 @@ namespace CatdogEngine.ScreenSystem {
         private Texture2D _logo;
         private Rectangle _region;
 
-        public LogoScreen(ScreenManager screenManager) : base(UpdateTransition) {
-            ScreenManager = screenManager;
-        }
-
         #region Properties
         public new ScreenManager ScreenManager { get { return _screenManager; } set { _screenManager = value; } }
         #endregion
 
         public override void LoadContent() {
-            _logo = ScreenManager.Content.Load<Texture2D>("logo");
+            _logo = ScreenManager.Content.Load<Texture2D>("logoscreen");
             _region = new Rectangle(0, 0, _logo.Width, _logo.Height);
         }
 

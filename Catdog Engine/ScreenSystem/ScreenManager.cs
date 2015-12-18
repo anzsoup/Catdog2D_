@@ -16,7 +16,10 @@ namespace CatdogEngine.ScreenSystem {
 
         public ScreenManager() {
             graphics = new GraphicsDeviceManager(this);
+			graphics.IsFullScreen = false;
             Content.RootDirectory = "Content";
+
+			//SetScreen(new LogoScreen());
         }
 
         public SpriteBatch SpriteBatch { get { return spriteBatch; } }
@@ -65,13 +68,12 @@ namespace CatdogEngine.ScreenSystem {
 
             base.Update(gameTime);
 
+			
+
             if (_nextScreen != null) _nextScreen.Update(gameTime);
             if (_activeScreen != null) _activeScreen.Update(gameTime);
 
-            if (_activeScreen.ScreenState == ScreenState.Hidden) {
-                _activeScreen.UnloadContent();
-                _nextScreen.LoadContent();
-            }
+            
         }
 
         /// <summary>
@@ -94,12 +96,33 @@ namespace CatdogEngine.ScreenSystem {
         /// </summary>
         protected void SetScreen(GameScreen nextScreen) {
             if(nextScreen == null) {
-                Console.WriteLine("ScreenManager.SetScreen Failed : Next screen passed is NULL");
+                Console.WriteLine("ScreenManager.SetScreen Failed : The argument can not be Null");
             }
             else {
                 _nextScreen = nextScreen;
+				_nextScreen.ScreenManager = this;
+				_nextScreen.LoadContent();
                 _activeScreen.ScreenState = ScreenState.TransitionOff;
             }
         }
+
+		public void RemoveScreen(GameScreen screen) {
+			if(screen == _activeScreen) {
+				_activeScreen.UnloadContent();
+				_activeScreen = null;
+			}
+			else if(screen == _nextScreen) {
+				_nextScreen.UnloadContent();
+				_nextScreen = null;
+			}
+			else {
+				if(screen == null) {
+					Console.WriteLine("ScreenManager.RemoveScreen : The argument can not be Null");
+				}
+				else {
+					Console.WriteLine("ScreenManager.RemoveScreen : this screen is not exsist");
+				}
+			}
+		}
     }
 }

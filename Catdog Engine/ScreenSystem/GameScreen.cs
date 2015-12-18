@@ -10,10 +10,11 @@ namespace CatdogEngine.ScreenSystem {
     /// GameScreen의 현재 상태를 표현하는 열거형
     /// </summary>
     public enum ScreenState {
-        Hidden,
+        Waiting,
         TransitionOn,
         TransitionOff,
-        Active
+        Active,
+		Dead
     }
 
     /// <summary>
@@ -34,17 +35,19 @@ namespace CatdogEngine.ScreenSystem {
         SCREEN_TRANSITION_EFFECT Screen_Transition_Effect;
         ScreenState _screenState;
 
-        public GameScreen(SCREEN_TRANSITION_EFFECT screen_transition_effect) {
-            _screenState = ScreenState.Hidden;
-            Screen_Transition_Effect = screen_transition_effect;
+        public GameScreen() {
+            _screenState = ScreenState.Waiting;
+            Screen_Transition_Effect = DefaultScreenTransitionEffect;
         }
 
         #region Properties
         public ScreenState ScreenState { get { return _screenState; } set { _screenState = value; } }
 
-        public ScreenManager ScreenManager { get; protected set; }
+        public ScreenManager ScreenManager { get; set; }
 
         public TimeSpan TransitionTime { get; protected set; }
+
+		public SCREEN_TRANSITION_EFFECT ScreenTransitionEffect { get; set; }
         #endregion
 
         /// <summary>
@@ -68,11 +71,15 @@ namespace CatdogEngine.ScreenSystem {
 
             // 스크린 전환 이펙트 처리
             if(ScreenState == ScreenState.TransitionOff) {
-                ScreenState = Screen_Transition_Effect(gameTime, TransitionTime, -1) ? ScreenState.TransitionOff : ScreenState.Hidden;
+                ScreenState = Screen_Transition_Effect(gameTime, TransitionTime, -1) ? ScreenState.TransitionOff : ScreenState.Dead;
             }
             else if(ScreenState == ScreenState.TransitionOn) {
                 ScreenState = Screen_Transition_Effect(gameTime, TransitionTime, 1) ? ScreenState.TransitionOn : ScreenState.Active;
             }
+
+			if(ScreenState == ScreenState.Dead) {
+				ScreenManager.RemoveScreen(this);
+			}
         }
 
         /// <summary>
@@ -81,5 +88,11 @@ namespace CatdogEngine.ScreenSystem {
         /// </summary>
         /// <param name="gameTime">Delta Time</param>
         public virtual void Draw(GameTime gameTime) { }
+
+		/// <summary>
+		/// 기본 스크린 전환 효과 (효과 없음)
+		/// 아무런 작업을 하지 않는다면 기본적으로 등록 된다.
+		/// </summary>
+		private bool DefaultScreenTransitionEffect(GameTime gameTime, TimeSpan transitionTime, int direction) { return false; }
     }
 }
