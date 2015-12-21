@@ -30,9 +30,5 @@ namespace CatdogEngine.ScreenSystem {
             ScreenManager.SpriteBatch.Draw(_logo, _region, Color.White);
             ScreenManager.SpriteBatch.End();
         }
-
-        private static bool UpdateTransition(GameTime gameTime, TimeSpan transitionTime, int direction) {
-            return false;
-        }
     }
 }
