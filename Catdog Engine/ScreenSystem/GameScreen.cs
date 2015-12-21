@@ -34,6 +34,7 @@ namespace CatdogEngine.ScreenSystem {
 
         SCREEN_TRANSITION_EFFECT Screen_Transition_Effect;
         ScreenState _screenState;
+        ScreenManager _screenManager;
 
         public GameScreen() {
             _screenState = ScreenState.Waiting;
@@ -43,7 +44,7 @@ namespace CatdogEngine.ScreenSystem {
         #region Properties
         public ScreenState ScreenState { get { return _screenState; } set { _screenState = value; } }
 
-        public ScreenManager ScreenManager { get; set; }
+        public ScreenManager ScreenManager { get { return _screenManager; } set { _screenManager = value; } }
 
         public TimeSpan TransitionTime { get; protected set; }
 

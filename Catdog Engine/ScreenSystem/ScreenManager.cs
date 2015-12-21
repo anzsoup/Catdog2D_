@@ -3,6 +3,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace CatdogEngine.ScreenSystem {
     /// <summary>
@@ -19,7 +20,7 @@ namespace CatdogEngine.ScreenSystem {
 			graphics.IsFullScreen = false;
             Content.RootDirectory = "Content";
 
-			//SetScreen(new LogoScreen());
+			SetScreen(new LogoScreen());
         }
 
         public SpriteBatch SpriteBatch { get { return spriteBatch; } }
@@ -67,13 +68,24 @@ namespace CatdogEngine.ScreenSystem {
             // TODO: Add your update logic here
 
             base.Update(gameTime);
+       
+            if(_activeScreen == null && _nextScreen != null) {
+                // Next Screen is now Active
+                _activeScreen = _nextScreen;
 
-			
+                // Clear the Next Screen Reference
+                _nextScreen = null;
+
+                // Load Content
+                _activeScreen.LoadContent();
+
+                // Transitin Start
+                _activeScreen.ScreenState = ScreenState.TransitionOn;
+            }
 
             if (_nextScreen != null) _nextScreen.Update(gameTime);
             if (_activeScreen != null) _activeScreen.Update(gameTime);
 
-            
         }
 
         /// <summary>
@@ -94,35 +106,43 @@ namespace CatdogEngine.ScreenSystem {
         /// <summary>
         /// 스크린을 교체한다. 현재 스크린의 TransitionOff 이펙트가 진행된다.
         /// </summary>
-        protected void SetScreen(GameScreen nextScreen) {
+        public void SetScreen(GameScreen nextScreen) {
             if(nextScreen == null) {
-                Console.WriteLine("ScreenManager.SetScreen Failed : The argument can not be Null");
+                Debug.WriteLine("### ScreenManager.SetScreen Failed : The argument can not be Null ###");
             }
             else {
+                // Active Screen의 Transition이 끝나길 기다린다
                 _nextScreen = nextScreen;
+
 				_nextScreen.ScreenManager = this;
-				_nextScreen.LoadContent();
-                _activeScreen.ScreenState = ScreenState.TransitionOff;
+
+                // Active Screen은 Transition Off 시작
+                if(_activeScreen != null) _activeScreen.ScreenState = ScreenState.TransitionOff;
             }
         }
 
-		public void RemoveScreen(GameScreen screen) {
-			if(screen == _activeScreen) {
-				_activeScreen.UnloadContent();
-				_activeScreen = null;
-			}
-			else if(screen == _nextScreen) {
-				_nextScreen.UnloadContent();
-				_nextScreen = null;
-			}
-			else {
-				if(screen == null) {
-					Console.WriteLine("ScreenManager.RemoveScreen : The argument can not be Null");
-				}
-				else {
-					Console.WriteLine("ScreenManager.RemoveScreen : this screen is not exsist");
-				}
-			}
-		}
+        public void RemoveScreen(GameScreen screen) {
+            if (screen == null)
+                Debug.WriteLine("### ScreenManager.RemoveScreen Failed : The argument can not be Null ###");
+            else {
+                if(screen == _activeScreen) {
+                    // Unload Content
+                    _activeScreen.UnloadContent();
+
+                    // Clear
+                    _activeScreen = null;
+                }
+                else if(screen == _nextScreen) {
+                    // Unload Content
+                    _nextScreen.UnloadContent();
+
+                    // Clear
+                    _nextScreen = null;
+                }
+                else {
+                    Debug.WriteLine("### ScreenManager.RemoveScreen Failed : This Screen does not exsist ###");
+                }
+            }
+        }
     }
 }
