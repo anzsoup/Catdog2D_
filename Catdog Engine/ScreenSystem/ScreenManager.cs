@@ -12,26 +12,30 @@ namespace CatdogEngine.ScreenSystem {
     public class ScreenManager : Game {
         private GameScreen _activeScreen;                // 현재 활성화 된 스크린
         private GameScreen _nextScreen;                  // 스크린 전환이 진행 중일 때, 곧 전환 될 스크린
-        GraphicsDeviceManager graphics;
+        private GraphicsDeviceManager _graphics;
         SpriteBatch spriteBatch;
 
         public ScreenManager() {
-            graphics = new GraphicsDeviceManager(this);
-			graphics.IsFullScreen = false;
+            _graphics = new GraphicsDeviceManager(this);
+			_graphics.IsFullScreen = false;
             Content.RootDirectory = "Content";
+			this.IsMouseVisible = true;
 
 			SetScreen(new LogoScreen());
         }
 
-        public SpriteBatch SpriteBatch { get { return spriteBatch; } }
+		#region Properties
+		public SpriteBatch SpriteBatch { get { return spriteBatch; } }
+		public GraphicsDeviceManager GraphicsDeviceManager { get { return _graphics; } }
+		#endregion
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
-        protected override void Initialize() {
+		/// <summary>
+		/// Allows the game to perform any initialization it needs to before starting to run.
+		/// This is where it can query for any required services and load any non-graphic
+		/// related content.  Calling base.Initialize will enumerate through any components
+		/// and initialize them as well.
+		/// </summary>
+		protected override void Initialize() {
             // TODO: Add your initialization logic here
 
             base.Initialize();

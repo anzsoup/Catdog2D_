@@ -38,12 +38,15 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ScreenSystem\CanvasScreen.cs" />
     <Compile Include="ScreenSystem\GameScreen.cs" />
     <Compile Include="ScreenSystem\LogoScreen.cs" />
     <Compile Include="ScreenSystem\ScreenManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\IView.cs" />
+    <Compile Include="UI\Button.cs" />
+    <Compile Include="UI\Canvas.cs" />
+    <Compile Include="UI\IStencil.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
