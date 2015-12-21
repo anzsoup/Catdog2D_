@@ -11,12 +11,12 @@ namespace CatdogEngine.UI {
     /// </summary>
     public interface IStencil {
         /// <summary>
-        /// 뷰의 로직을 진행시킨다.
+        /// 스텐실의 로직을 진행시킨다.
         /// </summary>
         void Update(GameTime gameTime);
 
         /// <summary>
-        /// 해당 뷰를 화면에 그려야 할 때 호출된다.
+        /// 해당 스텐실을 화면에 그려야 할 때 호출된다.
         /// </summary>
         void Draw(GameTime gameTime);
     }
