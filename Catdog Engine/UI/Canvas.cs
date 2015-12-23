@@ -18,10 +18,10 @@ namespace CatdogEngine.UI {
 	}
 
 	/// <summary>
-	/// UI를 관리한다.
-	/// Canvas Screen의 Update, Draw 로직 내에서 동작한다.
-	/// 캔버스의 사이즈는 항상 윈도우의 크기와 같다.
-	/// 스텐실의 사이즈와 위치는 캔버스 사이즈에 대해 상대적으로 표현되며 0 이상 1 이하의 값을 갖는다.
+	/// <para>UI를 관리한다.</para>
+	/// <para>Canvas Screen의 Update, Draw 로직 내에서 동작한다.</para>
+	/// <para>캔버스의 사이즈는 항상 윈도우의 크기와 같다.</para>
+	/// <para>스텐실의 사이즈와 위치는 캔버스 사이즈에 대해 상대적으로 표현되며 0 이상 1 이하의 값을 갖는다.</para>
 	/// </summary>
 	public class Canvas {
         private List<IStencil> _stencils;               // 스텐실들을 담고 있는 리스트

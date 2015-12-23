@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using CatdogEngine.Graphics2D;
+using CatdogEngine.Graphics;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace CatdogEngine.UI.Stencil {
@@ -18,8 +18,8 @@ namespace CatdogEngine.UI.Stencil {
 	public delegate void BUTTON__LEFT_MOUSE_UP(int x, int y);
 
 	/// <summary>
-	/// 버튼 UI
-	/// 클릭하여 정해진 동작을 수행할 수 있는 사용자 인터페이스
+	/// <para>버튼 UI</para>
+	/// <para>클릭하여 정해진 동작을 수행할 수 있는 사용자 인터페이스</para>
 	/// </summary>
 	public class Button : IStencil {
 		private Rectangle _region;							// 버튼의 영역
@@ -39,16 +39,6 @@ namespace CatdogEngine.UI.Stencil {
 		public BUTTON__MOUSE_OUT OnMouseOut { set { _onMouseOut = value; } }
 		public BUTTON__LEFT_MOUSE_DOWN OnLeftMouseDown { set { _onLeftMouseDown = value; } }
 		public BUTTON__LEFT_MOUSE_UP OnLeftMouseUp { set { _onLeftMouseUp = value; } }
-
-		public Sprite PressedImage {
-			get { return _pressedImage; }
-			set {
-				_pressedImage = value;
-				if(_pressedImage != null) {
-
-				}
-			}
-		}
 		#endregion
 
 		public Button() {

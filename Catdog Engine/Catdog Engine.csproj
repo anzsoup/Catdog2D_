@@ -38,7 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Graphics\2D\Sprite.cs" />
+    <Compile Include="Graphics\Sprite.cs" />
     <Compile Include="ScreenSystem\CanvasScreen.cs" />
     <Compile Include="ScreenSystem\GameScreen.cs" />
     <Compile Include="ScreenSystem\LogoScreen.cs" />
