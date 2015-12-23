@@ -12,8 +12,13 @@ namespace CatdogEngine.ScreenSystem {
     public class ScreenManager : Game {
         private GameScreen _activeScreen;                // 현재 활성화 된 스크린
         private GameScreen _nextScreen;                  // 스크린 전환이 진행 중일 때, 곧 전환 될 스크린
-        private GraphicsDeviceManager _graphics;
-        SpriteBatch spriteBatch;
+		private SpriteBatch spriteBatch;
+
+		// 어디서든 접근이 가능하도록 static으로 선언했다.
+		// 초기화 시점은 Main에서 ScreenManager가 생성될 때이다.
+		// 초기화 시점보다 이른 시기에 접근 시도가 발생하면 안된다.
+		private static GraphicsDeviceManager _graphics;
+        
 
         public ScreenManager() {
             _graphics = new GraphicsDeviceManager(this);
@@ -26,7 +31,7 @@ namespace CatdogEngine.ScreenSystem {
 
 		#region Properties
 		public SpriteBatch SpriteBatch { get { return spriteBatch; } }
-		public GraphicsDeviceManager GraphicsDeviceManager { get { return _graphics; } }
+		public static GraphicsDeviceManager GraphicsDeviceManager { get { return _graphics; } }
 		#endregion
 
 		/// <summary>
@@ -57,7 +62,9 @@ namespace CatdogEngine.ScreenSystem {
         /// game-specific content.
         /// </summary>
         protected override void UnloadContent() {
-            // TODO: Unload any non ContentManager content here
+			// TODO: Unload any non ContentManager content here
+			// Unload All of Contents had been loaded
+			Content.Unload();
         }
 
         /// <summary>

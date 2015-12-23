@@ -5,20 +5,19 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using CatdogEngine.Graphics2D;
 
 namespace CatdogEngine.ScreenSystem {
     public class LogoScreen : GameScreen {
 
-        private Texture2D _logo;
-        private Rectangle _region;
+        Sprite logo;
 
         public override void LoadContent() {
-            _logo = ScreenManager.Content.Load<Texture2D>("Catdog.png");
-            _region = new Rectangle(0, 0, _logo.Width, _logo.Height);
+            logo = new Sprite(ScreenManager.Content.Load<Texture2D>("Catdog"));
         }
 
         public override void UnloadContent() {
-            _logo.Dispose();
+			logo.Dispose();
         }
 
         public override void Update(GameTime gameTime) {
@@ -27,7 +26,7 @@ namespace CatdogEngine.ScreenSystem {
 
         public override void Draw(GameTime gameTime) {
             ScreenManager.SpriteBatch.Begin();
-            ScreenManager.SpriteBatch.Draw(_logo, _region, Color.White);
+			logo.Draw(ScreenManager.SpriteBatch);
             ScreenManager.SpriteBatch.End();
         }
     }

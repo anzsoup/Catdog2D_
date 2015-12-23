@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace CatdogEngine.UI {
+namespace CatdogEngine.UI.Stencil {
 
 	/////////////////////////////////////////////////////////////////
 	// 이벤트 콜백을 위한 대리자
@@ -17,11 +17,14 @@ namespace CatdogEngine.UI {
 
 	/// <summary>
 	/// 버튼 UI
+	/// 클릭하여 정해진 동작을 수행할 수 있는 사용자 인터페이스
 	/// </summary>
 	public class Button : IStencil {
 		private Rectangle _region;							// 버튼의 영역
 		private bool _mouseHover;                           // 커서가 영역 안에 있는가
-		private bool _leftMousePressed;						// 마우스 왼쪽 버튼이 눌려있는가
+		private bool _leftMousePressed;                     // 마우스 왼쪽 버튼이 눌려있는가
+
+		
 
 		private BUTTON__MOUSE_IN _onMouseIn;
 		private BUTTON__MOUSE_OUT _onMouseOut;
