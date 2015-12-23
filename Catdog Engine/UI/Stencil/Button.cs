@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using CatdogEngine.Graphics2D;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace CatdogEngine.UI.Stencil {
 
@@ -24,7 +26,8 @@ namespace CatdogEngine.UI.Stencil {
 		private bool _mouseHover;                           // 커서가 영역 안에 있는가
 		private bool _leftMousePressed;                     // 마우스 왼쪽 버튼이 눌려있는가
 
-		
+		private Sprite _pressedImage;						// 눌린 상태의 이미지
+		private Sprite _normalImage;						// 평상시 이미지
 
 		private BUTTON__MOUSE_IN _onMouseIn;
 		private BUTTON__MOUSE_OUT _onMouseOut;
@@ -36,7 +39,21 @@ namespace CatdogEngine.UI.Stencil {
 		public BUTTON__MOUSE_OUT OnMouseOut { set { _onMouseOut = value; } }
 		public BUTTON__LEFT_MOUSE_DOWN OnLeftMouseDown { set { _onLeftMouseDown = value; } }
 		public BUTTON__LEFT_MOUSE_UP OnLeftMouseUp { set { _onLeftMouseUp = value; } }
+
+		public Sprite PressedImage {
+			get { return _pressedImage; }
+			set {
+				_pressedImage = value;
+				if(_pressedImage != null) {
+
+				}
+			}
+		}
 		#endregion
+
+		public Button() {
+			//기본 버튼 이미지
+		}
 
 		public void Update(GameTime gameTime) {
 			// 현재 마우스 State를 본다.
@@ -85,8 +102,13 @@ namespace CatdogEngine.UI.Stencil {
 			}
 		}
 
-		public void Draw(GameTime gameTime) {
-
+		public void Draw(SpriteBatch spriteBatch, GameTime gameTime) {
+			if(_leftMousePressed) {
+				if (_pressedImage != null) _pressedImage.Draw(spriteBatch);
+			}
+			else {
+				if (_normalImage != null) _normalImage.Draw(spriteBatch);
+			}
 		}
 	}
 }

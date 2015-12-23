@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,6 @@ namespace CatdogEngine.UI.Stencil {
         /// <summary>
         /// 해당 스텐실을 화면에 그려야 할 때 호출된다.
         /// </summary>
-        void Draw(GameTime gameTime);
+        void Draw(SpriteBatch spriteBatch, GameTime gameTime);
     }
 }

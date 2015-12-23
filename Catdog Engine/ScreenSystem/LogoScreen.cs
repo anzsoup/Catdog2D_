@@ -25,9 +25,7 @@ namespace CatdogEngine.ScreenSystem {
         }
 
         public override void Draw(GameTime gameTime) {
-            ScreenManager.SpriteBatch.Begin();
 			logo.Draw(ScreenManager.SpriteBatch);
-            ScreenManager.SpriteBatch.End();
         }
     }
 }

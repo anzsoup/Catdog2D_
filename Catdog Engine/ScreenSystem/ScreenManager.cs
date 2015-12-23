@@ -110,8 +110,10 @@ namespace CatdogEngine.ScreenSystem {
 
             base.Draw(gameTime);
 
+			SpriteBatch.Begin();
             if (_nextScreen != null) _nextScreen.Draw(gameTime);
             if (_activeScreen != null) _activeScreen.Draw(gameTime);
+			SpriteBatch.End();
         }
 
         /// <summary>

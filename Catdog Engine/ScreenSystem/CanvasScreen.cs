@@ -25,7 +25,8 @@ namespace CatdogEngine.ScreenSystem {
 
 			// Make Canvas
 			// Canvas size always equal to Window size
-			_canvas = new Canvas(ScreenManager.GraphicsDeviceManager.PreferredBackBufferWidth, ScreenManager.GraphicsDeviceManager.PreferredBackBufferHeight);
+			_canvas = new Canvas(ScreenManager.SpriteBatch, 
+				ScreenManager.GraphicsDeviceManager.PreferredBackBufferWidth, ScreenManager.GraphicsDeviceManager.PreferredBackBufferHeight);
 		}
 
 		/// <summary>

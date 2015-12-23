@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using CatdogEngine.UI.Stencil;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace CatdogEngine.UI {
 
@@ -25,9 +26,11 @@ namespace CatdogEngine.UI {
 	public class Canvas {
         private List<IStencil> _stencils;               // 스텐실들을 담고 있는 리스트
 		private ScaleMode _scaleMode;                   // 스케일모드
-		private int _width, _height;					// 캔버스 사이즈 (절대적 크기)
+		private int _width, _height;                    // 캔버스 사이즈 (절대적 크기)
 
-		public Canvas(int width, int height) {
+		private SpriteBatch _spriteBatch;				// ScreenManager의 SpriteBatch
+
+		public Canvas(SpriteBatch spriteBatch, int width, int height) {
             _stencils = new List<IStencil>();
 
 			// 스케일 모드 기본값은 SCALE_WITH_WINDOW
@@ -35,10 +38,13 @@ namespace CatdogEngine.UI {
 
 			// 캔버스 사이즈 초기화
 			SetCanvasSize(width, height);
+
+			SpriteBatch = spriteBatch;
 		}
 
 		#region Properties
 		public ScaleMode ScaleMode { get { return _scaleMode; } set { _scaleMode = value; } }
+		public SpriteBatch SpriteBatch { get { return _spriteBatch; } set { _spriteBatch = value; } }
 		#endregion
 
 		/// <summary>
@@ -76,7 +82,7 @@ namespace CatdogEngine.UI {
 		public void Draw(GameTime gameTime) {
 			for(int i=0; i<_stencils.Count; ++i) {
 				IStencil stencil = _stencils[i];
-				stencil.Draw(gameTime);
+				stencil.Draw(SpriteBatch, gameTime);
 			}
 		}
     }
