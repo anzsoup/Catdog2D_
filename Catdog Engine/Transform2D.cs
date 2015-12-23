@@ -23,9 +23,20 @@ namespace CatdogEngine {
 				return virtualPosition;
 			}
 
-			set { _position = value; }
+			set {
+				if (value == null) _position = new Vector2(0, 0);
+				else _position = value;
+			}
 		}
-		public Vector2 Scale { get { return _scale; } set { _scale = value; } }
+
+		public Vector2 Scale {
+			get { return _scale; }
+			set {
+				if (value == null) _scale = new Vector2(1, 1);
+				else _scale = value;
+			}
+		}
+
 		public float Rotation { get { return _rotation; } set { _rotation = value; } }
 		#endregion
 
