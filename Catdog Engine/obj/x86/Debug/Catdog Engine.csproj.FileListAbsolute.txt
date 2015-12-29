@@ -50,3 +50,4 @@ D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Shar
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\obj\x86\Debug\Catdog Engine.csprojResolveAssemblyReference.cache
 D:\Catdog Engine\Catdog Engine\bin\Windows\Debug\Content\Catdog.png
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Content\Catdog.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Content\gojam.xnb

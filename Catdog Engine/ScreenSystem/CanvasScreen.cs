@@ -7,8 +7,8 @@ using System.Text;
 
 namespace CatdogEngine.ScreenSystem {
 	/// <summary>
-	/// <para>Canvas를 갖는 Game Screen</para>
-	/// <para>이 클래스를 상속하면 화면 위에 UI를 찍어낼 수 있다.</para>
+	/// Canvas를 갖는 Game Screen
+	/// 이 클래스를 상속하면 화면 위에 UI를 찍어낼 수 있다.
 	/// </summary>
 	public abstract class CanvasScreen : GameScreen {
 		private Canvas _canvas;                 // 캔버스

@@ -18,8 +18,8 @@ namespace CatdogEngine.UI.Stencil {
 	public delegate void BUTTON__LEFT_MOUSE_UP(int x, int y);
 
 	/// <summary>
-	/// <para>버튼 UI</para>
-	/// <para>클릭하여 정해진 동작을 수행할 수 있는 사용자 인터페이스</para>
+	/// 버튼 UI
+	/// 클릭하여 정해진 동작을 수행할 수 있는 사용자 인터페이스
 	/// </summary>
 	public class Button : IStencil {
 		private Rectangle _region;							// 버튼의 영역
