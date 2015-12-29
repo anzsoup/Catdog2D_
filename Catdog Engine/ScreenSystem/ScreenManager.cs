@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Content;
 
 namespace CatdogEngine.ScreenSystem {
     /// <summary>
@@ -23,8 +24,11 @@ namespace CatdogEngine.ScreenSystem {
         public ScreenManager() {
             _graphics = new GraphicsDeviceManager(this);
 			_graphics.IsFullScreen = false;
-            Content.RootDirectory = "Content";
 			this.IsMouseVisible = true;
+
+			// ContentManager 및 ResourceManager 초기화
+			Content.RootDirectory = "Content";
+			ResourceManager.Instance.Initialize(Content);
 
 			SetScreen(new LogoScreen());
         }
@@ -64,7 +68,7 @@ namespace CatdogEngine.ScreenSystem {
         protected override void UnloadContent() {
 			// TODO: Unload any non ContentManager content here
 			// Unload All of Contents had been loaded
-			Content.Unload();
+			ResourceManager.Instance.Unload();						// Content.Unload();
         }
 
         /// <summary>

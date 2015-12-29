@@ -14,9 +14,9 @@ namespace CatdogEngine.ScreenSystem {
 		Sprite gojam;
 
         public override void LoadContent() {
-            logo = new Sprite(ScreenManager.Content.Load<Texture2D>("Catdog"));
+            logo = new Sprite(ResourceManager.Instance.Load<Texture2D>("Catdog"));
 			logo.Position = new Vector2(ScreenManager.GraphicsDeviceManager.PreferredBackBufferWidth/2, ScreenManager.GraphicsDeviceManager.PreferredBackBufferHeight/2);
-			gojam = new Sprite(ScreenManager.Content.Load<Texture2D>("gojam"));
+			gojam = new Sprite(ResourceManager.Instance.Load<Texture2D>("gojam"));
 			gojam.Position = new Vector2(ScreenManager.GraphicsDeviceManager.PreferredBackBufferWidth / 2, ScreenManager.GraphicsDeviceManager.PreferredBackBufferHeight / 2);
 			gojam.Scale = new Vector2(0.5f, 0.5f);
 			gojam.Rotation = 45f;
