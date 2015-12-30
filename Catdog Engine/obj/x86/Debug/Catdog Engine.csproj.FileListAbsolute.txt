@@ -51,3 +51,5 @@ D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\obj\x86\Debug\Catdog E
 D:\Catdog Engine\Catdog Engine\bin\Windows\Debug\Content\Catdog.png
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Content\Catdog.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Content\gojam.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Content\Default_Button_1.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Content\Default_Button_2.xnb

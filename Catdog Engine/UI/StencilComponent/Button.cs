@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using CatdogEngine.Graphics;
 using Microsoft.Xna.Framework.Graphics;
 using CatdogEngine.ScreenSystem;
 
-namespace CatdogEngine.UI.Stencil {
+namespace CatdogEngine.UI.StencilComponent {
 
 	/////////////////////////////////////////////////////////////////
 	// 이벤트 콜백을 위한 대리자
@@ -23,15 +19,13 @@ namespace CatdogEngine.UI.Stencil {
 	/// 클릭하여 정해진 동작을 수행할 수 있는 사용자 인터페이스.
 	/// Update와 Draw를 virtual로 정의했다. 해당 클래스를 상속하여 원하는 스타일의 버튼을 만들어 사용할 수 있다.
 	/// </summary>
-	public class Button : IStencil {
+	public class Button : Stencil {
 		private Rectangle _region;							// 버튼의 영역
 		private bool _mouseHover;                           // 커서가 영역 안에 있는가
 		private bool _leftMousePressed;                     // 마우스 왼쪽 버튼이 눌려있는가
 
 		private Sprite _defaultImageNormal;                 // 기본 버튼 이미지
 		private Sprite _defaultImageClicked;                // 기본 버튼 이미지
-
-		private Vector2 _position;
 
 		private BUTTON__MOUSE_IN _onMouseIn;
 		private BUTTON__MOUSE_OUT _onMouseOut;
@@ -43,19 +37,17 @@ namespace CatdogEngine.UI.Stencil {
 		public BUTTON__MOUSE_OUT OnMouseOut { set { _onMouseOut = value; } }
 		public BUTTON__LEFT_MOUSE_DOWN OnLeftMouseDown { set { _onLeftMouseDown = value; } }
 		public BUTTON__LEFT_MOUSE_UP OnLeftMouseUp { set { _onLeftMouseUp = value; } }
-		
-		public Vector2 Position { get { return _position; } set { _position = value; } }
 		#endregion
 
-		public Button() {
+		public Button(GameScreen screen) : base(screen) {
 			// 기본 버튼 이미지
-			_defaultImageNormal = new Sprite(ResourceManager.Instance.Load<Texture2D>("Default_Button_1"));
-			_defaultImageClicked = new Sprite(ResourceManager.Instance.Load<Texture2D>("Default_Button_2"));
+			_defaultImageNormal = new Sprite(Screen.Content.Load<Texture2D>("Default_Button_1"));
+			_defaultImageClicked = new Sprite(Screen.Content.Load<Texture2D>("Default_Button_2"));
 
 			Position = new Vector2(0, 0);
 		}
 
-		public virtual void Update(GameTime gameTime) {
+		public override void Update(GameTime gameTime) {
 			// 현재 마우스 State를 본다.
 			MouseState mouseState = Mouse.GetState();
 
@@ -102,7 +94,7 @@ namespace CatdogEngine.UI.Stencil {
 			}
 		}
 
-		public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime) {
+		public override void Draw(SpriteBatch spriteBatch, GameTime gameTime) {
 			if(_leftMousePressed) {
 				if (_defaultImageClicked != null) _defaultImageClicked.Draw(spriteBatch);
 			}

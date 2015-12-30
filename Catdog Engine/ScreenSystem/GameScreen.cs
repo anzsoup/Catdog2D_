@@ -33,9 +33,14 @@ namespace CatdogEngine.ScreenSystem {
     /// </summary>
     public abstract class GameScreen {
 
-        SCREEN_TRANSITION_EFFECT Screen_Transition_Effect;
-        ScreenState _screenState;
-        ScreenManager _screenManager;
+        private SCREEN_TRANSITION_EFFECT Screen_Transition_Effect;
+        private ScreenState _screenState;
+        private ScreenManager _screenManager;
+
+		// 스크린마다 ContentManager를 하나씩 갖는다.
+		// 스크린 내에서의 모든 리소스 할당과 해제는 이 ContentManager를 통해 이루어진다.
+		// 스크린의 수명이 다하면 모든 리소스를 해제한다.
+		protected ContentManager _content;
 
         public GameScreen() {
             _screenState = ScreenState.Waiting;
@@ -50,19 +55,27 @@ namespace CatdogEngine.ScreenSystem {
         public TimeSpan TransitionTime { get; protected set; }
 
 		public SCREEN_TRANSITION_EFFECT ScreenTransitionEffect { get; set; }
+
+		public ContentManager Content { get { return _content; } }
         #endregion
 
         /// <summary>
         /// GameScreen이 생성된 후 리소스를 할당하는 타이밍에 한 번 호출된다.
         /// 리소스 할당 작업을 여기서 한다.
         /// </summary>
-        public virtual void LoadContent() { }
+        public virtual void LoadContent() {
+			// 스크린이 활성화 되고 리소스 할당 및 초기화가 이루어질 때 Content Manager를 생성한다.
+			_content = new ContentManager(ScreenManager.Services, ScreenManager.Content.RootDirectory);
+		}
 
         /// <summary>
         /// GameScreen이 소멸하기 직전 리소스를 해제하는 타이밍에 한 번 호출된다.
         /// 리소스 해제 작업을 여기서 한다.
         /// </summary>
-        public virtual void UnloadContent() { }
+        public virtual void UnloadContent() {
+			// Content Manager clears the resources loaded by this screen.
+			Content.Unload();
+		}
 
         /// <summary>
         /// 게임 로직을 진행시킨다.

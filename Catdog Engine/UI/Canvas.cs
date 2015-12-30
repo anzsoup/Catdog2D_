@@ -1,11 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using CatdogEngine.UI.Stencil;
 using Microsoft.Xna.Framework.Graphics;
+using CatdogEngine.UI.StencilComponent;
 
 namespace CatdogEngine.UI {
 
@@ -24,14 +21,14 @@ namespace CatdogEngine.UI {
 	/// 스텐실의 사이즈와 위치는 캔버스 사이즈에 대해 상대적으로 표현되며 0 이상 1 이하의 값을 갖는다.
 	/// </summary>
 	public class Canvas {
-        private List<IStencil> _stencils;               // 스텐실들을 담고 있는 리스트
+        private List<Stencil> _stencils;                // 스텐실들을 담고 있는 리스트
 		private ScaleMode _scaleMode;                   // 스케일모드
 		private int _width, _height;                    // 캔버스 사이즈 (절대적 크기)
 
-		private SpriteBatch _spriteBatch;				// ScreenManager의 SpriteBatch
+		private SpriteBatch _spriteBatch;               // ScreenManager의 SpriteBatch
 
 		public Canvas(SpriteBatch spriteBatch, int width, int height) {
-            _stencils = new List<IStencil>();
+            _stencils = new List<Stencil>();
 
 			// 스케일 모드 기본값은 SCALE_WITH_WINDOW
 			ScaleMode = ScaleMode.SCALE_WITH_WINDOW;
@@ -55,7 +52,7 @@ namespace CatdogEngine.UI {
 			ScaleMode = scaleMode;
 		}
 
-		public void Add(IStencil stencil) {
+		public void Add(Stencil stencil) {
             if(stencil == null) {
                 Debug.WriteLine("### Canvas.Add Failed : The Argument can not be Null. ###");
             }
@@ -71,7 +68,7 @@ namespace CatdogEngine.UI {
 
 		public void Update(GameTime gameTime, int windowWidth, int windowHeight) {
 			for (int i = 0; i < _stencils.Count; ++i) {
-				IStencil stencil = _stencils[i];
+				Stencil stencil = _stencils[i];
 				stencil.Update(gameTime);
 			}
 
@@ -81,7 +78,7 @@ namespace CatdogEngine.UI {
 
 		public void Draw(GameTime gameTime) {
 			for(int i=0; i<_stencils.Count; ++i) {
-				IStencil stencil = _stencils[i];
+				Stencil stencil = _stencils[i];
 				stencil.Draw(SpriteBatch, gameTime);
 			}
 		}

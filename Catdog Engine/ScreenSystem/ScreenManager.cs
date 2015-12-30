@@ -26,9 +26,7 @@ namespace CatdogEngine.ScreenSystem {
 			_graphics.IsFullScreen = false;
 			this.IsMouseVisible = true;
 
-			// ContentManager 및 ResourceManager 초기화
 			Content.RootDirectory = "Content";
-			ResourceManager.Instance.Initialize(Content);
 
 			SetScreen(new LogoScreen());
         }
@@ -68,7 +66,7 @@ namespace CatdogEngine.ScreenSystem {
         protected override void UnloadContent() {
 			// TODO: Unload any non ContentManager content here
 			// Unload All of Contents had been loaded
-			ResourceManager.Instance.Unload();						// Content.Unload();
+			Content.Unload();
         }
 
         /// <summary>
