@@ -28,6 +28,7 @@ namespace CatdogEngine.ScreenSystem {
 
 			Content.RootDirectory = "Content";
 
+			// 게임이 시작되면 맨 처음 로고 스크린을 보여준다.
 			SetScreen(new LogoScreen());
         }
 

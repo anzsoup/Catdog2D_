@@ -56,7 +56,7 @@ namespace CatdogEngine.ScreenSystem {
 
 		public SCREEN_TRANSITION_EFFECT ScreenTransitionEffect { get; set; }
 
-		public ContentManager Content { get { return _content; } }
+		public ContentManager Content { get { return _content; } private set { _content = value; } }
         #endregion
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace CatdogEngine.ScreenSystem {
         /// </summary>
         public virtual void LoadContent() {
 			// 스크린이 활성화 되고 리소스 할당 및 초기화가 이루어질 때 Content Manager를 생성한다.
-			_content = new ContentManager(ScreenManager.Services, ScreenManager.Content.RootDirectory);
+			Content = new ContentManager(ScreenManager.Services, ScreenManager.Content.RootDirectory);
 		}
 
         /// <summary>

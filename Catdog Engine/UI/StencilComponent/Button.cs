@@ -43,8 +43,6 @@ namespace CatdogEngine.UI.StencilComponent {
 			// 기본 버튼 이미지
 			_defaultImageNormal = new Sprite(Screen.Content.Load<Texture2D>("Default_Button_1"));
 			_defaultImageClicked = new Sprite(Screen.Content.Load<Texture2D>("Default_Button_2"));
-
-			Position = new Vector2(0, 0);
 		}
 
 		public override void Update(GameTime gameTime) {

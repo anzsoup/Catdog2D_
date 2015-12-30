@@ -15,11 +15,11 @@ namespace CatdogEngine.UI.StencilComponent {
 		protected GameScreen _screen;
 
 		public Vector2 Position { get { return _position; } set { _position = value; } }
-		public GameScreen Screen { get { return _screen; } }
+		public GameScreen Screen { get { return _screen; } private set { _screen = value; } }
 
 		public Stencil(GameScreen screen) {
 			Position = new Vector2(0, 0);
-			_screen = screen;
+			Screen = screen;
 		}
 
 		/// <summary>
