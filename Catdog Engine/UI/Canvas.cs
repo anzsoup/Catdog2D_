@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Graphics;
 using CatdogEngine.UI.StencilComponent;
+using CatdogEngine.ScreenSystem;
 
 namespace CatdogEngine.UI {
 
@@ -27,16 +28,16 @@ namespace CatdogEngine.UI {
 
 		private SpriteBatch _spriteBatch;               // ScreenManager의 SpriteBatch
 
-		public Canvas(SpriteBatch spriteBatch, int width, int height) {
+		public Canvas(GameScreen screen) {
             _stencils = new List<Stencil>();
 
 			// 스케일 모드 기본값은 SCALE_WITH_WINDOW
 			ScaleMode = ScaleMode.SCALE_WITH_WINDOW;
 
 			// 캔버스 사이즈 초기화
-			SetCanvasSize(width, height);
+			SetCanvasSize(ScreenManager.GraphicsDeviceManager.PreferredBackBufferWidth, ScreenManager.GraphicsDeviceManager.PreferredBackBufferHeight);
 
-			SpriteBatch = spriteBatch;
+			SpriteBatch = screen.ScreenManager.SpriteBatch;
 		}
 
 		#region Properties
