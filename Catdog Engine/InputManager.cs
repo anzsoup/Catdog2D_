@@ -11,8 +11,12 @@ namespace CatdogEngine {
 	public static class InputManager {
 		private static List<InputListener> _listeners = new List<InputListener>();
 
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// Cache
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////
 		private static bool _leftMousePressed;
-		private static int _oldMousePositionX, _lodMousePositionY;
+		private static MouseState _oldMouseState;
+		private static KeyboardState _oldKeyboardState;
 
 		/// <summary>
 		/// 리스너를 등록한다.
@@ -45,29 +49,51 @@ namespace CatdogEngine {
 				if(!_leftMousePressed) {
 					_leftMousePressed = true;
 					// Call back OnLeftMouseDown
-					for (int i = 0; i < _listeners.Count; ++i) _listeners[i].OnLeftMouseDown(mousePositionX, mousePositionY);
+					foreach (InputListener listener in _listeners) listener.OnLeftMouseDown(mousePositionX, mousePositionY);
 				}
 			}
 			else if(mouseState.LeftButton == ButtonState.Released) {
 				if(_leftMousePressed) {
 					_leftMousePressed = false;
 					// Call back OnLeftMouseUp
-					for (int i = 0; i < _listeners.Count; ++i) _listeners[i].OnLeftMouseUp(mousePositionX, mousePositionY);
+					foreach (InputListener listener in _listeners) listener.OnLeftMouseUp(mousePositionX, mousePositionY);
 				}
 			}
 
-			if(mousePositionX != _oldMousePositionX || mousePositionY != _lodMousePositionY) {
+			if(mousePositionX != _oldMouseState.X || mousePositionY != _oldMouseState.Y) {
 				// Call back OnMouseMove
-				for (int i = 0; i < _listeners.Count; ++i) _listeners[i].OnMouseMove(mousePositionX, mousePositionY);
+				foreach(InputListener listener in _listeners) listener.OnMouseMove(mousePositionX, mousePositionY);
 			}
 
-			// 모든 이벤트 처리가 끝나면 현재 마우스 위치를 저장한다.
-			_oldMousePositionX = mousePositionX;
-			_lodMousePositionY = mousePositionY;
+			// 모든 이벤트 처리가 끝나면 현재 마우스 State를 저장한다.
+			_oldMouseState = mouseState;
 		}
 
 		private static void ListenKeyboardEvent() {
+			// 현재 키보드 State를 확인한다.
+			KeyboardState keyboardState = Keyboard.GetState();
 
+			// 현재 눌려있는 키를 모두 받는다.
+			Keys[] keys = keyboardState.GetPressedKeys();
+
+			// 이전 State에서 눌려있던 키를 모두 받는다.
+			Keys[] oldKeys = _oldKeyboardState.GetPressedKeys();
+
+			// Find released Keys
+			foreach(Keys key in oldKeys) {
+				if(keyboardState.IsKeyUp(key)) {
+					// Call back OnKeyUp
+					foreach (InputListener listener in _listeners) listener.OnKeyUp(key);
+				}
+			}
+
+			// Find newly pressed keys
+			foreach(Keys key in keys) {
+				if(_oldKeyboardState.IsKeyUp(key)) {
+					// Call back OnKeyDown
+					foreach (InputListener listener in _listeners) listener.OnKeyDown(key);
+				}
+			}
 		}
 	}
 }

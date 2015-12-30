@@ -2,6 +2,8 @@
 using CatdogEngine.Graphics;
 using Microsoft.Xna.Framework.Graphics;
 using CatdogEngine.ScreenSystem;
+using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace CatdogEngine.UI.StencilComponent {
 
@@ -115,6 +117,14 @@ namespace CatdogEngine.UI.StencilComponent {
 					if (_onMouseIn != null) _onMouseIn();
 				}
 			}
+		}
+
+		public override void OnKeyDown(Keys key) {
+			
+		}
+
+		public override void OnKeyUp(Keys key) {
+			
 		}
 	}
 }

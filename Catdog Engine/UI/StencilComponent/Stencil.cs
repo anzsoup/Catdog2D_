@@ -1,6 +1,7 @@
 ﻿using CatdogEngine.ScreenSystem;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace CatdogEngine.UI.StencilComponent {
 	/// <summary>
@@ -42,5 +43,7 @@ namespace CatdogEngine.UI.StencilComponent {
 		public abstract void OnLeftMouseDown(int x, int y);
 		public abstract void OnLeftMouseUp(int x, int y);
 		public abstract void OnMouseMove(int x, int y);
+		public abstract void OnKeyDown(Keys key);
+		public abstract void OnKeyUp(Keys key);
 	}
 }
