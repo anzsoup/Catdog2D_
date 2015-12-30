@@ -27,6 +27,8 @@ namespace CatdogEngine.UI.StencilComponent {
 
 		private Sprite _defaultImageNormal;                 // 기본 버튼 이미지
 		private Sprite _defaultImageClicked;                // 기본 버튼 이미지
+		private SpriteFont _defaultFont;                    // 기본 글꼴
+		private String _defaultString;						// 기본 텍스트
 
 		private BUTTON__MOUSE_IN _onMouseIn;
 		private BUTTON__MOUSE_OUT _onMouseOut;
@@ -57,6 +59,10 @@ namespace CatdogEngine.UI.StencilComponent {
 			_defaultImageClicked = new Sprite(Screen.Content.Load<Texture2D>("Default_Button_2"));
 			_defaultImageClicked.Position = Position;
 
+			// 기본 글꼴 및 텍스트
+			_defaultFont = Screen.Content.Load<SpriteFont>("DefaultButtonText");
+			_defaultString = "Button";
+
 			// 기본 영역.
 			// 기본 영역의 크기는 (클릭 된 상태가 아닌)평상시 이미지의 크기로 하는 것이 좋다.
 			_region = new Rectangle((int)Position.X, (int)Position.Y, _defaultImageNormal.Width, _defaultImageNormal.Height);
@@ -73,6 +79,10 @@ namespace CatdogEngine.UI.StencilComponent {
 			else {
 				if (_defaultImageNormal != null) _defaultImageNormal.Draw(spriteBatch);
 			}
+
+			Vector2 textRegion = _defaultFont.MeasureString(_defaultString);
+			Vector2 temp = new Vector2(Position.X + (_region.Width - textRegion.X) / 2, Position.Y + (_region.Height - textRegion.Y) / 2);
+			spriteBatch.DrawString(_defaultFont, _defaultString, temp, Color.Black);
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////

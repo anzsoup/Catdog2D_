@@ -57,3 +57,9 @@
 /processorParam:TextureFormat=Color
 /build:Default_Button_2.png
 
+#begin DefaultButtonText.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:DefaultButtonText.spritefont
+
