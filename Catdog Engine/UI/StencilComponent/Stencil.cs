@@ -7,7 +7,7 @@ namespace CatdogEngine.UI.StencilComponent {
 	/// 화면 최 상단에 그려지는 UI는 모두 이 인터페이스를 상속해야 한다.
 	/// Game Screen 내부에서 동작하는 Update와 Draw 로직을 갖는다.
 	/// </summary>
-	public abstract class Stencil {
+	public abstract class Stencil : InputListener {
 		// 스텐실의 화면상 위치. 좌측 상단이 원점이다.
 		protected Vector2 _position;
 
@@ -20,6 +20,9 @@ namespace CatdogEngine.UI.StencilComponent {
 		public Stencil(GameScreen screen) {
 			Position = new Vector2(0, 0);
 			Screen = screen;
+
+			// InputListener 등록
+			InputManager.SetListener(this);
 		}
 
 		/// <summary>
@@ -31,5 +34,13 @@ namespace CatdogEngine.UI.StencilComponent {
 		/// 해당 스텐실을 화면에 그려야 할 때 호출된다.
 		/// </summary>
 		public abstract void Draw(SpriteBatch spriteBatch, GameTime gameTime);
+
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// Input Event
+		// 필요한 함수를 재정의 하여 사용
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////
+		public abstract void OnLeftMouseDown(int x, int y);
+		public abstract void OnLeftMouseUp(int x, int y);
+		public abstract void OnMouseMove(int x, int y);
 	}
 }

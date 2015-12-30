@@ -40,7 +40,8 @@
   <ItemGroup>
     <Compile Include="Graphics\Camera.cs" />
     <Compile Include="Graphics\Sprite.cs" />
-    <Compile Include="ResourceManager.cs" />
+    <Compile Include="InputListener.cs" />
+    <Compile Include="InputManager.cs" />
     <Compile Include="ScreenSystem\CanvasScreen.cs" />
     <Compile Include="ScreenSystem\GameScreen.cs" />
     <Compile Include="ScreenSystem\LogoScreen.cs" />

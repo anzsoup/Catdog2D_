@@ -1,10 +1,7 @@
-﻿using System;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
-using Microsoft.Xna.Framework.Content;
 
 namespace CatdogEngine.ScreenSystem {
     /// <summary>
@@ -82,6 +79,9 @@ namespace CatdogEngine.ScreenSystem {
             // TODO: Add your update logic here
 
             base.Update(gameTime);
+
+			// InputManager 작동
+			InputManager.Update();
        
             if(_activeScreen == null && _nextScreen != null) {
                 // Next Screen is now Active
