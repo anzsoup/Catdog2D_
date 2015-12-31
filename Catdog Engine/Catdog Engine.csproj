@@ -38,11 +38,10 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Graphics\Camera.cs" />
+    <Compile Include="Playground\Camera.cs" />
     <Compile Include="Graphics\Sprite.cs" />
     <Compile Include="InputListener.cs" />
     <Compile Include="InputManager.cs" />
-    <Compile Include="ScreenSystem\CanvasScreen.cs" />
     <Compile Include="ScreenSystem\GameScreen.cs" />
     <Compile Include="ScreenSystem\LogoScreen.cs" />
     <Compile Include="ScreenSystem\ScreenManager.cs" />
@@ -51,6 +50,10 @@
     <Compile Include="UI\StencilComponent\Button.cs" />
     <Compile Include="UI\Canvas.cs" />
     <Compile Include="UI\StencilComponent\Stencil.cs" />
+    <Compile Include="Playground\Object\Behavior.cs" />
+    <Compile Include="Playground\TileWorld.cs" />
+    <Compile Include="Playground\Transform.cs" />
+    <Compile Include="Playground\World.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

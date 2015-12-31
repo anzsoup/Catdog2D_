@@ -32,7 +32,7 @@ namespace CatdogEngine.ScreenSystem {
 			button.Position = new Vector2(250, 350);
 			canvas.Add(button);
 
-			// We don't need override UnloadContent rogic because 'Content' member does it for us in UnloadContent rogic of base class.
+			// We don't need override UnloadContent logic because 'Content' member does it for us in UnloadContent logic of base class.
 		}
 
         public override void Update(GameTime gameTime) {

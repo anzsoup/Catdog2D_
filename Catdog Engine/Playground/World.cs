@@ -1,4 +1,5 @@
 ﻿using CatdogEngine.Playground.Object;
+using CatdogEngine.Playground.Object.Component;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,11 @@ namespace CatdogEngine.Playground {
 	/// </summary>
 	public abstract class World {
 		private List<Behavior> _behaviors;
+		private Camera _camera;
 
 		public World() {
 			_behaviors = new List<Behavior>();
+			_camera = new Camera();
 		}
 
 		/// <summary>
@@ -28,6 +31,11 @@ namespace CatdogEngine.Playground {
 			// Start Behavior
 			behavior.Start();
 
+			// Initialize Components
+			foreach(BehaviorComponent component in behavior.Components) {
+				component.Initialize(this);
+			}
+
 			// Register Behavior
 			_behaviors.Add(behavior);
 		}
@@ -35,14 +43,19 @@ namespace CatdogEngine.Playground {
 		/// <summary>
 		/// 스크린의 Update 로직에 반드시 포함되어야 한다.
 		/// </summary>
-		/// <param name="gameTime"></param>
 		public virtual void Update(GameTime gameTime) {
 			// Behavior 로직 진행
 			foreach(Behavior behavior in _behaviors) {
 				// 각 Behavior 에게 스크린의 UpdateTime을 넘겨준다.
 				behavior.UpdateTime = gameTime;
 
-				// Update Behavior
+				// Update Components.
+				// It is followed by Behavior's Update Logic.
+				foreach(BehaviorComponent component in behavior.Components) {
+					component.Update();
+				}
+
+				// Update Behavior.
 				behavior.Update();
 			}
 		}
@@ -50,15 +63,17 @@ namespace CatdogEngine.Playground {
 		/// <summary>
 		/// 스크린의 Draw 로직에 반드시 포함되어야 한다.
 		/// </summary>
-		/// <param name="gameTime"></param>
 		public virtual void Draw(GameTime gameTime) {
 			// Behavior 로직 진행
 			foreach (Behavior behavior in _behaviors) {
 				// 각 Behavior 에게 스크린의 DrawTime을 넘겨준다.
 				behavior.DrawTime = gameTime;
 
-				// Draw Behavior
-				behavior.Draw();
+				// Draw Components.
+				// Behaviors don't have Draw logic, but do Components have it.
+				foreach (BehaviorComponent component in behavior.Components) {
+					component.Draw();
+				}
 			}
 		}
 	}
