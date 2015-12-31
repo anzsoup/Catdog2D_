@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CatdogEngine.Playground.Object.Component;
+using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,11 +25,11 @@ namespace CatdogEngine.Playground.Object {
 		#endregion
 
 		public override void Start() {
-
+			
 		}
 
-		public override void Update() {
-
+		public override void Update(GameTime gameTime) {
+			
 		}
 	}
 }

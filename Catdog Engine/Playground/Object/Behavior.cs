@@ -11,18 +11,13 @@ namespace CatdogEngine.Playground.Object {
 	/// 여러개의 BehaviorComponent를 가질 수 있다.
 	/// </summary>
 	public abstract class Behavior {
-		private GameTime _updateTime;
-		private GameTime _drawTime;
-
 		private Transform _transform;
 
 		private List<BehaviorComponent> _components;
 
 		#region Properties
-		public GameTime UpdateTime { get { return _updateTime; } set { _updateTime = value; } }
-		public GameTime DrawTime { get { return _drawTime; } set { _drawTime = value; } }
 		public Transform Transform { get { return _transform; } private set { _transform = value; } }
-		public List<BehaviorComponent> Components { get { return _components} }
+		public List<BehaviorComponent> Components { get { return _components; } }
 		#endregion
 
 		public Behavior() {
@@ -45,6 +40,6 @@ namespace CatdogEngine.Playground.Object {
 		/// <summary>
 		/// World가 Update 될 때마다 매번 호출된다. 여기서 Behavior의 행동을 진행시킨다.
 		/// </summary>
-		public abstract void Update();
+		public abstract void Update(GameTime gameTime);
 	}
 }

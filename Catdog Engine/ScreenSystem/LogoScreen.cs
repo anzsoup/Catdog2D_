@@ -16,6 +16,9 @@ namespace CatdogEngine.ScreenSystem {
 			// It is Important!
 			base.LoadContent();
 
+			// 화면 전환 효과 시간 2초
+			TransitionTime = new System.TimeSpan(0, 0, 2);
+
 			// Load Textures.
             logo = new Sprite(Content.Load<Texture2D>("Catdog"));
 			logo.Position = new Vector2(0, 0);
@@ -25,7 +28,7 @@ namespace CatdogEngine.ScreenSystem {
 			gojam.Rotation = 45f;
 
 			// Canvas
-			canvas = new Canvas(this);
+			canvas = new Canvas();
 
 			// Button
 			Button button = new Button(this);

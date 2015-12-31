@@ -38,10 +38,12 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Playground\Camera.cs" />
+    <Compile Include="Playground\Object\Camera.cs" />
     <Compile Include="Graphics\Sprite.cs" />
     <Compile Include="InputListener.cs" />
     <Compile Include="InputManager.cs" />
+    <Compile Include="Playground\Object\Component\BehaviorComponent.cs" />
+    <Compile Include="Playground\Object\Component\SpriteRenderer.cs" />
     <Compile Include="ScreenSystem\GameScreen.cs" />
     <Compile Include="ScreenSystem\LogoScreen.cs" />
     <Compile Include="ScreenSystem\ScreenManager.cs" />

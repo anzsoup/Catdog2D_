@@ -29,7 +29,7 @@ namespace CatdogEngine.UI {
 		private SpriteBatch _spriteBatch;               // ScreenManager의 SpriteBatch
 
 
-		public Canvas(GameScreen screen) {
+		public Canvas() {
             _stencils = new List<Stencil>();
 
 			// 스케일 모드 기본값은 SCALE_WITH_WINDOW
@@ -38,7 +38,7 @@ namespace CatdogEngine.UI {
 			// 캔버스 사이즈 초기화
 			SetCanvasSize(ScreenManager.GraphicsDeviceManager.PreferredBackBufferWidth, ScreenManager.GraphicsDeviceManager.PreferredBackBufferHeight);
 
-			SpriteBatch = screen.ScreenManager.SpriteBatch;
+			SpriteBatch = ScreenManager.SpriteBatch;
 		}
 
 

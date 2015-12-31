@@ -10,15 +10,16 @@ namespace CatdogEngine.ScreenSystem {
     public class ScreenManager : Game {
         private GameScreen _activeScreen;                // 현재 활성화 된 스크린
         private GameScreen _nextScreen;                  // 스크린 전환이 진행 중일 때, 곧 전환 될 스크린
-		private SpriteBatch spriteBatch;
 
 		// 어디서든 접근이 가능하도록 static으로 선언했다.
-		// 초기화 시점은 Main에서 ScreenManager가 생성될 때이다.
 		// 초기화 시점보다 이른 시기에 접근 시도가 발생하면 안된다.
 		private static GraphicsDeviceManager _graphics;
-        
+		private static SpriteBatch _spriteBatch;
 
-        public ScreenManager() {
+		private float _fadeAlpha;						// Fading 효과 전용
+
+
+		public ScreenManager() {
             _graphics = new GraphicsDeviceManager(this);
 			_graphics.IsFullScreen = false;
 			this.IsMouseVisible = true;
@@ -30,7 +31,7 @@ namespace CatdogEngine.ScreenSystem {
         }
 
 		#region Properties
-		public SpriteBatch SpriteBatch { get { return spriteBatch; } }
+		public static SpriteBatch SpriteBatch { get { return _spriteBatch; } }
 		public static GraphicsDeviceManager GraphicsDeviceManager { get { return _graphics; } }
 		#endregion
 
@@ -52,10 +53,10 @@ namespace CatdogEngine.ScreenSystem {
         /// </summary>
         protected override void LoadContent() {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
-        }
+			// TODO: use this.Content to load your game content here
+		}
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -116,6 +117,10 @@ namespace CatdogEngine.ScreenSystem {
 			SpriteBatch.Begin();
             if (_nextScreen != null) _nextScreen.Draw(gameTime);
             if (_activeScreen != null) _activeScreen.Draw(gameTime);
+
+			// 화면 효과 처리
+			ScreenTransitionEffectPackage.PostTreatment();
+
 			SpriteBatch.End();
         }
 

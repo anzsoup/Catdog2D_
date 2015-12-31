@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,11 @@ namespace CatdogEngine.Playground.Object.Component {
 		/// <summary>
 		/// World의 Update 로직에서 호출된다.
 		/// </summary>
-		void Update();
+		void Update(GameTime gameTime);
 
 		/// <summary>
 		/// World의 Draw 로직에서 호출된다.
 		/// </summary>
-		void Draw();
+		void Draw(GameTime gameTime);
 	}
 }
