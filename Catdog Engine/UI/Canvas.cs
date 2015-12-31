@@ -28,6 +28,7 @@ namespace CatdogEngine.UI {
 
 		private SpriteBatch _spriteBatch;               // ScreenManager의 SpriteBatch
 
+
 		public Canvas(GameScreen screen) {
             _stencils = new List<Stencil>();
 
@@ -40,10 +41,14 @@ namespace CatdogEngine.UI {
 			SpriteBatch = screen.ScreenManager.SpriteBatch;
 		}
 
+
+
 		#region Properties
 		public ScaleMode ScaleMode { get { return _scaleMode; } set { _scaleMode = value; } }
 		public SpriteBatch SpriteBatch { get { return _spriteBatch; } set { _spriteBatch = value; } }
 		#endregion
+
+
 
 		/// <summary>
 		/// 스케일모드를 변경한다.
