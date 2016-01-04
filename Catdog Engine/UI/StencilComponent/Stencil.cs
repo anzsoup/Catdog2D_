@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace CatdogEngine.UI.StencilComponent {
 	/// <summary>
@@ -9,21 +10,82 @@ namespace CatdogEngine.UI.StencilComponent {
 	/// Game Screen 내부에서 동작하는 Update와 Draw 로직을 갖는다.
 	/// </summary>
 	public abstract class Stencil : InputListener {
-		// 스텐실의 화면상 위치. 좌측 상단이 원점이다.
+		// 버퍼에서의 스텐실 위치. 좌측 상단이 원점이다.
 		protected Vector2 _position;
 
-		// 현재 캔버스가 속해있는 스크린
+		// 스텐실이 차지하는 윈도우 화면 영역. 윈도우 사이즈가 변하면 캔버스가 갱신한다.
+		private Rectangle _region;
+
+		// 현재 속해있는 캔버스
+		private Canvas _canvas;
+
+		// 캔버스가 현재 속해있는 스크린
 		protected GameScreen _screen;
 
-		public Vector2 Position { get { return _position; } set { _position = value; } }
-		public GameScreen Screen { get { return _screen; } private set { _screen = value; } }
+		// 스텐실은 여러개의 내부 스텐실을 포함할 수 있다.
+		protected List<Stencil> _innerStencils;
+
+		// 윈도우 사이즈가 변했을 때 캔버스에서 계산한 이전 사이즈와 현재 사이즈의 비율
+		float _changedWindowWidthRate, _changedWindowHeightRate;
+
+		#region Properties
+		public Vector2 Position { get { return _position; }
+			set {
+				_position = value;
+
+				// 기본적으로는 Region의 좌측 상단이 Position이 되도록 자동으로 갱신한다.
+				BufferRegion = new Rectangle((int)_position.X, (int)_position.Y, BufferRegion.Width, BufferRegion.Height);
+			}
+		}
+
+		/// <summary>
+		/// 버퍼에 그려지는 실제 위치
+		/// </summary>
+		public Rectangle BufferRegion { get { return _region; } set { _region = value; } }
+
+		/// <summary>
+		/// 윈도우 좌표로 환산 된 값. 입력 처리 등의 작업 시 실제로 사용하는 값.
+		/// </summary>
+		public Rectangle WindowRegion {
+			get {
+				if(Canvas != null) {
+					float widthRate = Canvas.WindowBufferWidthRate;
+					float heightRate = Canvas.WindowBufferHeightRate;
+					Rectangle temp = new Rectangle((int)(_region.X * widthRate), (int)(_region.Y * heightRate), 
+						(int)(_region.Width * widthRate), (int)(_region.Height * heightRate));
+
+					return temp;
+				}
+				else {
+					return _region;
+				}
+			}
+		}
+		public GameScreen Screen { get { return _screen; } set { _screen = value; } }
+		public Canvas Canvas { get { return _canvas; } set { _canvas = value; } }
+		public List<Stencil> InnerStencils { get { return _innerStencils; } }
+		public float ChangedWindowWidthRate { get { return _changedWindowWidthRate; } set { _changedWindowWidthRate = value; } }
+		public float ChangedWindowHeightRate { get { return _changedWindowHeightRate; } set { _changedWindowHeightRate = value; } }
+		#endregion
 
 		public Stencil(GameScreen screen) {
 			Position = new Vector2(0, 0);
+			BufferRegion = new Rectangle();
+
 			Screen = screen;
+
+			_innerStencils = new List<Stencil>();
+
+			// 초기값을 1로 하는 것이 타당하다.
+			ChangedWindowWidthRate = 1f;
+			ChangedWindowHeightRate = 1f;
 
 			// InputListener 등록
 			InputManager.SetListener(this);
+		}
+
+		protected void AddInnerStencil(Stencil stencil) {
+			if(stencil != null) _innerStencils.Add(stencil);
 		}
 
 		/// <summary>
@@ -34,7 +96,7 @@ namespace CatdogEngine.UI.StencilComponent {
 		/// <summary>
 		/// 해당 스텐실을 화면에 그려야 할 때 호출된다.
 		/// </summary>
-		public abstract void Draw(SpriteBatch spriteBatch, GameTime gameTime);
+		public abstract void Draw(GameTime gameTime);
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Input Event

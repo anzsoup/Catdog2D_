@@ -48,7 +48,7 @@ namespace CatdogEngine.ScreenSystem {
 		/// <summary>
 		/// ScreenManager의 Draw 로직에서 호출되는 화면 전환 효과 처리를 위한 메소드.
 		/// </summary>
-		public static void PostTreatment() {
+		public static void PostProcess() {
 			// For Fade Effect. I don't like this :(
 			// I will find better solution soon.
 			Color[] colors = new Color[] { Color.Black };
@@ -56,7 +56,7 @@ namespace CatdogEngine.ScreenSystem {
 			texture.SetData<Color>(colors);
 			ScreenManager.SpriteBatch.Draw(
 				texture: texture,
-				destinationRectangle: new Rectangle(0, 0, GraphicsDeviceManager.DefaultBackBufferWidth, GraphicsDeviceManager.DefaultBackBufferHeight),
+				destinationRectangle: new Rectangle(0, 0, ScreenManager.WindowConfig.ClientBounds.Width, ScreenManager.WindowConfig.ClientBounds.Height),
 				color: new Color(Color.Black, ScreenTransitionEffectPackage.FadeAlpha)
 				);
 		}
@@ -104,8 +104,9 @@ namespace CatdogEngine.ScreenSystem {
 
 
 	/// <summary>
-	/// Update 와 Draw 로직을 포함하는 기본 단위 레이어.
-	/// 모든 Screen은 이 클래스를 상속한다.
+	/// Update 와 Draw 로직을 포함하는 기본 단위 레이어. 모든 Screen은 이 클래스를 상속한다.
+	/// 한 스크린 안에서 로드 된 리소스는 해당 스크린이 죽을 때 함께 해제된다.
+	/// 여러 스크린이 공유하는 리소스는 ScreenManager에서 로드해야 한다.
 	/// </summary>
 	public abstract class GameScreen {
 

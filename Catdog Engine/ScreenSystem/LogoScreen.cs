@@ -41,9 +41,7 @@ namespace CatdogEngine.ScreenSystem {
         public override void Update(GameTime gameTime) {
             base.Update(gameTime);
 
-			int windowWidth = ScreenManager.GraphicsDeviceManager.PreferredBackBufferWidth;
-			int windowHeight = ScreenManager.GraphicsDeviceManager.PreferredBackBufferHeight;
-			canvas.Update(gameTime, windowWidth, windowHeight);
+			canvas.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime) {

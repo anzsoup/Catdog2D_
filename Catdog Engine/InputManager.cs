@@ -23,7 +23,7 @@ namespace CatdogEngine {
 		/// 리스너로 등록한 클래스는 각 윈도우 이벤트의 콜백 함수를 사용할 수 있다.
 		/// </summary>
 		public static void SetListener(InputListener listener) {
-			_listeners.Add(listener);
+			if(listener != null) _listeners.Add(listener);
 		}
 
 		/// <summary>

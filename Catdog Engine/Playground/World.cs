@@ -42,25 +42,29 @@ namespace CatdogEngine.Playground {
 				Debug.WriteLine("### World.Instantiate(Behavior) failed : Camera only can be instantiated by SetCamera(Camera) method. ###");
 			}
 			else {
-				// Start Behavior
-				behavior.Start();
+				if (behavior != null) {
+					// Start Behavior
+					behavior.Start();
 
-				// Initialize Components
-				foreach (BehaviorComponent component in behavior.Components) {
-					component.Initialize(this);
+					// Initialize Components
+					foreach (BehaviorComponent component in behavior.Components) {
+						component.Initialize(this);
+					}
+
+					// Register Behavior
+					_behaviors.Add(behavior);
 				}
-
-				// Register Behavior
-				_behaviors.Add(behavior);
 			}
 		}
 
 		public void SetCamera(Camera camera) {
-			// Start Camera
-			camera.Start();
+			if (camera != null) {
+				// Start Camera
+				camera.Start();
 
-			// Register Camera
-			_camera = camera;
+				// Register Camera
+				_camera = camera;
+			}
 		}
 		
 		/// <summary>

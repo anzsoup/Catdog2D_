@@ -8,31 +8,44 @@ namespace CatdogEngine.ScreenSystem {
     /// This is the main type for your game.
     /// </summary>
     public class ScreenManager : Game {
-        private GameScreen _activeScreen;                // 현재 활성화 된 스크린
-        private GameScreen _nextScreen;                  // 스크린 전환이 진행 중일 때, 곧 전환 될 스크린
+        private GameScreen _activeScreen;					// 현재 활성화 된 스크린
+        private GameScreen _nextScreen;                     // 스크린 전환이 진행 중일 때, 곧 전환 될 스크린
+
+		private int _oldWindowWidth, _oldWindowHeight;
 
 		// 어디서든 접근이 가능하도록 static으로 선언했다.
 		// 초기화 시점보다 이른 시기에 접근 시도가 발생하면 안된다.
-		private static GraphicsDeviceManager _graphics;
 		private static SpriteBatch _spriteBatch;
-
-		private float _fadeAlpha;						// Fading 효과 전용
+		private static GameWindow _windowConfig;
+		private static GraphicsDeviceManager _graphics;
+		private static bool _isWindowSizeChanged;                  // 윈도우 사이즈가 변했는가
 
 
 		public ScreenManager() {
             _graphics = new GraphicsDeviceManager(this);
+			
+			// static 변수에 윈도우 정보를 복사
+			_windowConfig = this.Window;
+
+			// 윈도우 설정 초기화
 			_graphics.IsFullScreen = false;
+			this.Window.AllowUserResizing = true;
+			this.Window.Title = "Catdog Engine";
 			this.IsMouseVisible = true;
+
+			_oldWindowWidth = this.Window.ClientBounds.Width;
+			_oldWindowHeight = this.Window.ClientBounds.Height;
 
 			Content.RootDirectory = "Content";
 
-			// 게임이 시작되면 맨 처음 로고 스크린을 보여준다.
 			SetScreen(new LogoScreen());
         }
 
 		#region Properties
 		public static SpriteBatch SpriteBatch { get { return _spriteBatch; } }
+		public static GameWindow WindowConfig { get { return _windowConfig; } }
 		public static GraphicsDeviceManager GraphicsDeviceManager { get { return _graphics; } }
+		public static bool IsWindowSizeChanged { get { return _isWindowSizeChanged; } }
 		#endregion
 
 		/// <summary>
@@ -81,6 +94,18 @@ namespace CatdogEngine.ScreenSystem {
 
             base.Update(gameTime);
 
+			// 윈도우 사이즈가 변했는지 검사
+			int windowWidth = this.Window.ClientBounds.Width;
+			int windowHeight = this.Window.ClientBounds.Height;
+			if(_oldWindowWidth != windowWidth || _oldWindowHeight != windowHeight) {
+				_isWindowSizeChanged = true;
+				_oldWindowWidth = windowWidth;
+				_oldWindowHeight = windowHeight;
+			}
+			else {
+				_isWindowSizeChanged = false;
+			}
+
 			// InputManager 작동
 			InputManager.Update();
        
@@ -119,7 +144,7 @@ namespace CatdogEngine.ScreenSystem {
             if (_activeScreen != null) _activeScreen.Draw(gameTime);
 
 			// 화면 효과 처리
-			ScreenTransitionEffectPackage.PostTreatment();
+			ScreenTransitionEffectPackage.PostProcess();
 
 			SpriteBatch.End();
         }

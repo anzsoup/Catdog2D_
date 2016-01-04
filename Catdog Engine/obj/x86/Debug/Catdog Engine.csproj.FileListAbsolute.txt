@@ -54,3 +54,4 @@ D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Cont
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Content\Default_Button_1.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Content\Default_Button_2.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Content\DefaultButtonText.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Content\DefaultText.xnb

@@ -38,12 +38,16 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CatdogEngineApplication.cs" />
+    <Compile Include="Graphics\Drawable.cs" />
+    <Compile Include="Graphics\SpriteText.cs" />
     <Compile Include="Playground\Object\Camera.cs" />
     <Compile Include="Graphics\Sprite.cs" />
     <Compile Include="InputListener.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="Playground\Object\Component\BehaviorComponent.cs" />
     <Compile Include="Playground\Object\Component\SpriteRenderer.cs" />
+    <Compile Include="Playground\Object\Tile.cs" />
     <Compile Include="ScreenSystem\GameScreen.cs" />
     <Compile Include="ScreenSystem\LogoScreen.cs" />
     <Compile Include="ScreenSystem\ScreenManager.cs" />
@@ -56,6 +60,7 @@
     <Compile Include="Playground\TileWorld.cs" />
     <Compile Include="Playground\Transform.cs" />
     <Compile Include="Playground\World.cs" />
+    <Compile Include="UI\StencilComponent\TextLine.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

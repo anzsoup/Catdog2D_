@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using CatdogEngine.ScreenSystem;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Diagnostics;
 
 namespace CatdogEngine.UI.StencilComponent {
 
@@ -21,14 +22,12 @@ namespace CatdogEngine.UI.StencilComponent {
 	/// Update와 Draw를 virtual로 정의했다. 해당 클래스를 상속하여 원하는 스타일의 버튼을 만들어 사용할 수 있다.
 	/// </summary>
 	public class Button : Stencil {
-		private Rectangle _region;							// 버튼의 영역
 		private bool _mouseHover;                           // 커서가 영역 안에 있는가
 		private bool _pressed;								// 버튼이 눌렸는가
 
 		private Sprite _defaultImageNormal;                 // 기본 버튼 이미지
 		private Sprite _defaultImageClicked;                // 기본 버튼 이미지
-		private SpriteFont _defaultFont;                    // 기본 글꼴
-		private String _defaultString;						// 기본 텍스트
+		private TextLine _defaultText;						// 기본 텍스트
 
 		private BUTTON__MOUSE_IN _onMouseIn;
 		private BUTTON__MOUSE_OUT _onMouseOut;
@@ -47,7 +46,11 @@ namespace CatdogEngine.UI.StencilComponent {
 				base.Position = value;
 				_defaultImageNormal.Position = value;
 				_defaultImageClicked.Position = value;
-				_region = new Rectangle((int)value.X, (int)value.Y, _region.Width, _region.Height);
+				BufferRegion = new Rectangle((int)value.X, (int)value.Y, BufferRegion.Width, BufferRegion.Height);
+
+				// 텍스트의 위치 계산
+				_defaultText.Position = new Vector2(value.X + (BufferRegion.Width - _defaultText.BufferRegion.Width) / 2f,
+					value.Y + (BufferRegion.Height - _defaultText.BufferRegion.Height) / 2f);
 			}
 		}
 		#endregion
@@ -60,29 +63,25 @@ namespace CatdogEngine.UI.StencilComponent {
 			_defaultImageClicked.Position = Position;
 
 			// 기본 글꼴 및 텍스트
-			_defaultFont = Screen.Content.Load<SpriteFont>("DefaultButtonText");
-			_defaultString = "Button";
+			_defaultText = new TextLine(Screen, Screen.Content.Load<SpriteFont>("DefaultButtonText"), "Button");
+			AddInnerStencil(_defaultText);
 
 			// 기본 영역.
 			// 기본 영역의 크기는 (클릭 된 상태가 아닌)평상시 이미지의 크기로 하는 것이 좋다.
-			_region = new Rectangle((int)Position.X, (int)Position.Y, _defaultImageNormal.Width, _defaultImageNormal.Height);
+			BufferRegion = new Rectangle((int)Position.X, (int)Position.Y, _defaultImageNormal.Width, _defaultImageNormal.Height);
 		}
 
 		public override void Update(GameTime gameTime) {
 			
 		}
 
-		public override void Draw(SpriteBatch spriteBatch, GameTime gameTime) {
+		public override void Draw(GameTime gameTime) {
 			if(_pressed) {
-				if (_defaultImageClicked != null) _defaultImageClicked.Draw(spriteBatch);
+				if (_defaultImageClicked != null) _defaultImageClicked.Draw(ScreenManager.SpriteBatch);
 			}
 			else {
-				if (_defaultImageNormal != null) _defaultImageNormal.Draw(spriteBatch);
+				if (_defaultImageNormal != null) _defaultImageNormal.Draw(ScreenManager.SpriteBatch);
 			}
-
-			Vector2 textRegion = _defaultFont.MeasureString(_defaultString);
-			Vector2 temp = new Vector2(Position.X + (_region.Width - textRegion.X) / 2, Position.Y + (_region.Height - textRegion.Y) / 2);
-			spriteBatch.DrawString(_defaultFont, _defaultString, temp, Color.Black);
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -110,7 +109,7 @@ namespace CatdogEngine.UI.StencilComponent {
 
 		public override void OnMouseMove(int x, int y) {
 			if (_mouseHover) {
-				if (!_region.Contains(x, y)) {
+				if (!WindowRegion.Contains(x, y)) {
 					// 현재 커서는 영역 밖에 있다.
 					_mouseHover = false;
 
@@ -119,7 +118,7 @@ namespace CatdogEngine.UI.StencilComponent {
 				}
 			}
 			else {
-				if (_region.Contains(x, y)) {
+				if (WindowRegion.Contains(x, y)) {
 					// 현재 커서는 영역 안에 있다.
 					_mouseHover = true;
 

@@ -63,3 +63,9 @@
 /processorParam:TextureFormat=Compressed
 /build:DefaultButtonText.spritefont
 
+#begin DefaultText.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:DefaultText.spritefont
+
