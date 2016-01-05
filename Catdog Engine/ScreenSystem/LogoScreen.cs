@@ -33,6 +33,9 @@ namespace CatdogEngine.ScreenSystem {
 			// Button
 			Button button = new Button(this);
 			button.Position = new Vector2(250, 350);
+			button.ON_CLICK = delegate () {
+				
+			};
 			canvas.Add(button);
 
 			// We don't need override UnloadContent logic because 'Content' member does it for us in UnloadContent logic of base class.

@@ -15,6 +15,7 @@ namespace CatdogEngine.UI.StencilComponent {
 	public delegate void BUTTON__MOUSE_OUT();
 	public delegate void BUTTON__LEFT_MOUSE_DOWN(int x, int y);
 	public delegate void BUTTON__LEFT_MOUSE_UP(int x, int y);
+	public delegate void BUTTON__CLICK();
 
 	/// <summary>
 	/// 버튼 UI.
@@ -33,12 +34,14 @@ namespace CatdogEngine.UI.StencilComponent {
 		private BUTTON__MOUSE_OUT _onMouseOut;
 		private BUTTON__LEFT_MOUSE_DOWN _onLeftMouseDown;
 		private BUTTON__LEFT_MOUSE_UP _onLeftMouseUp;
+		private BUTTON__CLICK _onClick;
 
 		#region Properties
 		public BUTTON__MOUSE_IN ON_MOUSE_IN { set { _onMouseIn = value; } }
 		public BUTTON__MOUSE_OUT ON_MOUSE_OUT { set { _onMouseOut = value; } }
 		public BUTTON__LEFT_MOUSE_DOWN ON_LEFT_MOUSE_DOWN { set { _onLeftMouseDown = value; } }
 		public BUTTON__LEFT_MOUSE_UP ON_LEFT_MOUSE_UP { set { _onLeftMouseUp = value; } }
+		public BUTTON__CLICK ON_CLICK { set { _onClick = value; } }
 
 		public new Vector2 Position {
 			get { return base.Position; }
@@ -104,6 +107,7 @@ namespace CatdogEngine.UI.StencilComponent {
 
 				// BUTTON__LEFT_MOUSE_UP 이벤트 발생
 				if (_onLeftMouseUp != null) _onLeftMouseUp(x, y);
+				if (_onClick != null) _onClick();
 			}
 		}
 

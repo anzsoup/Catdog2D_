@@ -25,6 +25,10 @@ namespace CatdogEngine.Playground.Object {
 		}
 		#endregion
 
+		public Camera() {
+			Zoom = 1f;
+		}
+
 		public override void Start() {
 			
 		}

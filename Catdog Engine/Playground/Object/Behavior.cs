@@ -29,7 +29,10 @@ namespace CatdogEngine.Playground.Object {
 		/// 새로운 BehaviorComponent를 추가한다.
 		/// </summary>
 		protected void AddComponent(BehaviorComponent component) {
-			if(component != null) _components.Add(component);
+			if (component != null) {
+				component.Parent = this;
+				_components.Add(component);
+			}
 		}
 
 		/// <summary>
