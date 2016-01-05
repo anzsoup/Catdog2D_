@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using CatdogEngine.Playground;
 using CatdogEngine.Playground.Object;
 
@@ -19,6 +15,7 @@ namespace CatdogEngine.ScreenSystem {
 
 			Behavior testObject = new TestObject();
 			testObject.Transform.Scale = new Vector2(0.5f);
+			testObject.Transform.Position = new Vector2(-400, 0);
 			tileWorld.Instantiate(testObject);
 		}
 

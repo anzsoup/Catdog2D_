@@ -2,11 +2,8 @@
 using CatdogEngine.Playground.Object.Component;
 using CatdogEngine.ScreenSystem;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 
 namespace CatdogEngine.Playground {
 	/// <summary>
