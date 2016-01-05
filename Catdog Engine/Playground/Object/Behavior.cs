@@ -15,9 +15,12 @@ namespace CatdogEngine.Playground.Object {
 
 		private List<BehaviorComponent> _components;
 
+		private World _world;								// 현재 속한 월드
+
 		#region Properties
-		public Transform Transform { get { return _transform; } private set { _transform = value; } }
+		public Transform Transform { get { return _transform; } set { _transform = value; } }
 		public List<BehaviorComponent> Components { get { return _components; } }
+		public World World { get { return _world; } set { _world = value; } }
 		#endregion
 
 		public Behavior() {

@@ -16,9 +16,9 @@ namespace CatdogEngine.Playground {
 		private float _rotation;					// 회전각
 
 		#region Properties
-		public Vector2 Position { get { return _position; } private set { _position = value; } }
-		public Vector2 Velocity { get { return _velocity; } private set { _velocity = value; } }
-		public Vector2 Scale { get { return _scale; } private set { _scale = value; } }
+		public Vector2 Position { get { return _position; } set { _position = value; } }
+		public Vector2 Velocity { get { return _velocity; } set { _velocity = value; } }
+		public Vector2 Scale { get { return _scale; } set { _scale = value; } }
 		public float Rotation { get { return _rotation; } set { _rotation = value; } }
 		#endregion
 

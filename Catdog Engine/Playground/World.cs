@@ -1,5 +1,6 @@
 ﻿using CatdogEngine.Playground.Object;
 using CatdogEngine.Playground.Object.Component;
+using CatdogEngine.ScreenSystem;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,15 @@ namespace CatdogEngine.Playground {
 		private List<Behavior> _behaviors;
 		private Camera _camera;
 
+		private GameScreen _currentScreen;						// 현재 속한 스크린
+
 		#region Properties
 		/// <summary>
 		/// 새로운 카메라를 생성하고자 할 경우 SetCamera(Camera) 메소드 사용.
 		/// </summary>
 		public Camera Camera { get { return _camera; } }
+
+		public GameScreen CurrentScreen { get { return _currentScreen; } set { _currentScreen = value; } }
 		#endregion
 
 		public World() {
@@ -29,8 +34,9 @@ namespace CatdogEngine.Playground {
 		/// <summary>
 		/// 스크린의 초기화 과정에서 반드시 한 번 호출돼야 한다.
 		/// </summary>
-		public virtual void Initialize() {
+		public virtual void Initialize(GameScreen currentScreen) {
 			SetCamera(new Camera());
+			CurrentScreen = currentScreen;
 		}
 
 		/// <summary>
@@ -43,6 +49,8 @@ namespace CatdogEngine.Playground {
 			}
 			else {
 				if (behavior != null) {
+					behavior.World = this;
+
 					// Start Behavior
 					behavior.Start();
 

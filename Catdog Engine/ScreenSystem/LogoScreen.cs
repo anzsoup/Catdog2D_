@@ -34,7 +34,7 @@ namespace CatdogEngine.ScreenSystem {
 			Button button = new Button(this);
 			button.Position = new Vector2(250, 350);
 			button.ON_CLICK = delegate () {
-				
+				ScreenManager.SetScreen(new WorldTestScreen());
 			};
 			canvas.Add(button);
 

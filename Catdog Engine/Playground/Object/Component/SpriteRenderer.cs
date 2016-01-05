@@ -34,14 +34,14 @@ namespace CatdogEngine.Playground.Object.Component {
 
 		public override void Update(GameTime gameTime) {
 			// World상에서 카메라와의 상대적 위치로 버퍼에 그릴 위치를 계산.
-			Vector2 distance = Parent.Transform.Position - Camera.Transform.Position;
-			int windowWidth = ScreenManager.WindowConfig.ClientBounds.Width;
-			int windowHeight = ScreenManager.WindowConfig.ClientBounds.Height;
+			Vector2 distance = (Parent.Transform.Position - Camera.Transform.Position) * Camera.Zoom;
+			int bufferWidth = ScreenManager.GraphicsDeviceManager.PreferredBackBufferWidth;
+			int bufferHeight = ScreenManager.GraphicsDeviceManager.PreferredBackBufferHeight;
 
-			Vector2 temp = new Vector2(distance.X + (windowWidth / 2), distance.Y + (windowHeight / 2));
+			Vector2 temp = new Vector2(distance.X + (bufferWidth / 2), distance.Y + (bufferHeight / 2));
 			if (Sprite != null) {
-				Sprite.Position = temp * Camera.Zoom;
-				Sprite.Scale = new Vector2(Camera.Zoom);
+				Sprite.Position = temp;
+				Sprite.Scale = Parent.Transform.Scale * Camera.Zoom;
 			}
 		}
 
