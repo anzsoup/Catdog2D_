@@ -12,7 +12,7 @@ namespace CatdogEngine {
 		private GameScreen _startScreen;
 
 		#region Properties
-		public String Title { get { return Window.Title; } set { Window.Title = value; } }
+		public string Title { get { return Window.Title; } set { Window.Title = value; } }
 		public GameScreen StartScreen { set { _startScreen = value; } }
 		#endregion
 
