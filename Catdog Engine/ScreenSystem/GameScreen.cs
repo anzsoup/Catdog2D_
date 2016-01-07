@@ -123,8 +123,8 @@ namespace CatdogEngine.ScreenSystem {
 
         public GameScreen() {
             _screenState = ScreenState.Waiting;
-			// 화면전환효과 지속시간 초기값 : 2초
-			TransitionTime = new TimeSpan(0, 0, 2);
+			// 화면전환효과 지속시간 초기값 : 1초
+			TransitionTime = new TimeSpan(0, 0, 1);
 			// 화면전환효과 초기값 : 페이드
 			Screen_Transition_Effect = ScreenTransitionEffectPackage.Fading;
         }

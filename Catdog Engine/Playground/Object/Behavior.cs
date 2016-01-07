@@ -30,7 +30,7 @@ namespace CatdogEngine.Playground.Object {
 		/// </summary>
 		protected void AddComponent(BehaviorComponent component) {
 			if (component != null) {
-				component.Parent = this;
+				component.Owner = this;
 				_components.Add(component);
 			}
 		}

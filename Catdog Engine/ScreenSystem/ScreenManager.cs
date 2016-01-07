@@ -29,7 +29,7 @@ namespace CatdogEngine.ScreenSystem {
 
 			// 윈도우 설정 초기화
 			_graphics.IsFullScreen = false;
-			this.Window.AllowUserResizing = true;
+			this.Window.AllowUserResizing = false;
 			this.Window.Title = "Catdog Engine";
 			this.IsMouseVisible = true;
 

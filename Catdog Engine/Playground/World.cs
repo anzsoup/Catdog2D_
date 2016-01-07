@@ -13,7 +13,9 @@ namespace CatdogEngine.Playground {
 		private List<Behavior> _behaviors;
 		private Camera _camera;
 
-		private GameScreen _currentScreen;						// 현재 속한 스크린
+		private GameScreen _currentScreen;                      // 현재 속한 스크린
+
+		private Vector2 _gravity;								// 중력
 
 		#region Properties
 		/// <summary>
@@ -22,16 +24,13 @@ namespace CatdogEngine.Playground {
 		public Camera Camera { get { return _camera; } }
 
 		public GameScreen CurrentScreen { get { return _currentScreen; } set { _currentScreen = value; } }
+
+		public Vector2 Gravity { get { return _gravity; } set { _gravity = value; } }
 		#endregion
 
-		public World() {
+		public World(GameScreen currentScreen) {
 			_behaviors = new List<Behavior>();
-		}
-
-		/// <summary>
-		/// 스크린의 초기화 과정에서 반드시 한 번 호출돼야 한다.
-		/// </summary>
-		public virtual void Initialize(GameScreen currentScreen) {
+			_gravity = new Vector2(0, 9.81f);
 			SetCamera(new Camera());
 			CurrentScreen = currentScreen;
 		}

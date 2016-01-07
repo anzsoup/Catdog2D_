@@ -46,9 +46,13 @@
     <Compile Include="InputListener.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="Playground\Object\Component\BehaviorComponent.cs" />
+    <Compile Include="Playground\Object\Component\BoxCollider.cs" />
+    <Compile Include="Playground\Object\Component\Collider.cs" />
+    <Compile Include="Playground\Object\Component\Rigidbody.cs" />
     <Compile Include="Playground\Object\Component\SpriteRenderer.cs" />
     <Compile Include="Playground\Object\TestObject.cs" />
     <Compile Include="Playground\Object\Tile.cs" />
+    <Compile Include="Playground\TileMap.cs" />
     <Compile Include="ScreenSystem\GameScreen.cs" />
     <Compile Include="ScreenSystem\LogoScreen.cs" />
     <Compile Include="ScreenSystem\ScreenManager.cs" />
