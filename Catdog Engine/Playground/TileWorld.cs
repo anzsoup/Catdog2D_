@@ -7,17 +7,39 @@ using System.Linq;
 using System.Text;
 using CatdogEngine.ScreenSystem;
 using CatdogEngine.Playground.Object.Component;
+using Microsoft.Xna.Framework;
+using CatdogEngine.Playground.PhysicsSystem;
 
 namespace CatdogEngine.Playground {
 	public class TileWorld : World {
 		private int _tileSize;                                      // 타일들의 사이즈. 불변하는 값.
 
+		private readonly float PIXEL_PER_CENTIMETER = 40f;          // pixels/cm
+
+		private Physics _physics;
+
 		#region Properties
 		public int TileSize { get { return _tileSize; } }
+		public override Vector2 Gravity {
+			get {
+				return base.Gravity * PIXEL_PER_CENTIMETER;
+			}
+
+			set {
+				base.Gravity = value;
+			}
+		}
+
+		public new Physics Physics { get { return _physics; } set { _physics = value; } }
 		#endregion
 
 		public TileWorld(GameScreen currentScreen, int tileSize = 40) : base(currentScreen) {
+			// 타일 사이즈 지정
 			_tileSize = tileSize;
+
+			// Tile World의 모든 강체들은 회전하지 않는다.
+			Physics = new Physics();
+			Physics.FixedAngle = true;
 		}
 
 		/// <summary>

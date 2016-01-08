@@ -1,4 +1,5 @@
 ﻿using CatdogEngine.Playground.Object.Component;
+using CatdogEngine.Playground.PhysicsSystem;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
@@ -36,6 +37,19 @@ namespace CatdogEngine.Playground.Object {
 		}
 
 		/// <summary>
+		/// 컴포넌트를 찾는다. 컴포넌트 리스트중에서 가장 먼저 검색되는 컴포넌트를 반환한다.
+		/// 같은 컴포넌트가 여러개 중복되지 않는다고 가정했다. 추후에 수정이 필요할 것이다.
+		/// </summary>
+		/// <typeparam name="T">찾고자 하는 컴포넌트</typeparam>
+		public BehaviorComponent GetComponent<T>() {
+			foreach(BehaviorComponent component in Components) {
+				if (component is T) return component;
+			}
+
+			return null;
+		}
+
+		/// <summary>
 		/// Behavior가 처음 World에 생성되었을 때 한 번 호출된다.
 		/// </summary>
 		public abstract void Start();
@@ -44,5 +58,13 @@ namespace CatdogEngine.Playground.Object {
 		/// World가 Update 될 때마다 매번 호출된다. 여기서 Behavior의 행동을 진행시킨다.
 		/// </summary>
 		public abstract void Update(GameTime gameTime);
+
+		public virtual void OnCollisionEnter(Collision c) { }
+
+		public virtual void OnCollisionExit(Collision c) { }
+
+		public virtual void OnTriggerEnter(Collision c) { }
+
+		public virtual void OnTriggerExit(Collision c) { }
 	}
 }

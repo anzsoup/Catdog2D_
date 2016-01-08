@@ -52,6 +52,9 @@
     <Compile Include="Playground\Object\Component\SpriteRenderer.cs" />
     <Compile Include="Playground\Object\TestObject.cs" />
     <Compile Include="Playground\Object\Tile.cs" />
+    <Compile Include="Playground\PhysicsSystem\SimpleAABB.cs" />
+    <Compile Include="Playground\PhysicsSystem\Physics.cs" />
+    <Compile Include="Playground\PhysicsSystem\CollisionModule.cs" />
     <Compile Include="Playground\TileMap.cs" />
     <Compile Include="ScreenSystem\GameScreen.cs" />
     <Compile Include="ScreenSystem\LogoScreen.cs" />

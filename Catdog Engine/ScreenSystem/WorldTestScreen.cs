@@ -22,6 +22,7 @@ namespace CatdogEngine.ScreenSystem {
 			// Design Tile Map
 			map.TileAt[0, 0] = tile1;
 			map.TileAt[19, 11] = tile2;
+			map.TileAt[10, 5] = tile1;
 
 			// Load Map
 			tileWorld.LoadTileMap(map);

@@ -24,6 +24,8 @@ namespace CatdogEngine.Playground.Object {
 			_renderer = new SpriteRenderer(sprite);
 			_rigidBody = new Rigidbody();
 			_collider = new BoxCollider();
+
+			_rigidBody.IsFixed = true;
 			
 			AddComponent(_renderer);
 			AddComponent(_rigidBody);

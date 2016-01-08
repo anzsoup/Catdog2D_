@@ -10,17 +10,20 @@ namespace CatdogEngine.Playground.Object.Component {
 	/// </summary>
 	public class Rigidbody : BehaviorComponent {
 		private bool _useGravity;                           // World의 중력의 영향을 받는가.
+		private bool _isFixed;								// 고정. 질량이 무한하고 속력이 0인 강체로 간주된다.
 		private float _mass;                                // 질량
 
 		private World _world;
 
 		#region Properties
 		public bool UseGravity { get { return _useGravity; } set { _useGravity = value; } }
+		public bool IsFixed { get { return _isFixed; } set { _isFixed = value; } }
 		public float Mass { get { return _mass; } set { _mass = value; } }
 		#endregion
 
 		public Rigidbody() {
 			UseGravity = true;
+			IsFixed = false;
 			Mass = 1f;
 		}
 
@@ -29,13 +32,19 @@ namespace CatdogEngine.Playground.Object.Component {
 		}
 
 		public override void Update(GameTime gameTime) {
-			// 중력
-			if(UseGravity) {
-				// 중력 가속도
-				Vector2 gravity = _world.Gravity;
+			// 고정되어 있는가
+			if (IsFixed) {
 
-				// 가속도는 초당 속도 변화량이므로
-				Owner.Transform.Velocity += gravity * gameTime.ElapsedGameTime.Seconds;
+			}
+			else {
+				// 중력
+				if (UseGravity) {
+					// 중력 가속도
+					Vector2 gravity = _world.Gravity;
+
+					// 가속도는 초당 속도 변화량이므로
+					Owner.Transform.Velocity += gravity * (gameTime.ElapsedGameTime.Milliseconds/1000f);
+				}
 			}
 		}
 
@@ -48,10 +57,12 @@ namespace CatdogEngine.Playground.Object.Component {
 		/// 힘은 항상 Impulse 하게 작용한다.
 		/// </summary>
 		public void AddForce(Vector2 force) {
-			Vector2 accel;
-			if (Mass > 1) accel = force / Mass;
-			else accel = force;
-			Owner.Transform.Velocity += accel;
+			if (!IsFixed) {
+				Vector2 accel;
+				if (Mass > 1) accel = force / Mass;
+				else accel = force;
+				Owner.Transform.Velocity += accel;
+			}
 		}
 	}
 }
