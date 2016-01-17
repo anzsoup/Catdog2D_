@@ -39,24 +39,50 @@ namespace CatdogEngine.Playground.PhysicsSystem {
 		}
 	}
 
+	/// <summary>
+	/// 두 충돌체를 보고 최적의 충돌 알고리즘을 선택하는 알고리즘
+	/// 임의로 지정해 주지 않을 경우 Physics의 기본 알고리즘(<see cref="Physics.SelectAlgorithm(Collider, Collider)"/>)이 사용된다.
+	/// </summary>
+	/// <returns>선택 된 충돌 알고리즘</returns>
+	public delegate CollisionModule PHYSICS__SELECT_COLLISION_CHECK_ALGORITHM(Collider c1, Collider c2);
+
+
+
+
+
 	public class Physics {
 		private List<Collision> _oldCollisions;                             // 이전에 일어난 충돌들
 
 		private bool _fixedAngle;											// 회전을 고려할 지 여부. true이면 모든 Behavior의 회전이 무시된다.
 
-		private readonly float COR;											// 반발계수
+		private readonly float COR;                                         // 반발계수
+
+		// 충돌 모듈 선택 알고리즘
+		private PHYSICS__SELECT_COLLISION_CHECK_ALGORITHM _selectCollisionCheckAlgorithm;
 
 		// 충돌 모듈
 		private readonly CollisionModule SIMPLE_AABB;
 
 		#region Properties
 		public bool FixedAngle { get { return _fixedAngle; } set { _fixedAngle = value; } }
+
+		/// <summary>
+		/// 두 충돌체를 보고 최적의 충돌 알고리즘을 선택하는 알고리즘
+		/// 임의로 지정해 주지 않을 경우 Physics의 기본 알고리즘(<see cref="Physics.SelectAlgorithm(Collider, Collider)"/>)이 사용된다.
+		/// </summary>
+		public PHYSICS__SELECT_COLLISION_CHECK_ALGORITHM SELECT_COLLISION_CHECK_ALGORITHM { get { return _selectCollisionCheckAlgorithm; }
+			set {
+				if (value == null) _selectCollisionCheckAlgorithm = SelectAlgorithm;
+				else _selectCollisionCheckAlgorithm = value;
+			}
+		}
 		#endregion
 
 		public Physics() {
 			_oldCollisions = new List<Collision>();
 			COR = 0.2f;
 			SIMPLE_AABB = new SimpleAABB();
+			SELECT_COLLISION_CHECK_ALGORITHM = SelectAlgorithm;
 		}
 
 		/// <summary>
@@ -76,7 +102,7 @@ namespace CatdogEngine.Playground.PhysicsSystem {
 				Collider c2 = oldCollision.Collider2;
 
 				// 알고리즘 선택
-				CollisionModule module = SelectAlgorithm(c1, c2);
+				CollisionModule module = SELECT_COLLISION_CHECK_ALGORITHM(c1, c2);
 
 				// 충돌 검사
 				Collision collision = module.COLLISION_CHECK(c1, c2);

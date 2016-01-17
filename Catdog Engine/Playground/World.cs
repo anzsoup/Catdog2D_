@@ -92,7 +92,6 @@ namespace CatdogEngine.Playground {
 				// It is followed by Behavior's Update Logic.
 				foreach(BehaviorComponent component in behavior.Components) {
 					component.Update(gameTime);
-					if (component is Collider) colliderBucket.Add((Collider)component);
 				}
 
 				// Update Behavior.

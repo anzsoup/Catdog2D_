@@ -17,6 +17,7 @@ namespace CatdogEngine.Playground {
 		private readonly float PIXEL_PER_CENTIMETER = 40f;          // pixels/cm
 
 		private Physics _physics;
+		private SimpleAABB _simpleAABB;
 
 		#region Properties
 		public int TileSize { get { return _tileSize; } }
@@ -31,15 +32,25 @@ namespace CatdogEngine.Playground {
 		}
 
 		public new Physics Physics { get { return _physics; } set { _physics = value; } }
+		public CollisionModule TileWorldCollisionModule { get { return _simpleAABB; } }
 		#endregion
 
 		public TileWorld(GameScreen currentScreen, int tileSize = 40) : base(currentScreen) {
 			// 타일 사이즈 지정
 			_tileSize = tileSize;
 
+			// Tile World가 사용할 충돌 모듈
+			_simpleAABB = new SimpleAABB();
+
 			// Tile World의 모든 강체들은 회전하지 않는다.
 			Physics = new Physics();
+			
+			// FixedAngle 옵션은 Physics가 충돌 모듈을 선택할 때 사용되는 옵션인데
+			// 임의로 충돌 모듈 선택 알고리즘을 지정해 줄 경우에는 신경쓰지 않아도 된다.
 			Physics.FixedAngle = true;
+			Physics.SELECT_COLLISION_CHECK_ALGORITHM = delegate (Collider c1, Collider c2) {
+				return TileWorldCollisionModule;
+			};
 		}
 
 		/// <summary>
