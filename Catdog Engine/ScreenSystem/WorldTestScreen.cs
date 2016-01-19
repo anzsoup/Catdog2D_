@@ -1,6 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using CatdogEngine.Playground;
 using CatdogEngine.Playground.Object;
+using CatdogEngine.Playground.Object.Component;
+using Microsoft.Xna.Framework.Graphics;
+using CatdogEngine.Graphics;
 
 namespace CatdogEngine.ScreenSystem {
 	public class WorldTestScreen : GameScreen {
@@ -29,16 +32,26 @@ namespace CatdogEngine.ScreenSystem {
 			world.LoadTileMap(map);
 			*/
 
-			// Add some Object
+			// Make some object
+			EmptyObject object1 = new EmptyObject();
+			object1.Transform.Scale = new Vector2(0.5f);
+			object1.Transform.Position = new Vector2(-400, 0);
+			object1.AddComponent(new SpriteRenderer(new Sprite(this.Content.Load<Texture2D>("gojam"))));
+			Location location = new Location(300f, 300f);
+			location.ON_TRIGGER_ENTER = delegate (Location other) {
+				object1.Transform.Position = new Vector2(-400, 0);
+			};
+			object1.AddComponent(location);
+			object1.UPDATE = delegate (GameTime gameTime) {
+				object1.Transform.Translate(new Vector2(1, 0));
+			};
+			world.Instantiate(object1);
+
+			// Add a existing object
 			Behavior testObject = new TestObject();
 			testObject.Transform.Scale = new Vector2(0.5f);
-			testObject.Transform.Position = new Vector2(-400, 0);
+			testObject.Transform.Position = new Vector2(0, 0);
 			world.Instantiate(testObject);
-
-			Behavior testObject2 = new TestObject2();
-			testObject2.Transform.Scale = new Vector2(0.5f);
-			testObject2.Transform.Position = new Vector2(0, 0);
-			world.Instantiate(testObject2);
 		}
 
 		public override void Update(GameTime gameTime) {
