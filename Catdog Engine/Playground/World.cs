@@ -1,6 +1,5 @@
 ﻿using CatdogEngine.Playground.Object;
 using CatdogEngine.Playground.Object.Component;
-using CatdogEngine.Playground.PhysicsSystem;
 using CatdogEngine.ScreenSystem;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -10,13 +9,15 @@ namespace CatdogEngine.Playground {
 	/// <summary>
 	/// 플레이 가능한 실제 게임 세계의 기본단위. 모든 Behavior들의 로직을 관리한다.
 	/// </summary>
-	public abstract class World {
+	public class World {
 		private List<Behavior> _behaviors;
 		private Camera _camera;
 
 		private GameScreen _currentScreen;                      // 현재 속한 스크린
 
-		private Vector2 _gravity;								// 중력
+		private Vector2 _gravity;                               // 중력
+
+		private TriggerManager _trigger;						// 트리거
 
 		#region Properties
 		/// <summary>
@@ -25,21 +26,12 @@ namespace CatdogEngine.Playground {
 		public Camera Camera { get { return _camera; } }
 
 		public GameScreen CurrentScreen { get { return _currentScreen; } set { _currentScreen = value; } }
-
-		/// <summary>
-		/// 단위에 맞춰 적절히 환산하여 사용한다.
-		/// </summary>
-		public virtual Vector2 Gravity { get { return _gravity; } set { _gravity = value; } }
-
-		/// <summary>
-		/// 물리 연산이 필요한 World의 경우 이 속성을 이용한다.
-		/// </summary>
-		public Physics Physics { get; set; }
 		#endregion
 
 		public World(GameScreen currentScreen) {
 			_behaviors = new List<Behavior>();
 			_gravity = new Vector2(0, -9.81f);
+			_trigger = new TriggerManager();
 			SetCamera(new Camera());
 			CurrentScreen = currentScreen;
 		}
@@ -84,7 +76,7 @@ namespace CatdogEngine.Playground {
 		/// 스크린의 Update 로직에 반드시 포함되어야 한다.
 		/// </summary>
 		public virtual void Update(GameTime gameTime) {
-			List<Collider> colliderBucket = new List<Collider>();
+			List<Location> locationBucket = new List<Location>();
 
 			// Behavior 로직 진행
 			foreach(Behavior behavior in _behaviors) {
@@ -92,6 +84,9 @@ namespace CatdogEngine.Playground {
 				// It is followed by Behavior's Update Logic.
 				foreach(BehaviorComponent component in behavior.Components) {
 					component.Update(gameTime);
+					if(component is Location) {
+						locationBucket.Add((Location)component);
+					}
 				}
 
 				// Update Behavior.
@@ -99,12 +94,10 @@ namespace CatdogEngine.Playground {
 				behavior.Update(gameTime);
 			}
 
-			// Behavior들의 모든 Collider 수집
-			Collider[] allColliders = new Collider[colliderBucket.Count];
-			colliderBucket.CopyTo(allColliders);
-
-			// Physics Operation
-			if(Physics != null) Physics.CollisionCheck(allColliders);
+			// Listen Trigger Event
+			Location[] allLocations = new Location[locationBucket.Count];
+			locationBucket.CopyTo(allLocations);
+			_trigger.CollisionCheck(allLocations);
 
 			// Camera 로직 진행
 			if (_camera != null) _camera.Update(gameTime);

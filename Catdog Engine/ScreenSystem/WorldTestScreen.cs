@@ -4,14 +4,15 @@ using CatdogEngine.Playground.Object;
 
 namespace CatdogEngine.ScreenSystem {
 	public class WorldTestScreen : GameScreen {
-		TileWorld tileWorld;
+		World world;
 
 		public override void LoadContent() {
 			base.LoadContent();
 
-			tileWorld = new TileWorld(this, 40);
-			tileWorld.Camera.Zoom = 1f;
+			world = new World(this);
+			world.Camera.Zoom = 1f;
 
+			/*
 			// Tile Map
 			TileMap map = new TileMap(20, 12);
 
@@ -25,23 +26,29 @@ namespace CatdogEngine.ScreenSystem {
 			map.TileAt[10, 5] = tile1;
 
 			// Load Map
-			tileWorld.LoadTileMap(map);
+			world.LoadTileMap(map);
+			*/
 
 			// Add some Object
 			Behavior testObject = new TestObject();
 			testObject.Transform.Scale = new Vector2(0.5f);
 			testObject.Transform.Position = new Vector2(-400, 0);
-			tileWorld.Instantiate(testObject);
+			world.Instantiate(testObject);
+
+			Behavior testObject2 = new TestObject2();
+			testObject2.Transform.Scale = new Vector2(0.5f);
+			testObject2.Transform.Position = new Vector2(0, 0);
+			world.Instantiate(testObject2);
 		}
 
 		public override void Update(GameTime gameTime) {
 			base.Update(gameTime);
 
-			if(tileWorld != null) tileWorld.Update(gameTime);
+			if(world != null) world.Update(gameTime);
 		}
 
 		public override void Draw(GameTime gameTime) {
-			if(tileWorld != null) tileWorld.Draw(gameTime);
+			if(world != null) world.Draw(gameTime);
 		}
 	}
 }

@@ -1,5 +1,4 @@
 ﻿using CatdogEngine.Playground.Object.Component;
-using CatdogEngine.Playground.PhysicsSystem;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
@@ -63,8 +62,18 @@ namespace CatdogEngine.Playground.Object {
 
 		public virtual void OnCollisionExit(Collision c) { }
 
-		public virtual void OnTriggerEnter(Collision c) { }
+		/// <summary>
+		/// 자신의 Location Component에 다른 Location이 접촉했을 때 발생하는 이벤트
+		/// </summary>
+		/// <param name="mine">본인의 로케이션</param>
+		/// <param name="other">접촉한 외부 로케이션</param>
+		public virtual void OnTriggerEnter(Location mine, Location other) { }
 
-		public virtual void OnTriggerExit(Collision c) { }
+		/// <summary>
+		/// 접촉했던 Location이 영역을 벗어나는 순간 발생하는 이벤트
+		/// </summary>
+		/// <param name="mine">본인의 로케이션</param>
+		/// <param name="other">접촉한 외부 로케이션</param>
+		public virtual void OnTriggerExit(Location mine, Location other) { }
 	}
 }

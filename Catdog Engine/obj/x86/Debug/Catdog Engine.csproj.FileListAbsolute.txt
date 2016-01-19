@@ -57,3 +57,8 @@ D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Cont
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Content\DefaultText.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Content\tile01.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Content\tile02.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\Content\Font.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\DebugView MonoGame.dll
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\FarseerPhysics MonoGame.dll
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\DebugView MonoGame.pdb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\Catdog Engine\bin\Windows\Debug\FarseerPhysics MonoGame.pdb
