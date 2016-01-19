@@ -23,8 +23,9 @@ namespace CatdogEngine {
 			Debug.WriteLine("### Window Title : " + Title + " ###");
 			Debug.WriteLine("### Resolution : " + GraphicsDeviceManager.PreferredBackBufferWidth + " x " + GraphicsDeviceManager.PreferredBackBufferHeight + " ###");
 
-			if (_startScreen != null) SetScreen(_startScreen);
-			else Debug.WriteLine("### CatdogEngineApplication : Failed to Find Start Screen. ###");
+			LogoScreen logoScreen = new LogoScreen();
+			logoScreen.StartScreen = _startScreen;
+			SetScreen(logoScreen);
 		}
 
 		/// <summary>

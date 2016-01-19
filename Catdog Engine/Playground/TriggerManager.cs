@@ -52,9 +52,9 @@ namespace CatdogEngine.Playground {
 			// 먼저 이전에 충돌했던 Location들에 대해서 충돌 검사를 수행한다.
 			//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-			// Old Collision 중에서 아직 충돌중인 Collision들만 모아두었다가
+			// 이번 스텝에서 충돌한 모든 Collsion들을 담아두었다가
 			// 다음 스텝에 다시 검사하기 위하여 마지막에 Old Collision에 도로 담는다.
-			List<Collision> collisionNotExit = new List<Collision>();
+			List<Collision> newCollisions = new List<Collision>();
 
 			foreach (Collision oldCollision in _oldCollisions) {
 				Location l1 = oldCollision.Location1;
@@ -65,7 +65,7 @@ namespace CatdogEngine.Playground {
 
 				// 충돌이 발생했다면
 				if (collision != null) {
-					collisionNotExit.Add(collision);
+					newCollisions.Add(collision);
 				}
 				// 충돌이 발생하지 않았다면
 				else {
@@ -115,16 +115,19 @@ namespace CatdogEngine.Playground {
 			//////////////////////////////////////////////////////////////
 			// 캐싱
 			//////////////////////////////////////////////////////////////
-						_oldCollisions.Add(collision);
+						newCollisions.Add(collision);
 					}
 				}
 			}
 
 			// 아직 충돌중이었던 충돌들을 다시 캐시에 넣는다.
-			foreach (Collision notExit in collisionNotExit) {
+			_oldCollisions.Clear();
+			foreach (Collision notExit in newCollisions) {
 				// 중복이 발생하지 않도록 보장되므로 중복검사를 하지 않는다.
 				_oldCollisions.Add(notExit);
 			}
+
+			newCollisions.Clear();
 		}
 
 		/// <summary>

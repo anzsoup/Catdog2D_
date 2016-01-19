@@ -26,8 +26,7 @@ namespace CatdogEngine {
 			application.SetPreferredBackBufferSize(800, 480);
 
 			// 게임이 실행되면 가장 먼저 띠울 스크린 지정
-			GameScreen logoScreen = new LogoScreen();
-			application.StartScreen = logoScreen;
+			application.StartScreen = new WorldTestScreen();
 
             using (var game = application)
                 game.Run();
