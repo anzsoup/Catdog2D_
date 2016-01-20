@@ -16,7 +16,7 @@ namespace CatdogEngine {
         static void Main()
         {
 			// 게임의 몸체가 될 인스턴스 생성
-			CatdogEngineApplication application = new CatdogEngineApplication();
+			CatdogApplication application = new CatdogApplication();
 
 			// 윈도우 타이틀
 			application.Title = "Catdog Engine";

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farseer Physics MonoGame", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DebugView MonoGame", "Farseer Physics DebugView 3.5\DebugView MonoGame.csproj", "{566F1803-90B5-4947-8730-57F092FBB002}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleGame", "SampleGame\SampleGame.csproj", "{BC4EF2EE-A86C-4B56-9326-A1E1ED06866C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -27,6 +29,10 @@ Global
 		{566F1803-90B5-4947-8730-57F092FBB002}.Debug|x86.Build.0 = Debug|x86
 		{566F1803-90B5-4947-8730-57F092FBB002}.Release|x86.ActiveCfg = Release|x86
 		{566F1803-90B5-4947-8730-57F092FBB002}.Release|x86.Build.0 = Release|x86
+		{BC4EF2EE-A86C-4B56-9326-A1E1ED06866C}.Debug|x86.ActiveCfg = Debug|x86
+		{BC4EF2EE-A86C-4B56-9326-A1E1ED06866C}.Debug|x86.Build.0 = Debug|x86
+		{BC4EF2EE-A86C-4B56-9326-A1E1ED06866C}.Release|x86.ActiveCfg = Release|x86
+		{BC4EF2EE-A86C-4B56-9326-A1E1ED06866C}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

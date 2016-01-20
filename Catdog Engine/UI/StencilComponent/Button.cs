@@ -17,6 +17,18 @@ namespace CatdogEngine.UI.StencilComponent {
 	public delegate void BUTTON__LEFT_MOUSE_UP(int x, int y);
 	public delegate void BUTTON__CLICK();
 
+	public enum ButtonType {
+		Gray,
+		Red,
+		Yellow,
+		Green,
+		Blue,
+		Purple,
+		MintBlue,
+		AshBlue,
+		Black
+	}
+
 	/// <summary>
 	/// 버튼 UI.
 	/// 클릭하여 정해진 동작을 수행할 수 있는 사용자 인터페이스.
@@ -26,9 +38,9 @@ namespace CatdogEngine.UI.StencilComponent {
 		private bool _mouseHover;                           // 커서가 영역 안에 있는가
 		private bool _pressed;								// 버튼이 눌렸는가
 
-		private Sprite _defaultImageNormal;                 // 기본 버튼 이미지
-		private Sprite _defaultImageClicked;                // 기본 버튼 이미지
-		private TextLine _defaultText;						// 기본 텍스트
+		private Sprite _imageNormal;						// 버튼 이미지
+		private Sprite _imageClicked;						// 버튼 이미지
+		private TextLine _text;								// 텍스트
 
 		private BUTTON__MOUSE_IN _onMouseIn;
 		private BUTTON__MOUSE_OUT _onMouseOut;
@@ -47,31 +59,154 @@ namespace CatdogEngine.UI.StencilComponent {
 			get { return base.Position; }
 			set {
 				base.Position = value;
-				_defaultImageNormal.Position = value;
-				_defaultImageClicked.Position = value;
+				_imageNormal.Position = value;
+				_imageClicked.Position = value;
 				BufferRegion = new Rectangle((int)value.X, (int)value.Y, BufferRegion.Width, BufferRegion.Height);
 
 				// 텍스트의 위치 계산
-				_defaultText.Position = new Vector2(value.X + (BufferRegion.Width - _defaultText.BufferRegion.Width) / 2f,
-					value.Y + (BufferRegion.Height - _defaultText.BufferRegion.Height) / 2f);
+				_text.Position = new Vector2(value.X + (BufferRegion.Width - _text.BufferRegion.Width) / 2f,
+					value.Y + (BufferRegion.Height - _text.BufferRegion.Height) / 2f);
+			}
+		}
+
+		public string Text {
+			set {
+				if (value == null) {
+					_text.Text = "Button";
+				}
+				else {
+					_text.Text = value;
+				}
+
+				// 텍스트 위치 갱신
+				_text.Position = new Vector2(Position.X + (BufferRegion.Width - _text.BufferRegion.Width) / 2f,
+					Position.Y + (BufferRegion.Height - _text.BufferRegion.Height) / 2f);
+			}
+		}
+
+		public float Width {
+			get { return BufferRegion.Width; }
+			set {
+				BufferRegion = new Rectangle((int)Position.X, (int)Position.Y, (int)value, BufferRegion.Height);
+
+				// 텍스트 위치 갱신
+				_text.Position = new Vector2(Position.X + (BufferRegion.Width - _text.BufferRegion.Width) / 2f,
+					Position.Y + (BufferRegion.Height - _text.BufferRegion.Height) / 2f);
+
+				// 버튼 이미지 크기 조절
+				_imageNormal.Scale = new Vector2(value / _imageNormal.TextureWidth, _imageNormal.Scale.Y);
+				_imageClicked.Scale = new Vector2(value / _imageClicked.TextureWidth, _imageClicked.Scale.Y);
+			}
+		}
+
+		public float Height {
+			get { return BufferRegion.Height; }
+			set {
+				BufferRegion = new Rectangle((int)Position.X, (int)Position.Y, BufferRegion.Width, (int)value);
+
+				// 텍스트 위치 갱신
+				_text.Position = new Vector2(Position.X + (BufferRegion.Width - _text.BufferRegion.Width) / 2f,
+					Position.Y + (BufferRegion.Height - _text.BufferRegion.Height) / 2f);
+
+				// 버튼 이미지 크기 조절
+				_imageNormal.Scale = new Vector2(_imageNormal.Scale.X, value / _imageNormal.TextureHeight);
+				_imageClicked.Scale = new Vector2(_imageClicked.Scale.X, value / _imageClicked.TextureHeight);
+			}
+		}
+
+		public Sprite NormalImage {
+			get { return _imageNormal; }
+			set {
+				if(value == null) _imageNormal = new Sprite(Screen.Content.Load<Texture2D>("catdog/button_gray_1"));
+				else _imageNormal = value;
+				_imageNormal.Scale = new Vector2((float)BufferRegion.Width / (float)_imageNormal.TextureWidth, (float)BufferRegion.Height / (float)_imageNormal.TextureHeight);
+				_imageNormal.Position = Position;
+			}
+		}
+		public Sprite ClickedImage {
+			get { return _imageClicked; }
+			set {
+				if(value == null) _imageClicked = new Sprite(Screen.Content.Load<Texture2D>("catdog/button_gray_2"));
+				else _imageClicked = value;
+				_imageClicked.Scale = new Vector2((float)BufferRegion.Width / (float)_imageClicked.TextureWidth, (float)BufferRegion.Height / (float)_imageClicked.TextureHeight);
+				_imageClicked.Position = Position;
 			}
 		}
 		#endregion
 
 		public Button(GameScreen screen) : base(screen) {
 			// 기본 버튼 이미지
-			_defaultImageNormal = new Sprite(Screen.Content.Load<Texture2D>("Default_Button_1"));
-			_defaultImageNormal.Position = Position;
-			_defaultImageClicked = new Sprite(Screen.Content.Load<Texture2D>("Default_Button_2"));
-			_defaultImageClicked.Position = Position;
+			_imageNormal = new Sprite(screen.Content.Load<Texture2D>("catdog/button_gray_1"));
+			_imageClicked = new Sprite(screen.Content.Load<Texture2D>("catdog/button_gray_2"));
 
 			// 기본 글꼴 및 텍스트
-			_defaultText = new TextLine(Screen, Screen.Content.Load<SpriteFont>("DefaultButtonText"), "Button");
-			AddInnerStencil(_defaultText);
+			_text = new TextLine(screen, screen.Content.Load<SpriteFont>("catdog/default_button_text"), "Button");
+			AddInnerStencil(_text);
 
 			// 기본 영역.
-			// 기본 영역의 크기는 (클릭 된 상태가 아닌)평상시 이미지의 크기로 하는 것이 좋다.
-			BufferRegion = new Rectangle((int)Position.X, (int)Position.Y, _defaultImageNormal.Width, _defaultImageNormal.Height);
+			// 영역의 크기는 (클릭 된 상태가 아닌)평상시 이미지의 크기로 하는 것이 좋다.
+			BufferRegion = new Rectangle((int)Position.X, (int)Position.Y, (int)_imageNormal.Width, (int)_imageNormal.Height);
+
+			Position = new Vector2(0, 0);
+		}
+
+		public Button(GameScreen screen, ButtonType type) : base(screen) {
+			// 버튼 이미지
+			switch(type) {
+				case ButtonType.Gray:
+					_imageNormal = new Sprite(screen.Content.Load<Texture2D>("catdog/button_gray_1"));
+					_imageClicked = new Sprite(screen.Content.Load<Texture2D>("catdog/button_gray_2"));
+					break;
+
+				case ButtonType.Red:
+					_imageNormal = new Sprite(screen.Content.Load<Texture2D>("catdog/button_red_1"));
+					_imageClicked = new Sprite(screen.Content.Load<Texture2D>("catdog/button_red_2"));
+					break;
+
+				case ButtonType.Yellow:
+					_imageNormal = new Sprite(screen.Content.Load<Texture2D>("catdog/button_yellow_1"));
+					_imageClicked = new Sprite(screen.Content.Load<Texture2D>("catdog/button_yellow_2"));
+					break;
+
+				case ButtonType.Green:
+					_imageNormal = new Sprite(screen.Content.Load<Texture2D>("catdog/button_green_1"));
+					_imageClicked = new Sprite(screen.Content.Load<Texture2D>("catdog/button_green_2"));
+					break;
+
+				case ButtonType.Blue:
+					_imageNormal = new Sprite(screen.Content.Load<Texture2D>("catdog/button_blue_1"));
+					_imageClicked = new Sprite(screen.Content.Load<Texture2D>("catdog/button_blue_2"));
+					break;
+
+				case ButtonType.Purple:
+					_imageNormal = new Sprite(screen.Content.Load<Texture2D>("catdog/button_purple_1"));
+					_imageClicked = new Sprite(screen.Content.Load<Texture2D>("catdog/button_purple_2"));
+					break;
+
+				case ButtonType.MintBlue:
+					_imageNormal = new Sprite(screen.Content.Load<Texture2D>("catdog/button_mintblue_1"));
+					_imageClicked = new Sprite(screen.Content.Load<Texture2D>("catdog/button_mintblue_2"));
+					break;
+
+				case ButtonType.AshBlue:
+					_imageNormal = new Sprite(screen.Content.Load<Texture2D>("catdog/button_ashblue_1"));
+					_imageClicked = new Sprite(screen.Content.Load<Texture2D>("catdog/button_ashblue_2"));
+					break;
+
+				case ButtonType.Black:
+					_imageNormal = new Sprite(screen.Content.Load<Texture2D>("catdog/button_black_1"));
+					_imageClicked = new Sprite(screen.Content.Load<Texture2D>("catdog/button_black_2"));
+					break;
+			}
+
+			// 기본 글꼴 및 텍스트
+			_text = new TextLine(screen, screen.Content.Load<SpriteFont>("catdog/default_button_text"), "Button");
+			AddInnerStencil(_text);
+
+			// 영역의 크기는 (클릭 된 상태가 아닌)평상시 이미지의 크기로 하는 것이 좋다.
+			BufferRegion = new Rectangle((int)Position.X, (int)Position.Y, (int)_imageNormal.Width, (int)_imageNormal.Height);
+
+			Position = new Vector2(0, 0);
 		}
 
 		public override void Update(GameTime gameTime) {
@@ -80,10 +215,10 @@ namespace CatdogEngine.UI.StencilComponent {
 
 		public override void Draw(GameTime gameTime) {
 			if(_pressed) {
-				if (_defaultImageClicked != null) _defaultImageClicked.Draw(ScreenManager.SpriteBatch);
+				if (_imageClicked != null) _imageClicked.Draw(ScreenManager.SpriteBatch);
 			}
 			else {
-				if (_defaultImageNormal != null) _defaultImageNormal.Draw(ScreenManager.SpriteBatch);
+				if (_imageNormal != null) _imageNormal.Draw(ScreenManager.SpriteBatch);
 			}
 		}
 

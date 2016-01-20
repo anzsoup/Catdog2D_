@@ -15,7 +15,7 @@ namespace CatdogEngine.Graphics {
 		private Color _color;						// 글자 색
 
 		#region Properties
-		public SpriteFont Font { get{ return _font; } set{ _font = value; } }
+		public SpriteFont Font { get{ return _font; } set { _font = value; } }
 		public string Text { get { return _text; } set { _text = value; } }
 		public Color Color { get { return _color; } set { _color = value; } }
 		#endregion
@@ -45,7 +45,7 @@ namespace CatdogEngine.Graphics {
 		}
 
 		public override void Draw(SpriteBatch spriteBatch) {
-			spriteBatch.DrawString(Font, Text, Position, Color);
+			if(Font != null && Text != null) spriteBatch.DrawString(Font, Text, Position, Color);
 		}
 	}
 }

@@ -20,8 +20,10 @@ namespace CatdogEngine.Graphics {
 		#region Properties
 		public Vector2 Scale { get { return _scale; } set { _scale = value; } }
 		public float Rotation { get { return _rotation; } set { _rotation = value; } }
-		public int Width { get { return _texture.Width; } }
-		public int Height { get { return _texture.Height; } }
+		public float Width { get { return _texture.Width * Scale.X; } }
+		public float Height { get { return _texture.Height * Scale.Y; } }
+		public int TextureWidth { get { return _texture.Width; } }
+		public int TextureHeight { get { return _texture.Height; } }
 		#endregion
 
 		public Sprite(Texture2D texture) {

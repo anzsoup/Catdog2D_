@@ -4,13 +4,26 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/Catdog.png</File>
-    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/gojam.png</File>
-    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/Default_Button_1.png</File>
-    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/Default_Button_2.png</File>
-    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/DefaultButtonText.spritefont</File>
-    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/DefaultText.spritefont</File>
-    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/tile01.png</File>
-    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/tile02.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_ashblue_1.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_ashblue_2.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_black_1.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_black_2.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_blue_1.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_blue_2.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_gray_1.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_gray_2.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_green_1.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_green_2.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_mintblue_1.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_mintblue_2.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_purple_1.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_purple_2.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_red_1.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_red_2.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_yellow_1.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/button_yellow_2.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/Catdog.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/gojam.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/default_button_text.spritefont</File>
   </SourceFiles>
 </SourceFileCollection>

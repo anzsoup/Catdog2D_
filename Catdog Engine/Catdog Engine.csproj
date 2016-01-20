@@ -38,7 +38,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CatdogEngineApplication.cs" />
+    <Compile Include="CatdogApplication.cs" />
     <Compile Include="Graphics\Drawable.cs" />
     <Compile Include="Graphics\SpriteText.cs" />
     <Compile Include="Playground\FarseerPhysicsWorld.cs" />

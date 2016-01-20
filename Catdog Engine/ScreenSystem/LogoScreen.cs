@@ -29,7 +29,7 @@ namespace CatdogEngine.ScreenSystem {
 			TransitionTime = new System.TimeSpan(0, 0, 2);
 
 			// Load Textures.
-            logo = new Sprite(Content.Load<Texture2D>("Catdog"));
+            logo = new Sprite(Content.Load<Texture2D>("catdog/Catdog"));
 			logo.Position = new Vector2(0, 0);
 
 			// We don't need override UnloadContent logic because 'Content' member does it for us in UnloadContent logic of base class.

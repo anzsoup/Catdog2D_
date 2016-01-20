@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/catdog/default_button_text.spritefont</SourceFile>
+  <SourceTime>2016-01-20T13:23:02.1518181+09:00</SourceTime>
+  <DestFile>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/Catdog Engine/Content/bin/Windows/catdog/default_button_text.xnb</DestFile>
+  <DestTime>2016-01-20T16:21:01.2193017+09:00</DestTime>
+  <Importer>FontDescriptionImporter</Importer>
+  <ImporterTime>2015-04-30T02:14:44+09:00</ImporterTime>
+  <Processor>FontDescriptionProcessor</Processor>
+  <ProcessorTime>2015-04-30T02:14:44+09:00</ProcessorTime>
+  <Parameters>
+    <Key>TextureFormat</Key>
+    <Value>Compressed</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>
