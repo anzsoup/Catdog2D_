@@ -1,6 +1,5 @@
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\obj\x86\Debug\SampleGame.csprojResolveAssemblyReference.cache
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\Font.xnb
-D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\gojam.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\SampleGame.exe
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\SampleGame.pdb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Catdog Engine.exe
@@ -29,7 +28,6 @@ D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\SharpDX
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\SharpDX.Direct3D9.xml
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\obj\x86\Debug\SampleGame.exe
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\obj\x86\Debug\SampleGame.pdb
-D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\temp\btn_tiled.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\catdog\button_ashblue_1.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\catdog\button_ashblue_2.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\catdog\button_black_1.xnb
@@ -51,3 +49,10 @@ D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\catdog\Catdog.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\catdog\default_button_text.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\catdog\gojam.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\maki.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\menuscreen.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\menuscreen_title.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\yuduki.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\difficulty_easy.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\difficulty_hard.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\difficulty_normal.xnb

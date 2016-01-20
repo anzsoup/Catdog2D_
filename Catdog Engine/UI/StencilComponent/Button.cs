@@ -84,43 +84,15 @@ namespace CatdogEngine.UI.StencilComponent {
 			}
 		}
 
-		public float Width {
-			get { return BufferRegion.Width; }
-			set {
-				BufferRegion = new Rectangle((int)Position.X, (int)Position.Y, (int)value, BufferRegion.Height);
-
-				// 텍스트 위치 갱신
-				_text.Position = new Vector2(Position.X + (BufferRegion.Width - _text.BufferRegion.Width) / 2f,
-					Position.Y + (BufferRegion.Height - _text.BufferRegion.Height) / 2f);
-
-				// 버튼 이미지 크기 조절
-				_imageNormal.Scale = new Vector2(value / _imageNormal.TextureWidth, _imageNormal.Scale.Y);
-				_imageClicked.Scale = new Vector2(value / _imageClicked.TextureWidth, _imageClicked.Scale.Y);
-			}
-		}
-
-		public float Height {
-			get { return BufferRegion.Height; }
-			set {
-				BufferRegion = new Rectangle((int)Position.X, (int)Position.Y, BufferRegion.Width, (int)value);
-
-				// 텍스트 위치 갱신
-				_text.Position = new Vector2(Position.X + (BufferRegion.Width - _text.BufferRegion.Width) / 2f,
-					Position.Y + (BufferRegion.Height - _text.BufferRegion.Height) / 2f);
-
-				// 버튼 이미지 크기 조절
-				_imageNormal.Scale = new Vector2(_imageNormal.Scale.X, value / _imageNormal.TextureHeight);
-				_imageClicked.Scale = new Vector2(_imageClicked.Scale.X, value / _imageClicked.TextureHeight);
-			}
-		}
-
 		public Sprite NormalImage {
 			get { return _imageNormal; }
 			set {
 				if(value == null) _imageNormal = new Sprite(Screen.Content.Load<Texture2D>("catdog/button_gray_1"));
 				else _imageNormal = value;
-				_imageNormal.Scale = new Vector2((float)BufferRegion.Width / (float)_imageNormal.TextureWidth, (float)BufferRegion.Height / (float)_imageNormal.TextureHeight);
 				_imageNormal.Position = Position;
+
+				// 영역의 크기는 (클릭 된 상태가 아닌)평상시 이미지의 크기가 기준이 된다.
+				BufferRegion = new Rectangle((int)Position.X, (int)Position.Y, (int)_imageNormal.Width, (int)_imageNormal.Height);
 			}
 		}
 		public Sprite ClickedImage {
@@ -128,7 +100,6 @@ namespace CatdogEngine.UI.StencilComponent {
 			set {
 				if(value == null) _imageClicked = new Sprite(Screen.Content.Load<Texture2D>("catdog/button_gray_2"));
 				else _imageClicked = value;
-				_imageClicked.Scale = new Vector2((float)BufferRegion.Width / (float)_imageClicked.TextureWidth, (float)BufferRegion.Height / (float)_imageClicked.TextureHeight);
 				_imageClicked.Position = Position;
 			}
 		}
@@ -144,7 +115,7 @@ namespace CatdogEngine.UI.StencilComponent {
 			AddInnerStencil(_text);
 
 			// 기본 영역.
-			// 영역의 크기는 (클릭 된 상태가 아닌)평상시 이미지의 크기로 하는 것이 좋다.
+			// 영역의 크기는 (클릭 된 상태가 아닌)평상시 이미지의 크기가 기준이 된다.
 			BufferRegion = new Rectangle((int)Position.X, (int)Position.Y, (int)_imageNormal.Width, (int)_imageNormal.Height);
 
 			Position = new Vector2(0, 0);
@@ -203,7 +174,7 @@ namespace CatdogEngine.UI.StencilComponent {
 			_text = new TextLine(screen, screen.Content.Load<SpriteFont>("catdog/default_button_text"), "Button");
 			AddInnerStencil(_text);
 
-			// 영역의 크기는 (클릭 된 상태가 아닌)평상시 이미지의 크기로 하는 것이 좋다.
+			// 영역의 크기는 (클릭 된 상태가 아닌)평상시 이미지의 크기가 기준이 된다.
 			BufferRegion = new Rectangle((int)Position.X, (int)Position.Y, (int)_imageNormal.Width, (int)_imageNormal.Height);
 
 			Position = new Vector2(0, 0);

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/maki.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/yuduki.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/menuscreen_title.spritefont</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/menuscreen.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/difficulty_easy.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/difficulty_hard.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/difficulty_normal.png</File>
+  </SourceFiles>
+</SourceFileCollection>
