@@ -1,25 +1,25 @@
 ﻿using CatdogEngine.ScreenSystem;
 using CatdogEngine.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using CatdogEngine.UI.StencilComponent;
 using CatdogEngine.Graphics;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace SampleGame {
 	public class MenuScreen : GameScreen {
 		Canvas canvas;
 
 		Sprite background;
+		Song bgm;
+
+		public MenuScreen() {
+			// 캔버스
+			canvas = new Canvas();
+		}
 
 		public override void LoadContent() {
 			base.LoadContent();
-
-			// 캔버스 생성
-			canvas = new Canvas();
 
 			// 버튼 생성
 			Button easyButton = new Button(this);
@@ -36,6 +36,9 @@ namespace SampleGame {
 			easyButton.ON_MOUSE_OUT = delegate() {
 				easyButton.NormalImage.Scale = new Vector2(1f);
 				easyButton.NormalImage.Position = easyButton.Position;
+			};
+			easyButton.ON_LEFT_MOUSE_UP = delegate (int x, int y) {
+				ScreenManager.SetScreen(new MainGameScreen(Difficulty.Easy));
 			};
 			easyButton.Position = new Vector2(640, 340);
 
@@ -54,6 +57,9 @@ namespace SampleGame {
 				normalButton.NormalImage.Scale = new Vector2(1f);
 				normalButton.NormalImage.Position = normalButton.Position;
 			};
+			normalButton.ON_LEFT_MOUSE_UP = delegate (int x, int y) {
+				ScreenManager.SetScreen(new MainGameScreen(Difficulty.Normal));
+			};
 			normalButton.Position = new Vector2(620, 380);
 
 			Button hardButton = new Button(this);
@@ -71,6 +77,9 @@ namespace SampleGame {
 				hardButton.NormalImage.Scale = new Vector2(1f);
 				hardButton.NormalImage.Position = hardButton.Position;
 			};
+			hardButton.ON_LEFT_MOUSE_UP = delegate (int x, int y) {
+				ScreenManager.SetScreen(new MainGameScreen(Difficulty.Hard));
+			};
 			hardButton.Position = new Vector2(640, 420);
 
 			// 캔버스에 버튼 추가
@@ -80,13 +89,18 @@ namespace SampleGame {
 
 			// 뒷배경 이미지 불러오기
 			background = new Sprite(this.Content.Load<Texture2D>("menuscreen"));
+
+			// BGM
+			bgm = this.Content.Load<Song>("bgm1");
+			MediaPlayer.IsRepeating = true;
+			MediaPlayer.Play(bgm);
 		}
 
 		public override void Update(GameTime gameTime) {
 			base.Update(gameTime);
 
 			// 캔버스의 Update 로직 추가
-			if(canvas != null) canvas.Update(gameTime);
+			canvas.Update(gameTime);
 		}
 
 		public override void Draw(GameTime gameTime) {
@@ -97,7 +111,12 @@ namespace SampleGame {
 
 			// 캔버스의 Draw 로직 추가
 			// 캔버스는 가장 마지막에 그려야 화면 최상단에 그려진다.
-			if(canvas != null) canvas.Draw(gameTime);
+			canvas.Draw(gameTime);
+		}
+
+		public override void UnloadContent() {
+			base.UnloadContent();
+			MediaPlayer.Stop();
 		}
 	}
 }

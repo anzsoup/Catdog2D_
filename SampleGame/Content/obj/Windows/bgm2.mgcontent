@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SourceFile>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/bgm2.mp3</SourceFile>
+  <SourceTime>2014-08-29T20:31:32+09:00</SourceTime>
+  <DestFile>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/bin/Windows/bgm2.xnb</DestFile>
+  <DestTime>2016-01-21T07:11:32.4466989+09:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2015-04-30T02:14:44+09:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2015-04-30T02:14:44+09:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/bin/Windows/bgm2.wma</string>
+  </BuildOutput>
+</PipelineBuildEvent>

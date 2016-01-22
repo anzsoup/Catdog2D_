@@ -52,7 +52,13 @@ D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\maki.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\menuscreen.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\menuscreen_title.xnb
-D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\yuduki.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\difficulty_easy.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\difficulty_hard.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\difficulty_normal.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\bgm1.wma
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\bgm1.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\bgm2.wma
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\bgm2.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\maingamescreen.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\yuzuki.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\score.xnb

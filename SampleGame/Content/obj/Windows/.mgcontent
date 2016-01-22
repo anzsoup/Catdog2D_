@@ -5,11 +5,15 @@
   <Config />
   <SourceFiles>
     <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/maki.png</File>
-    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/yuduki.png</File>
     <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/menuscreen_title.spritefont</File>
     <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/menuscreen.png</File>
     <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/difficulty_easy.png</File>
     <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/difficulty_hard.png</File>
     <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/difficulty_normal.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/bgm1.mp3</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/bgm2.mp3</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/maingamescreen.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/yuzuki.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/score.spritefont</File>
   </SourceFiles>
 </SourceFileCollection>

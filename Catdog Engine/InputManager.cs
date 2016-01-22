@@ -94,6 +94,8 @@ namespace CatdogEngine {
 					foreach (InputListener listener in _listeners) listener.OnKeyDown(key);
 				}
 			}
+
+			_oldKeyboardState = keyboardState;
 		}
 	}
 }

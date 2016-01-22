@@ -7,7 +7,9 @@ namespace CatdogEngine.Playground.Object.Component {
 		private Camera _camera;
 		private Sprite _sprite;
 
-		private bool _enable;					// true : 그린다. false : 그리지 않는다.
+		private bool _enable;                   // true : 그린다. false : 그리지 않는다.
+
+		private Vector2 _initialSpriteScale;
 
 		#region Properties
 		public Camera Camera { get { return _camera; } set { _camera = value; } }
@@ -22,6 +24,7 @@ namespace CatdogEngine.Playground.Object.Component {
 		public SpriteRenderer(Sprite sprite) {
 			IsEnabled = true;
 			Sprite = sprite;
+			_initialSpriteScale = Sprite.Scale;
 		}
 
 		public override void Initialize(World world) {
@@ -37,7 +40,7 @@ namespace CatdogEngine.Playground.Object.Component {
 			Vector2 temp = new Vector2(distance.X + (bufferWidth / 2), bufferHeight - (distance.Y + (bufferHeight / 2)));
 			if (Sprite != null) {
 				Sprite.Position = temp;
-				Sprite.Scale = Owner.Transform.Scale * Camera.Zoom;
+				Sprite.Scale = _initialSpriteScale * Owner.Transform.Scale * Camera.Zoom;
 			}
 		}
 
