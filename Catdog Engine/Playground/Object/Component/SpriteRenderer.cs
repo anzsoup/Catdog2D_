@@ -1,6 +1,7 @@
 ﻿using CatdogEngine.Graphics;
 using CatdogEngine.ScreenSystem;
 using Microsoft.Xna.Framework;
+using System;
 
 namespace CatdogEngine.Playground.Object.Component {
 	public class SpriteRenderer : BehaviorComponent {
@@ -41,6 +42,13 @@ namespace CatdogEngine.Playground.Object.Component {
 			if (Sprite != null) {
 				Sprite.Position = temp;
 				Sprite.Scale = _initialSpriteScale * Owner.Transform.Scale * Camera.Zoom;
+
+				// Owner의 좌표계에 따라 스프라이트를 회전시킨다.
+				double radian = Math.Acos(Owner.Transform.Up.Y);
+				if(Owner.Transform.Up.X < 0) {
+					radian = -radian;
+				}
+				Sprite.Rotation = (float)radian;
 			}
 		}
 

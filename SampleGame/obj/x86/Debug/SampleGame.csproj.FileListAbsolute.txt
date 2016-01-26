@@ -62,3 +62,5 @@ D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\maingamescreen.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\yuzuki.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\score.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\hasami1.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\hasami2.xnb

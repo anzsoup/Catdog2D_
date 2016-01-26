@@ -58,6 +58,20 @@ namespace CatdogEngine.Playground.Object {
 		/// </summary>
 		public abstract void Update(GameTime gameTime);
 
+		/// <summary>
+		/// 자기 자신을 World에서 제거한다.
+		/// </summary>
+		public void Destroy() {
+			World.Destroy(this);
+		}
+
+		/// <summary>
+		/// 해당 Behavior를 World에서 제거한다.
+		/// </summary>
+		public void Destroy(Behavior behavior) {
+			World.Destroy(behavior);
+		}
+
 		public virtual void OnCollisionEnter(Collision c) { }
 
 		public virtual void OnCollisionExit(Collision c) { }

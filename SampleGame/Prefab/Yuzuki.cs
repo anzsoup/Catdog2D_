@@ -13,14 +13,16 @@ using Microsoft.Xna.Framework.Input;
 namespace SampleGame.Prefab {
 	public class Yuzuki : Behavior, InputListener {
 		private bool _up, _down, _left, _right;
-		private readonly float SPEED = 200f;
+		private readonly float SPEED = 300f;
+
+		public Yuzuki() {
+			InputManager.SetListener(this);
+		}
 
 		public override void Start() {
-			InputManager.SetListener(this);
-
 			Sprite sprite = new Sprite(World.CurrentScreen.Content.Load<Texture2D>("yuzuki"));
 			sprite.Scale = new Vector2(0.5f);
-            SpriteRenderer renderer = new SpriteRenderer(sprite);
+			SpriteRenderer renderer = new SpriteRenderer(sprite);
 
 			Location location = new Location(sprite.Width, sprite.Height);
 

@@ -11,6 +11,8 @@ namespace CatdogEngine.Playground {
 	/// </summary>
 	public class World {
 		private List<Behavior> _behaviors;
+		private List<Behavior> _newBehaviors;
+		private List<Behavior> _deadBehaviors;
 		private Camera _camera;
 
 		private GameScreen _currentScreen;                      // 현재 속한 스크린
@@ -30,6 +32,8 @@ namespace CatdogEngine.Playground {
 
 		public World(GameScreen currentScreen) {
 			_behaviors = new List<Behavior>();
+			_newBehaviors = new List<Behavior>();
+			_deadBehaviors = new List<Behavior>();
 			_gravity = new Vector2(0, -9.81f);
 			_trigger = new TriggerManager();
 			SetCamera(new Camera());
@@ -56,9 +60,18 @@ namespace CatdogEngine.Playground {
 						component.Initialize(this);
 					}
 
-					// Register Behavior
-					_behaviors.Add(behavior);
+					// Cache Behavior
+					_newBehaviors.Add(behavior);
 				}
+			}
+		}
+
+		/// <summary>
+		/// Behavior를 없앤다.
+		/// </summary>
+		public virtual void Destroy(Behavior behavior) {
+			if(behavior != null) {
+				_deadBehaviors.Add(behavior);
 			}
 		}
 
@@ -78,6 +91,21 @@ namespace CatdogEngine.Playground {
 		public virtual void Update(GameTime gameTime) {
 			List<Location> locationBucket = new List<Location>();
 
+			// Instantiate 된 Behavior들을 리스트에 추가
+			foreach(Behavior behavior in _newBehaviors) {
+				_behaviors.Add(behavior);
+			}
+
+			// Destroy 된 Behavior들을 리스트에서 제거
+			foreach(Behavior behavior in _deadBehaviors) {
+				if(_behaviors.Contains(behavior))
+					_behaviors.Remove(behavior);
+			}
+
+			// 리스트 비우기
+			_newBehaviors.Clear();
+			_deadBehaviors.Clear();
+
 			// Behavior 로직 진행
 			foreach(Behavior behavior in _behaviors) {
 				// Update Components.
@@ -90,7 +118,8 @@ namespace CatdogEngine.Playground {
 				}
 
 				// Update Behavior.
-				behavior.Transform.Position += behavior.Transform.Velocity * (gameTime.ElapsedGameTime.Milliseconds/1000f);
+				Vector2 worldVelocity = (behavior.Transform.Right * behavior.Transform.Velocity.X) + (behavior.Transform.Up * behavior.Transform.Velocity.Y);
+				behavior.Transform.Position += worldVelocity * (gameTime.ElapsedGameTime.Milliseconds/1000f);
 				behavior.Update(gameTime);
 			}
 

@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using SampleGame.Prefab;
+using System;
 
 namespace SampleGame {
 	public enum Difficulty {
@@ -29,6 +30,8 @@ namespace SampleGame {
 			currentScore = 0f;
 			world = new World(this);
 			canvas = new Canvas();
+
+			TransitionTime = new TimeSpan(0, 0, 2);
 		}
 
 		public override void LoadContent() {
@@ -49,6 +52,11 @@ namespace SampleGame {
 			Yuzuki yuzuki = new Yuzuki();
 			yuzuki.Transform.Position = new Vector2(-400 + 32, -240 + 72 + 32);
 			world.Instantiate(yuzuki);
+
+			// 마키
+			Maki maki = new Maki(yuzuki);
+			maki.Transform.Position = new Vector2(400 - 52 - 32, 240 - 32);
+			world.Instantiate(maki);
 		}
 
 		public override void Update(GameTime gameTime) {
@@ -56,8 +64,8 @@ namespace SampleGame {
 
 			// 월드의 Update 로직 추가
 			world.Update(gameTime);
-
-			if(score != null) score.Text = "Score : " + currentScore;
+			
+			if (score != null) score.Text = "Score : " + currentScore;
 			canvas.Update(gameTime);
 		}
 
