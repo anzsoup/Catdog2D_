@@ -18,7 +18,7 @@ namespace SampleGame {
 			CatdogApplication application = new CatdogApplication();
 
 			// 윈도우 타이틀
-			application.Title = "Catdog2D Sample Game";
+			application.Title = "Catdog Engine Sample Game";
 
 			// 버퍼의 너비와 높이 설정
 			// 이후로는 변경이 불가능하다.

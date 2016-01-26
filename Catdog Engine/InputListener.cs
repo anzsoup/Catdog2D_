@@ -1,11 +1,8 @@
 ﻿using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CatdogEngine {
-	public interface InputListener {
+	public interface InputListener
+	{
 
 		/// <summary>
 		/// 마우스 왼쪽 버튼을 눌렀을 때

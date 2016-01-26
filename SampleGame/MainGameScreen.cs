@@ -10,12 +10,14 @@ using SampleGame.Prefab;
 using System;
 
 namespace SampleGame {
-	public enum Difficulty {
+	public enum Difficulty
+	{
 		Easy,
 		Normal,
 		Hard
 	}
-	public class MainGameScreen : GameScreen {
+	public class MainGameScreen : GameScreen
+	{
 		float currentScore;
 		Difficulty difficulty;
 
@@ -25,7 +27,8 @@ namespace SampleGame {
 		Canvas canvas;
 		TextLine score;
 
-		public MainGameScreen(Difficulty difficulty) {
+		public MainGameScreen(Difficulty difficulty)
+		{
 			this.difficulty = difficulty;
 			currentScore = 0f;
 			world = new World(this);
@@ -34,7 +37,8 @@ namespace SampleGame {
 			TransitionTime = new TimeSpan(0, 0, 2);
 		}
 
-		public override void LoadContent() {
+		public override void LoadContent()
+		{
 			base.LoadContent();
 
 			// 배경
@@ -59,7 +63,8 @@ namespace SampleGame {
 			world.Instantiate(maki);
 		}
 
-		public override void Update(GameTime gameTime) {
+		public override void Update(GameTime gameTime)
+		{
 			base.Update(gameTime);
 
 			// 월드의 Update 로직 추가
@@ -69,7 +74,8 @@ namespace SampleGame {
 			canvas.Update(gameTime);
 		}
 
-		public override void Draw(GameTime gameTime) {
+		public override void Draw(GameTime gameTime)
+		{
 			base.Draw(gameTime);
 
 			if(background != null) background.Draw(ScreenManager.SpriteBatch);
@@ -80,7 +86,8 @@ namespace SampleGame {
 			canvas.Draw(gameTime);
 		}
 
-		public override void UnloadContent() {
+		public override void UnloadContent()
+		{
 			base.UnloadContent();
 
 			MediaPlayer.Stop();

@@ -9,7 +9,8 @@ namespace CatdogEngine.Playground.Object.Component {
 	/// Behavior에 추가할 수 있는 요소.
 	/// Behavior 안에 각 요소들이 모여 하나의 Game Object를 이룬다.
 	/// </summary>
-	public abstract class BehaviorComponent {
+	public abstract class BehaviorComponent
+	{
 		private Behavior _owner;					// 현재 속해있는 Behavior
 
 		#region Properties

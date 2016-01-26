@@ -12,28 +12,34 @@ namespace CatdogEngine.Playground.Object {
 	/// 모든 World는 자신의 Camera를 반드시 하나 가진다.
 	/// 카메라에 포함된 Component는 동작하지 않는다.
 	/// </summary>
-	public class Camera : Behavior{
+	public class Camera : Behavior
+	{
 		private float _zoom;					// 줌
 
 		#region Properties
-		public float Zoom {
+		public float Zoom
+		{
 			get { return _zoom; }
-			set {
+			set
+			{
 				if (value < 1) _zoom = 1f;
 				else _zoom = value;
 			}
 		}
 		#endregion
 
-		public Camera() {
+		public Camera()
+		{
 			Zoom = 1f;
 		}
 
-		public override void Start() {
+		public override void Start()
+		{
 			
 		}
 
-		public override void Update(GameTime gameTime) {
+		public override void Update(GameTime gameTime)
+		{
 			
 		}
 	}

@@ -9,7 +9,8 @@ namespace CatdogEngine.UI.StencilComponent {
 	/// 화면 최 상단에 그려지는 UI는 모두 이 인터페이스를 상속해야 한다.
 	/// Game Screen 내부에서 동작하는 Update와 Draw 로직을 갖는다.
 	/// </summary>
-	public abstract class Stencil : InputListener {
+	public abstract class Stencil : InputListener
+	{
 		// 버퍼에서의 스텐실 위치. 좌측 상단이 원점이다.
 		protected Vector2 _position;
 
@@ -29,8 +30,11 @@ namespace CatdogEngine.UI.StencilComponent {
 		float _changedWindowWidthRate, _changedWindowHeightRate;
 
 		#region Properties
-		public Vector2 Position { get { return _position; }
-			set {
+		public Vector2 Position
+		{
+			get { return _position; }
+			set
+			{
 				_position = value;
 
 				// 기본적으로는 Region의 좌측 상단이 Position이 되도록 자동으로 갱신한다.
@@ -46,9 +50,12 @@ namespace CatdogEngine.UI.StencilComponent {
 		/// <summary>
 		/// 윈도우 좌표로 환산 된 값. 입력 처리 등의 작업 시 실제로 사용하는 값.
 		/// </summary>
-		public Rectangle WindowRegion {
-			get {
-				if(Canvas != null) {
+		public Rectangle WindowRegion
+		{
+			get
+			{
+				if(Canvas != null)
+				{
 					float widthRate = Canvas.WindowBufferWidthRate;
 					float heightRate = Canvas.WindowBufferHeightRate;
 					Rectangle temp = new Rectangle((int)(_region.X * widthRate), (int)(_region.Y * heightRate), 
@@ -56,7 +63,8 @@ namespace CatdogEngine.UI.StencilComponent {
 
 					return temp;
 				}
-				else {
+				else
+				{
 					return _region;
 				}
 			}
@@ -68,7 +76,8 @@ namespace CatdogEngine.UI.StencilComponent {
 		public float ChangedWindowHeightRate { get { return _changedWindowHeightRate; } set { _changedWindowHeightRate = value; } }
 		#endregion
 
-		public Stencil(GameScreen screen) {
+		public Stencil(GameScreen screen)
+		{
 			Position = new Vector2(0, 0);
 			BufferRegion = new Rectangle();
 
@@ -84,7 +93,8 @@ namespace CatdogEngine.UI.StencilComponent {
 			InputManager.SetListener(this);
 		}
 
-		protected void AddInnerStencil(Stencil stencil) {
+		protected void AddInnerStencil(Stencil stencil)
+		{
 			if(stencil != null) _innerStencils.Add(stencil);
 		}
 

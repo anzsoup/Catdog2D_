@@ -7,7 +7,8 @@ namespace CatdogEngine.Playground.Object {
 	/// World에 존재하는 게임 오브젝트. 각 Behavior는 독립적으로 행동한다.
 	/// 여러개의 BehaviorComponent를 가질 수 있다.
 	/// </summary>
-	public abstract class Behavior {
+	public abstract class Behavior
+	{
 		private Transform _transform;
 
 		private List<BehaviorComponent> _components;
@@ -20,7 +21,8 @@ namespace CatdogEngine.Playground.Object {
 		public World World { get { return _world; } set { _world = value; } }
 		#endregion
 
-		public Behavior() {
+		public Behavior()
+		{
 			Transform = new Transform();
 			_components = new List<BehaviorComponent>();
 		}
@@ -28,8 +30,10 @@ namespace CatdogEngine.Playground.Object {
 		/// <summary>
 		/// 새로운 BehaviorComponent를 추가한다.
 		/// </summary>
-		public void AddComponent(BehaviorComponent component) {
-			if (component != null) {
+		public void AddComponent(BehaviorComponent component)
+		{
+			if (component != null)
+			{
 				component.Owner = this;
 				_components.Add(component);
 			}
@@ -40,8 +44,10 @@ namespace CatdogEngine.Playground.Object {
 		/// 같은 컴포넌트가 여러개 중복되지 않는다고 가정했다. 추후에 수정이 필요할 것이다.
 		/// </summary>
 		/// <typeparam name="T">찾고자 하는 컴포넌트</typeparam>
-		public BehaviorComponent GetComponent<T>() {
-			foreach(BehaviorComponent component in Components) {
+		public BehaviorComponent GetComponent<T>()
+		{
+			foreach(BehaviorComponent component in Components)
+			{
 				if (component is T) return component;
 			}
 
@@ -61,14 +67,16 @@ namespace CatdogEngine.Playground.Object {
 		/// <summary>
 		/// 자기 자신을 World에서 제거한다.
 		/// </summary>
-		public void Destroy() {
+		public void Destroy()
+		{
 			World.Destroy(this);
 		}
 
 		/// <summary>
 		/// 해당 Behavior를 World에서 제거한다.
 		/// </summary>
-		public void Destroy(Behavior behavior) {
+		public void Destroy(Behavior behavior)
+		{
 			World.Destroy(behavior);
 		}
 

@@ -1,8 +1,4 @@
 ﻿using CatdogEngine.Playground.Object;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 using CatdogEngine.Playground.Object.Component;
 using CatdogEngine.Graphics;
@@ -11,15 +7,18 @@ using CatdogEngine;
 using Microsoft.Xna.Framework.Input;
 
 namespace SampleGame.Prefab {
-	public class Yuzuki : Behavior, InputListener {
+	public class Yuzuki : Behavior, InputListener
+	{
 		private bool _up, _down, _left, _right;
 		private readonly float SPEED = 300f;
 
-		public Yuzuki() {
+		public Yuzuki()
+		{
 			InputManager.SetListener(this);
 		}
 
-		public override void Start() {
+		public override void Start()
+		{
 			Sprite sprite = new Sprite(World.CurrentScreen.Content.Load<Texture2D>("yuzuki"));
 			sprite.Scale = new Vector2(0.5f);
 			SpriteRenderer renderer = new SpriteRenderer(sprite);
@@ -30,21 +29,26 @@ namespace SampleGame.Prefab {
 			AddComponent(location);
 		}
 
-		public override void Update(GameTime gameTime) {
+		public override void Update(GameTime gameTime)
+		{
 			float deltaTime = gameTime.ElapsedGameTime.Milliseconds / 1000f;
 			float x = Transform.Position.X;
 			float y = Transform.Position.Y;
 
-            if (_up) {
+            if (_up)
+			{
 				y = Transform.Position.Y + SPEED * deltaTime;
 			}
-			if(_down) {
+			if(_down)
+			{
 				y = Transform.Position.Y - SPEED * deltaTime;
 			}
-			if(_left) {
+			if(_left)
+			{
 				x = Transform.Position.X - SPEED * deltaTime;
 			}
-			if(_right) {
+			if(_right)
+			{
 				x = Transform.Position.X + SPEED * deltaTime;
 			}
 
@@ -53,8 +57,10 @@ namespace SampleGame.Prefab {
 			Transform.Position = new Vector2(x, y);
 		}
 
-		public void OnKeyDown(Keys key) {
-			switch(key) {
+		public void OnKeyDown(Keys key)
+		{
+			switch(key)
+			{
 				case Keys.Up:
 					_up = true;
 					break;
@@ -73,8 +79,10 @@ namespace SampleGame.Prefab {
 			}
 		}
 
-		public void OnKeyUp(Keys key) {
-			switch (key) {
+		public void OnKeyUp(Keys key)
+		{
+			switch (key)
+			{
 				case Keys.Up:
 					_up = false;
 					break;
@@ -93,15 +101,18 @@ namespace SampleGame.Prefab {
 			}
 		}
 
-		public void OnLeftMouseDown(int x, int y) {
+		public void OnLeftMouseDown(int x, int y)
+		{
 			
 		}
 
-		public void OnLeftMouseUp(int x, int y) {
+		public void OnLeftMouseUp(int x, int y)
+		{
 			
 		}
 
-		public void OnMouseMove(int x, int y) {
+		public void OnMouseMove(int x, int y)
+		{
 			
 		}
 	}

@@ -4,7 +4,8 @@ using Microsoft.Xna.Framework;
 using System;
 
 namespace CatdogEngine.Playground.Object.Component {
-	public class SpriteRenderer : BehaviorComponent {
+	public class SpriteRenderer : BehaviorComponent
+	{
 		private Camera _camera;
 		private Sprite _sprite;
 
@@ -18,41 +19,48 @@ namespace CatdogEngine.Playground.Object.Component {
 		public bool IsEnabled { get { return _enable; } set { _enable = value; } }
 		#endregion
 
-		public SpriteRenderer() {
+		public SpriteRenderer()
+		{
 			IsEnabled = true;
 		}
 
-		public SpriteRenderer(Sprite sprite) {
+		public SpriteRenderer(Sprite sprite)
+		{
 			IsEnabled = true;
 			Sprite = sprite;
 			_initialSpriteScale = Sprite.Scale;
 		}
 
-		public override void Initialize(World world) {
+		public override void Initialize(World world)
+		{
 			Camera = world.Camera;
 		}
 
-		public override void Update(GameTime gameTime) {
+		public override void Update(GameTime gameTime)
+		{
 			// World상에서 카메라와의 상대적 위치로 버퍼에 그릴 위치를 계산.
 			Vector2 distance = (Owner.Transform.Position - Camera.Transform.Position) * Camera.Zoom;
 			int bufferWidth = ScreenManager.GraphicsDeviceManager.PreferredBackBufferWidth;
 			int bufferHeight = ScreenManager.GraphicsDeviceManager.PreferredBackBufferHeight;
 
 			Vector2 temp = new Vector2(distance.X + (bufferWidth / 2), bufferHeight - (distance.Y + (bufferHeight / 2)));
-			if (Sprite != null) {
+			if (Sprite != null)
+			{
 				Sprite.Position = temp;
 				Sprite.Scale = _initialSpriteScale * Owner.Transform.Scale * Camera.Zoom;
 
 				// Owner의 좌표계에 따라 스프라이트를 회전시킨다.
 				double radian = Math.Acos(Owner.Transform.Up.Y);
-				if(Owner.Transform.Up.X < 0) {
+				if(Owner.Transform.Up.X < 0)
+				{
 					radian = -radian;
 				}
 				Sprite.Rotation = (float)radian;
 			}
 		}
 
-		public override void Draw(GameTime gameTime) {
+		public override void Draw(GameTime gameTime)
+		{
 			if(IsEnabled && Sprite != null) Sprite.Draw(ScreenManager.SpriteBatch);
 		}
 	}

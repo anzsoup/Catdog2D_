@@ -9,7 +9,8 @@ namespace CatdogEngine.Playground {
 	/// World 상의 Behavior의 상태를 나타내는 클래스.
 	/// 윈도우 좌표와는 분리 된 가상의 좌표계에 존재한다.
 	/// </summary>
-	public class Transform {
+	public class Transform
+	{
 		private Vector2 _position;					// 위치
 		private Vector2 _velocity;					// 속도
 		private Vector2 _scale;						// 스케일
@@ -30,11 +31,15 @@ namespace CatdogEngine.Playground {
 		/// <summary>
 		/// Y 좌표축
 		/// </summary>
-		public Vector2 Up {
+		public Vector2 Up
+		{
 			get { return _unitY; }
-			set {
-				if(value != null) {
-					if (value.LengthSquared() > 0) {
+			set
+			{
+				if(value != null)
+				{
+					if (value.LengthSquared() > 0)
+					{
 						_unitY = new Vector2(value.X, value.Y);
 						_unitY.Normalize();
 
@@ -50,11 +55,15 @@ namespace CatdogEngine.Playground {
 		/// <summary>
 		/// X 좌표축
 		/// </summary>
-		public Vector2 Right {
+		public Vector2 Right
+		{
 			get { return _unitX; }
-			set {
-				if(value != null) {
-					if (value.LengthSquared() > 0) {
+			set
+			{
+				if(value != null)
+				{
+					if (value.LengthSquared() > 0)
+					{
 						_unitX = new Vector2(value.X, value.Y);
 						_unitX.Normalize();
 
@@ -68,7 +77,8 @@ namespace CatdogEngine.Playground {
 		}
 		#endregion
 
-		public Transform() {
+		public Transform()
+		{
 			Position = new Vector2(0, 0);
 			Velocity = new Vector2(0, 0);
 			Scale = new Vector2(1, 1);
@@ -82,7 +92,8 @@ namespace CatdogEngine.Playground {
 		/// 주어진 변위만큼 이동한다.
 		/// </summary>
 		/// <param name="delta">이동할 변위</param>
-		public void Translate(Vector2 delta) {
+		public void Translate(Vector2 delta)
+		{
 			Position += (_unitX * delta.X) + (_unitY * delta.Y);
 		}
 	}

@@ -17,7 +17,8 @@ namespace CatdogEngine.UI.StencilComponent {
 	public delegate void BUTTON__LEFT_MOUSE_UP(int x, int y);
 	public delegate void BUTTON__CLICK();
 
-	public enum ButtonType {
+	public enum ButtonType
+	{
 		Gray,
 		Red,
 		Yellow,
@@ -34,7 +35,8 @@ namespace CatdogEngine.UI.StencilComponent {
 	/// 클릭하여 정해진 동작을 수행할 수 있는 사용자 인터페이스.
 	/// Update와 Draw를 virtual로 정의했다. 해당 클래스를 상속하여 원하는 스타일의 버튼을 만들어 사용할 수 있다.
 	/// </summary>
-	public class Button : Stencil {
+	public class Button : Stencil
+	{
 		private bool _mouseHover;                           // 커서가 영역 안에 있는가
 		private bool _pressed;								// 버튼이 눌렸는가
 
@@ -55,9 +57,11 @@ namespace CatdogEngine.UI.StencilComponent {
 		public BUTTON__LEFT_MOUSE_UP ON_LEFT_MOUSE_UP { set { _onLeftMouseUp = value; } }
 		public BUTTON__CLICK ON_CLICK { set { _onClick = value; } }
 
-		public new Vector2 Position {
+		public new Vector2 Position
+		{
 			get { return base.Position; }
-			set {
+			set
+			{
 				base.Position = value;
 				_imageNormal.Position = value;
 				_imageClicked.Position = value;
@@ -69,12 +73,16 @@ namespace CatdogEngine.UI.StencilComponent {
 			}
 		}
 
-		public string Text {
-			set {
-				if (value == null) {
+		public string Text
+		{
+			set
+			{
+				if (value == null)
+				{
 					_text.Text = "Button";
 				}
-				else {
+				else
+				{
 					_text.Text = value;
 				}
 
@@ -84,9 +92,11 @@ namespace CatdogEngine.UI.StencilComponent {
 			}
 		}
 
-		public Sprite NormalImage {
+		public Sprite NormalImage
+		{
 			get { return _imageNormal; }
-			set {
+			set
+			{
 				if(value == null) _imageNormal = new Sprite(Screen.Content.Load<Texture2D>("catdog/button_gray_1"));
 				else _imageNormal = value;
 				_imageNormal.Position = Position;
@@ -95,9 +105,11 @@ namespace CatdogEngine.UI.StencilComponent {
 				BufferRegion = new Rectangle((int)Position.X, (int)Position.Y, (int)_imageNormal.Width, (int)_imageNormal.Height);
 			}
 		}
-		public Sprite ClickedImage {
+		public Sprite ClickedImage
+		{
 			get { return _imageClicked; }
-			set {
+			set
+			{
 				if(value == null) _imageClicked = new Sprite(Screen.Content.Load<Texture2D>("catdog/button_gray_2"));
 				else _imageClicked = value;
 				_imageClicked.Position = Position;
@@ -105,7 +117,8 @@ namespace CatdogEngine.UI.StencilComponent {
 		}
 		#endregion
 
-		public Button(GameScreen screen) : base(screen) {
+		public Button(GameScreen screen) : base(screen)
+		{
 			// 기본 버튼 이미지
 			_imageNormal = new Sprite(screen.Content.Load<Texture2D>("catdog/button_gray_1"));
 			_imageClicked = new Sprite(screen.Content.Load<Texture2D>("catdog/button_gray_2"));
@@ -121,9 +134,11 @@ namespace CatdogEngine.UI.StencilComponent {
 			Position = new Vector2(0, 0);
 		}
 
-		public Button(GameScreen screen, ButtonType type) : base(screen) {
+		public Button(GameScreen screen, ButtonType type) : base(screen)
+		{
 			// 버튼 이미지
-			switch(type) {
+			switch(type)
+			{
 				case ButtonType.Gray:
 					_imageNormal = new Sprite(screen.Content.Load<Texture2D>("catdog/button_gray_1"));
 					_imageClicked = new Sprite(screen.Content.Load<Texture2D>("catdog/button_gray_2"));
@@ -180,15 +195,19 @@ namespace CatdogEngine.UI.StencilComponent {
 			Position = new Vector2(0, 0);
 		}
 
-		public override void Update(GameTime gameTime) {
+		public override void Update(GameTime gameTime)
+		{
 			
 		}
 
-		public override void Draw(GameTime gameTime) {
-			if(_pressed) {
+		public override void Draw(GameTime gameTime)
+		{
+			if(_pressed)
+			{
 				if (_imageClicked != null) _imageClicked.Draw(ScreenManager.SpriteBatch);
 			}
-			else {
+			else
+			{
 				if (_imageNormal != null) _imageNormal.Draw(ScreenManager.SpriteBatch);
 			}
 		}
@@ -196,8 +215,10 @@ namespace CatdogEngine.UI.StencilComponent {
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Input Events
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////
-		public override void OnLeftMouseDown(int x, int y) {
-			if(_mouseHover) {
+		public override void OnLeftMouseDown(int x, int y)
+		{
+			if(_mouseHover)
+			{
 				// 버튼은 눌린 상태로 전환
 				_pressed = true;
 
@@ -206,8 +227,10 @@ namespace CatdogEngine.UI.StencilComponent {
 			}
 		}
 
-		public override void OnLeftMouseUp(int x, int y) {
-			if(_pressed) {
+		public override void OnLeftMouseUp(int x, int y)
+		{
+			if(_pressed)
+			{
 				// 버튼은 눌리지 않은 상태로 전환
 				_pressed = false;
 
@@ -217,9 +240,12 @@ namespace CatdogEngine.UI.StencilComponent {
 			}
 		}
 
-		public override void OnMouseMove(int x, int y) {
-			if (_mouseHover) {
-				if (!WindowRegion.Contains(x, y)) {
+		public override void OnMouseMove(int x, int y)
+		{
+			if (_mouseHover)
+			{
+				if (!WindowRegion.Contains(x, y))
+				{
 					// 현재 커서는 영역 밖에 있다.
 					_mouseHover = false;
 
@@ -227,8 +253,10 @@ namespace CatdogEngine.UI.StencilComponent {
 					if (_onMouseOut != null) _onMouseOut();
 				}
 			}
-			else {
-				if (WindowRegion.Contains(x, y)) {
+			else
+			{
+				if (WindowRegion.Contains(x, y))
+				{
 					// 현재 커서는 영역 안에 있다.
 					_mouseHover = true;
 
@@ -238,11 +266,13 @@ namespace CatdogEngine.UI.StencilComponent {
 			}
 		}
 
-		public override void OnKeyDown(Keys key) {
+		public override void OnKeyDown(Keys key)
+		{
 			
 		}
 
-		public override void OnKeyUp(Keys key) {
+		public override void OnKeyUp(Keys key)
+		{
 			
 		}
 	}

@@ -9,14 +9,16 @@ namespace CatdogEngine.Graphics {
 	/// <summary>
 	/// 윈도우의 렌더링 과정에 포함되는 그래픽 요소.
 	/// </summary>
-	public abstract class Drawable {
+	public abstract class Drawable
+	{
 		private Vector2 _position;              // 버퍼에 그려지는 위치. 좌측 상단.
 
 		#region Properties
 		public Vector2 Position { get { return _position; } set { _position = value; } }
 		#endregion
 
-		public Drawable() {
+		public Drawable()
+		{
 			_position = new Vector2(0, 0);
 		}
 

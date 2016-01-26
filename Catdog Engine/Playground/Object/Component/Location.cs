@@ -11,7 +11,8 @@ namespace CatdogEngine.Playground.Object.Component {
 	/// <summary>
 	/// 트리거 이벤트를 발생시키는 충돌체
 	/// </summary>
-	public class Location : BehaviorComponent {
+	public class Location : BehaviorComponent
+	{
 		private Vector2 _relativePosition;
 		private string _label;
 
@@ -52,29 +53,34 @@ namespace CatdogEngine.Playground.Object.Component {
 		public LOCATION__TRIGGER_EVENT ON_TRIGGER_EXIT { get { return _onTriggerExit; } set { _onTriggerExit = value; } }
 		#endregion
 
-		public Location() {
+		public Location()
+		{
 			RelativePosition = new Vector2(0, 0);
 			Label = null;
 			Width = 40f;
 			Height = 40f;
 		}
 
-		public Location(float width, float height) {
+		public Location(float width, float height)
+		{
 			RelativePosition = new Vector2(0, 0);
 			Label = null;
 			Width = width;
 			Height = height;
 		}
 
-		public override void Initialize(World world) {
+		public override void Initialize(World world)
+		{
 			
 		}
 
-		public override void Update(GameTime gameTime) {
+		public override void Update(GameTime gameTime)
+		{
 			
 		}
 
-		public override void Draw(GameTime gameTime) {
+		public override void Draw(GameTime gameTime)
+		{
 			
 		}
 	}

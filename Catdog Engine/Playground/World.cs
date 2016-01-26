@@ -9,7 +9,8 @@ namespace CatdogEngine.Playground {
 	/// <summary>
 	/// 플레이 가능한 실제 게임 세계의 기본단위. 모든 Behavior들의 로직을 관리한다.
 	/// </summary>
-	public class World {
+	public class World
+	{
 		private List<Behavior> _behaviors;
 		private List<Behavior> _newBehaviors;
 		private List<Behavior> _deadBehaviors;
@@ -30,7 +31,8 @@ namespace CatdogEngine.Playground {
 		public GameScreen CurrentScreen { get { return _currentScreen; } set { _currentScreen = value; } }
 		#endregion
 
-		public World(GameScreen currentScreen) {
+		public World(GameScreen currentScreen)
+		{
 			_behaviors = new List<Behavior>();
 			_newBehaviors = new List<Behavior>();
 			_deadBehaviors = new List<Behavior>();
@@ -43,20 +45,25 @@ namespace CatdogEngine.Playground {
 		/// <summary>
 		/// Behavior를 World에 생성한다.
 		/// </summary>
-		public virtual void Instantiate(Behavior behavior) {
+		public virtual void Instantiate(Behavior behavior)
+		{
 			// 매개변수가 Camera 일 경우 무시한다.
-			if(behavior is Camera) {
+			if(behavior is Camera)
+			{
 				Debug.WriteLine("### World.Instantiate(Behavior) failed : Camera only can be instantiated by SetCamera(Camera) method. ###");
 			}
-			else {
-				if (behavior != null) {
+			else
+			{
+				if (behavior != null)
+				{
 					behavior.World = this;
 
 					// Start Behavior
 					behavior.Start();
 
 					// Initialize Components
-					foreach (BehaviorComponent component in behavior.Components) {
+					foreach (BehaviorComponent component in behavior.Components)
+					{
 						component.Initialize(this);
 					}
 
@@ -69,14 +76,18 @@ namespace CatdogEngine.Playground {
 		/// <summary>
 		/// Behavior를 없앤다.
 		/// </summary>
-		public virtual void Destroy(Behavior behavior) {
-			if(behavior != null) {
+		public virtual void Destroy(Behavior behavior)
+		{
+			if(behavior != null)
+			{
 				_deadBehaviors.Add(behavior);
 			}
 		}
 
-		public void SetCamera(Camera camera) {
-			if (camera != null) {
+		public void SetCamera(Camera camera)
+		{
+			if (camera != null)
+			{
 				// Start Camera
 				camera.Start();
 
@@ -88,16 +99,19 @@ namespace CatdogEngine.Playground {
 		/// <summary>
 		/// 스크린의 Update 로직에 반드시 포함되어야 한다.
 		/// </summary>
-		public virtual void Update(GameTime gameTime) {
+		public virtual void Update(GameTime gameTime)
+		{
 			List<Location> locationBucket = new List<Location>();
 
 			// Instantiate 된 Behavior들을 리스트에 추가
-			foreach(Behavior behavior in _newBehaviors) {
+			foreach(Behavior behavior in _newBehaviors)
+			{
 				_behaviors.Add(behavior);
 			}
 
 			// Destroy 된 Behavior들을 리스트에서 제거
-			foreach(Behavior behavior in _deadBehaviors) {
+			foreach(Behavior behavior in _deadBehaviors)
+			{
 				if(_behaviors.Contains(behavior))
 					_behaviors.Remove(behavior);
 			}
@@ -107,12 +121,15 @@ namespace CatdogEngine.Playground {
 			_deadBehaviors.Clear();
 
 			// Behavior 로직 진행
-			foreach(Behavior behavior in _behaviors) {
+			foreach(Behavior behavior in _behaviors)
+			{
 				// Update Components.
 				// It is followed by Behavior's Update Logic.
-				foreach(BehaviorComponent component in behavior.Components) {
+				foreach(BehaviorComponent component in behavior.Components)
+				{
 					component.Update(gameTime);
-					if(component is Location) {
+					if(component is Location)
+					{
 						locationBucket.Add((Location)component);
 					}
 				}
@@ -135,12 +152,15 @@ namespace CatdogEngine.Playground {
 		/// <summary>
 		/// 스크린의 Draw 로직에 반드시 포함되어야 한다.
 		/// </summary>
-		public virtual void Draw(GameTime gameTime) {
+		public virtual void Draw(GameTime gameTime)
+		{
 			// Component 그리기
-			foreach (Behavior behavior in _behaviors) {
+			foreach (Behavior behavior in _behaviors)
+			{
 				// Draw Components.
 				// Behaviors don't have Draw logic, but do Components have it.
-				foreach (BehaviorComponent component in behavior.Components) {
+				foreach (BehaviorComponent component in behavior.Components)
+				{
 					component.Draw(gameTime);
 				}
 			}

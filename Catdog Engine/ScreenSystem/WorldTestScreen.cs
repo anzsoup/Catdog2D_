@@ -6,10 +6,12 @@ using Microsoft.Xna.Framework.Graphics;
 using CatdogEngine.Graphics;
 
 namespace CatdogEngine.ScreenSystem {
-	public class WorldTestScreen : GameScreen {
+	public class WorldTestScreen : GameScreen
+	{
 		World world;
 
-		public override void LoadContent() {
+		public override void LoadContent()
+		{
 			base.LoadContent();
 
 			world = new World(this);
@@ -38,11 +40,13 @@ namespace CatdogEngine.ScreenSystem {
 			object1.Transform.Position = new Vector2(-400, 0);
 			object1.AddComponent(new SpriteRenderer(new Sprite(this.Content.Load<Texture2D>("gojam"))));
 			Location location = new Location(300f, 300f);
-			location.ON_TRIGGER_ENTER = delegate (Location other) {
+			location.ON_TRIGGER_ENTER = delegate (Location other) 
+			{
 				object1.Transform.Position = new Vector2(-400, 0);
 			};
 			object1.AddComponent(location);
-			object1.UPDATE = delegate (GameTime gameTime) {
+			object1.UPDATE = delegate (GameTime gameTime) 
+			{
 				object1.Transform.Translate(new Vector2(1, 0));
 			};
 			world.Instantiate(object1);
@@ -54,13 +58,15 @@ namespace CatdogEngine.ScreenSystem {
 			world.Instantiate(testObject);
 		}
 
-		public override void Update(GameTime gameTime) {
+		public override void Update(GameTime gameTime)
+		{
 			base.Update(gameTime);
 
 			if(world != null) world.Update(gameTime);
 		}
 
-		public override void Draw(GameTime gameTime) {
+		public override void Draw(GameTime gameTime)
+		{
 			if(world != null) world.Draw(gameTime);
 		}
 	}

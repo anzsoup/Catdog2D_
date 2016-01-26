@@ -13,13 +13,16 @@ namespace CatdogEngine.UI.StencilComponent {
 	/// <summary>
 	/// 한 줄로 이루어진 UI 텍스트
 	/// </summary>
-	public class TextLine : Stencil {
+	public class TextLine : Stencil
+	{
 		private SpriteText _spriteText;
 
 		#region Properties
-		public SpriteFont Font {
+		public SpriteFont Font
+		{
 			get { return _spriteText.Font; }
-			set {
+			set
+			{
 				if (value != null) _spriteText.Font = value;
 				else _spriteText.Font = Screen.Content.Load<SpriteFont>("DefaultText");
 
@@ -31,9 +34,11 @@ namespace CatdogEngine.UI.StencilComponent {
 					Debug.WriteLine("### TextLine : Something goes wrong while calculating text region. ###");
 			}
 		}
-		public string Text {
+		public string Text
+		{
 			get { return _spriteText.Text; }
-			set {
+			set
+			{
 				if (value != null) _spriteText.Text = value;
 				else _spriteText.Text = "Text";
 
@@ -51,7 +56,8 @@ namespace CatdogEngine.UI.StencilComponent {
 		public new Vector2 Position { get { return base.Position; } set { base.Position = value; _spriteText.Position = value; } }
 		#endregion
 
-		public TextLine(GameScreen screen, SpriteFont font, String text = "Text") : base(screen) {
+		public TextLine(GameScreen screen, SpriteFont font, String text = "Text") : base(screen)
+		{
 			if (font == null) _spriteText = new SpriteText(Screen.Content.Load<SpriteFont>("DefaultText"));
 			else _spriteText = new SpriteText(font);
 
@@ -60,31 +66,38 @@ namespace CatdogEngine.UI.StencilComponent {
 			Color = Color.Black;
 		}
 
-		public override void Update(GameTime gameTime) {
+		public override void Update(GameTime gameTime)
+		{
 			
 		}
 
-		public override void Draw(GameTime gameTime) {
+		public override void Draw(GameTime gameTime)
+		{
 			_spriteText.Draw(ScreenManager.SpriteBatch);
 		}
 
-		public override void OnKeyDown(Keys key) {
+		public override void OnKeyDown(Keys key)
+		{
 			
 		}
 
-		public override void OnKeyUp(Keys key) {
+		public override void OnKeyUp(Keys key)
+		{
 			
 		}
 
-		public override void OnLeftMouseDown(int x, int y) {
+		public override void OnLeftMouseDown(int x, int y)
+		{
 			
 		}
 
-		public override void OnLeftMouseUp(int x, int y) {
+		public override void OnLeftMouseUp(int x, int y)
+		{
 			
 		}
 
-		public override void OnMouseMove(int x, int y) {
+		public override void OnMouseMove(int x, int y)
+		{
 			
 		}
 	}

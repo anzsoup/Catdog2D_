@@ -8,7 +8,8 @@ namespace CatdogEngine {
 	/// SetListener(InputListener) 함수를 통해 InputManager에 등록시켜야 한다.
 	/// 싱글톤 인스턴스를 갖는다. 임의로 여러 인스턴스를 생성할 수 없다.
 	/// </summary>
-	public static class InputManager {
+	public static class InputManager
+	{
 		private static List<InputListener> _listeners = new List<InputListener>();
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -22,14 +23,16 @@ namespace CatdogEngine {
 		/// 리스너를 등록한다.
 		/// 리스너로 등록한 클래스는 각 윈도우 이벤트의 콜백 함수를 사용할 수 있다.
 		/// </summary>
-		public static void SetListener(InputListener listener) {
+		public static void SetListener(InputListener listener)
+		{
 			if(listener != null) _listeners.Add(listener);
 		}
 
 		/// <summary>
 		/// ScreenManager의 Update 로직에서 호출된다.
 		/// </summary>
-		public static void Update() {
+		public static void Update()
+		{
 			// 마우스 이벤트 감지
 			ListenMouseEvent();
 
@@ -37,7 +40,8 @@ namespace CatdogEngine {
 			ListenKeyboardEvent();
 		}
 
-		private static void ListenMouseEvent() {
+		private static void ListenMouseEvent()
+		{
 			// 현재 마우스 State를 확인한다.
 			MouseState mouseState = Mouse.GetState();
 
@@ -45,22 +49,27 @@ namespace CatdogEngine {
 			int mousePositionX = mouseState.X;
 			int mousePositionY = mouseState.Y;
 
-			if(mouseState.LeftButton == ButtonState.Pressed) {
-				if(!_leftMousePressed) {
+			if(mouseState.LeftButton == ButtonState.Pressed)
+			{
+				if(!_leftMousePressed)
+				{
 					_leftMousePressed = true;
 					// Call back OnLeftMouseDown
 					foreach (InputListener listener in _listeners) listener.OnLeftMouseDown(mousePositionX, mousePositionY);
 				}
 			}
-			else if(mouseState.LeftButton == ButtonState.Released) {
-				if(_leftMousePressed) {
+			else if(mouseState.LeftButton == ButtonState.Released)
+			{
+				if(_leftMousePressed)
+				{
 					_leftMousePressed = false;
 					// Call back OnLeftMouseUp
 					foreach (InputListener listener in _listeners) listener.OnLeftMouseUp(mousePositionX, mousePositionY);
 				}
 			}
 
-			if(mousePositionX != _oldMouseState.X || mousePositionY != _oldMouseState.Y) {
+			if(mousePositionX != _oldMouseState.X || mousePositionY != _oldMouseState.Y)
+			{
 				// Call back OnMouseMove
 				foreach(InputListener listener in _listeners) listener.OnMouseMove(mousePositionX, mousePositionY);
 			}
@@ -69,7 +78,8 @@ namespace CatdogEngine {
 			_oldMouseState = mouseState;
 		}
 
-		private static void ListenKeyboardEvent() {
+		private static void ListenKeyboardEvent()
+		{
 			// 현재 키보드 State를 확인한다.
 			KeyboardState keyboardState = Keyboard.GetState();
 
@@ -80,16 +90,20 @@ namespace CatdogEngine {
 			Keys[] oldKeys = _oldKeyboardState.GetPressedKeys();
 
 			// Find released Keys
-			foreach(Keys key in oldKeys) {
-				if(keyboardState.IsKeyUp(key)) {
+			foreach(Keys key in oldKeys)
+			{
+				if(keyboardState.IsKeyUp(key))
+				{
 					// Call back OnKeyUp
 					foreach (InputListener listener in _listeners) listener.OnKeyUp(key);
 				}
 			}
 
 			// Find newly pressed keys
-			foreach(Keys key in keys) {
-				if(_oldKeyboardState.IsKeyUp(key)) {
+			foreach(Keys key in keys)
+			{
+				if(_oldKeyboardState.IsKeyUp(key))
+				{
 					// Call back OnKeyDown
 					foreach (InputListener listener in _listeners) listener.OnKeyDown(key);
 				}

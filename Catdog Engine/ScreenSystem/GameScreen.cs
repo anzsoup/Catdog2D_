@@ -8,7 +8,8 @@ namespace CatdogEngine.ScreenSystem {
     /// <summary>
     /// GameScreen의 현재 상태를 표현하는 열거형
     /// </summary>
-    public enum ScreenState {
+    public enum ScreenState
+	{
         Waiting,
         TransitionOn,
         TransitionOff,
@@ -34,7 +35,8 @@ namespace CatdogEngine.ScreenSystem {
 	/// <summary>
 	/// 몇 가지 기본 제공 화면 전환 효과
 	/// </summary>
-	public static class ScreenTransitionEffectPackage {
+	public static class ScreenTransitionEffectPackage
+	{
 
 		#region Fields
 		private static float _transitionPosition;
@@ -48,7 +50,8 @@ namespace CatdogEngine.ScreenSystem {
 		/// <summary>
 		/// ScreenManager의 Draw 로직에서 호출되는 화면 전환 효과 처리를 위한 메소드.
 		/// </summary>
-		public static void PostProcess() {
+		public static void PostProcess()
+		{
 			// For Fade Effect. I don't like this :(
 			// I will find better solution soon.
 			Color[] colors = new Color[] { Color.Black };
@@ -69,13 +72,15 @@ namespace CatdogEngine.ScreenSystem {
 
 		// 1. 효과 없음
 		public static SCREEN_TRANSITION_EFFECT None =
-			delegate (GameTime gameTime, TimeSpan transitionTime, int direction) {
+			delegate (GameTime gameTime, TimeSpan transitionTime, int direction) 
+			{
 				return false;
 			};
 
 		// 2. Fade in & out
 		public static SCREEN_TRANSITION_EFFECT Fading =
-			delegate (GameTime gameTime, TimeSpan transitionTime, int direction) {
+			delegate (GameTime gameTime, TimeSpan transitionTime, int direction) 
+			{
 				// How much should we move by?
 				float transitionDelta;
 
@@ -90,7 +95,8 @@ namespace CatdogEngine.ScreenSystem {
 				_transitionPosition += transitionDelta * direction;
 
 				// Did we reach the end of the transition?
-				if (((direction < 0) && (_transitionPosition <= 0)) || ((direction > 0) && (_transitionPosition >= 1))) {
+				if (((direction < 0) && (_transitionPosition <= 0)) || ((direction > 0) && (_transitionPosition >= 1)))
+				{
 					_transitionPosition = MathHelper.Clamp(_transitionPosition, 0, 1);
 					return false;
 				}
@@ -108,7 +114,8 @@ namespace CatdogEngine.ScreenSystem {
 	/// 한 스크린 안에서 로드 된 리소스는 해당 스크린이 죽을 때 함께 해제된다.
 	/// 여러 스크린이 공유하는 리소스는 ScreenManager에서 로드해야 한다.
 	/// </summary>
-	public abstract class GameScreen {
+	public abstract class GameScreen
+	{
 
         private SCREEN_TRANSITION_EFFECT Screen_Transition_Effect;
         private ScreenState _screenState;
@@ -121,7 +128,8 @@ namespace CatdogEngine.ScreenSystem {
 		// 스크린의 수명이 다하면 모든 리소스를 해제한다.
 		protected ContentManager _content;
 
-        public GameScreen() {
+        public GameScreen()
+		{
             _screenState = ScreenState.Waiting;
 			// 화면전환효과 지속시간 초기값 : 1초
 			TransitionTime = new TimeSpan(0, 0, 1);
@@ -145,7 +153,8 @@ namespace CatdogEngine.ScreenSystem {
         /// GameScreen이 생성된 후 리소스를 할당하는 타이밍에 한 번 호출된다.
         /// 리소스 할당 작업을 여기서 한다.
         /// </summary>
-        public virtual void LoadContent() {
+        public virtual void LoadContent()
+		{
 			// 스크린이 활성화 되고 리소스 할당 및 초기화가 이루어질 때 Content Manager를 생성한다.
 			Content = new ContentManager(ScreenManager.Services, ScreenManager.Content.RootDirectory);
 		}
@@ -154,7 +163,8 @@ namespace CatdogEngine.ScreenSystem {
         /// GameScreen이 소멸하기 직전 리소스를 해제하는 타이밍에 한 번 호출된다.
         /// 리소스 해제 작업을 여기서 한다.
         /// </summary>
-        public virtual void UnloadContent() {
+        public virtual void UnloadContent()
+		{
 			// Content Manager clears the resources loaded by this screen.
 			Content.Unload();
 		}
@@ -164,17 +174,21 @@ namespace CatdogEngine.ScreenSystem {
         /// GameScreen의 현재 상태와 상관없이 무조건 호출된다.
         /// </summary>
         /// <param name="gameTime">Delta Time</param>
-        public virtual void Update(GameTime gameTime) { 
+        public virtual void Update(GameTime gameTime)
+		{ 
 
             // 스크린 전환 이펙트 처리
-            if(ScreenState == ScreenState.TransitionOff) {
+            if(ScreenState == ScreenState.TransitionOff)
+			{
                 ScreenState = Screen_Transition_Effect(gameTime, TransitionTime, -1) ? ScreenState.TransitionOff : ScreenState.Dead;
             }
-            else if(ScreenState == ScreenState.TransitionOn) {
+            else if(ScreenState == ScreenState.TransitionOn)
+			{
                 ScreenState = Screen_Transition_Effect(gameTime, TransitionTime, 1) ? ScreenState.TransitionOn : ScreenState.Active;
             }
 
-			if(ScreenState == ScreenState.Dead) {
+			if(ScreenState == ScreenState.Dead)
+			{
 				ScreenManager.RemoveScreen(this);
 			}
         }

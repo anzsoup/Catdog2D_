@@ -1,12 +1,9 @@
 ﻿using CatdogEngine.Playground.Object;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 
 namespace SampleGame.Prefab {
-	public class Bullet : Behavior {
+	public class Bullet : Behavior
+	{
 		private Vector2 _focus;
 		private float _speed;
 
@@ -15,11 +12,13 @@ namespace SampleGame.Prefab {
 		public float Speed { get { return _speed; } set { _speed = value; } }
 		#endregion
 
-		public override void Start() {
+		public override void Start()
+		{
 			
 		}
 
-		public override void Update(GameTime gameTime) {
+		public override void Update(GameTime gameTime)
+		{
 			
 		}
 	}

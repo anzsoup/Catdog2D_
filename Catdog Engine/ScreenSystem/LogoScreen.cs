@@ -8,7 +8,8 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework.Input;
 
 namespace CatdogEngine.ScreenSystem {
-    public class LogoScreen : GameScreen, InputListener {
+    public class LogoScreen : GameScreen, InputListener
+	{
 
         Sprite logo;
 		GameScreen startScreen;
@@ -17,7 +18,8 @@ namespace CatdogEngine.ScreenSystem {
 		public GameScreen StartScreen { set { startScreen = value; } }
 		#endregion
 
-		public override void LoadContent() {
+		public override void LoadContent()
+		{
 			// It is Important!
 			base.LoadContent();
 
@@ -35,39 +37,48 @@ namespace CatdogEngine.ScreenSystem {
 			// We don't need override UnloadContent logic because 'Content' member does it for us in UnloadContent logic of base class.
 		}
 
-        public override void Update(GameTime gameTime) {
+        public override void Update(GameTime gameTime)
+		{
             base.Update(gameTime);
-			if(gameTime.TotalGameTime.TotalSeconds > 5) {
+			if(gameTime.TotalGameTime.TotalSeconds > 5)
+			{
 				if (startScreen != null) ScreenManager.SetScreen(startScreen);
 				else Debug.WriteLine("### Causion : There is no Start Screen. ###");
 			}
         }
 
-        public override void Draw(GameTime gameTime) {
+        public override void Draw(GameTime gameTime)
+		{
 			// Draw Textures.
 			logo.Draw(ScreenManager.SpriteBatch);
         }
 
-		public void OnLeftMouseDown(int x, int y) {
+		public void OnLeftMouseDown(int x, int y)
+		{
 			
 		}
 
-		public void OnLeftMouseUp(int x, int y) {
+		public void OnLeftMouseUp(int x, int y)
+		{
 			
 		}
 
-		public void OnMouseMove(int x, int y) {
+		public void OnMouseMove(int x, int y)
+		{
 			
 		}
 
-		public void OnKeyDown(Keys key) {
-			if(key == Keys.Enter || key == Keys.Space || key == Keys.Escape) {
+		public void OnKeyDown(Keys key)
+		{
+			if(key == Keys.Enter || key == Keys.Space || key == Keys.Escape)
+			{
 				if (startScreen != null) ScreenManager.SetScreen(startScreen);
 				else Debug.WriteLine("### Causion : There is no Start Screen. ###");
 			}
 		}
 
-		public void OnKeyUp(Keys key) {
+		public void OnKeyUp(Keys key)
+		{
 			
 		}
 	}
