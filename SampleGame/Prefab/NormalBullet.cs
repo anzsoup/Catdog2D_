@@ -9,30 +9,22 @@ using Microsoft.Xna.Framework.Graphics;
 using CatdogEngine.Playground.Object.Component;
 
 namespace SampleGame.Prefab {
-	public class NormalBullet : Behavior {
-		private Vector2 _focus;
-		private SpriteRenderer _renderer;
-		private float _speed;
-
-		#region Properties
-		public float Speed { set { _speed = value; } }
-		#endregion
-
+	public class NormalBullet : Bullet {
 		public NormalBullet(Vector2 focus) {
-			_focus = new Vector2(focus.X, focus.Y);
-			_focus.Normalize();
-			_speed = 400f;
+			Focus = new Vector2(focus.X, focus.Y);
+			Focus.Normalize();
+			Speed = 400f;
 
-			Transform.Velocity = new Vector2(0, _speed);
-			Transform.Up = _focus;
+			Transform.Velocity = new Vector2(0, Speed);
+			Transform.Up = Focus;
 		}
 
 		public override void Start() {
 			Sprite sprite = new Sprite(World.CurrentScreen.Content.Load<Texture2D>("hasami1"));
 			sprite.Scale = new Vector2(0.5f);
-			_renderer = new SpriteRenderer(sprite);
+			SpriteRenderer renderer = new SpriteRenderer(sprite);
 
-			AddComponent(_renderer);
+			AddComponent(renderer);
 		}
 
 		public override void Update(GameTime gameTime) { 

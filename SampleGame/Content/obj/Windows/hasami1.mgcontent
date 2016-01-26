@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/hasami1.png</SourceFile>
-  <SourceTime>2016-01-26T04:09:58.3221973+09:00</SourceTime>
+  <SourceTime>2016-01-26T09:20:27.831515+09:00</SourceTime>
   <DestFile>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/bin/Windows/hasami1.xnb</DestFile>
-  <DestTime>2016-01-26T04:12:18.8652103+09:00</DestTime>
+  <DestTime>2016-01-26T09:21:38.2259248+09:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-30T02:14:44+09:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
