@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Input;
 
-namespace CatdogEngine {
+namespace CatdogEngine
+{
 	public interface InputListener
 	{
 

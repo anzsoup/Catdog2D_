@@ -4,7 +4,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CatdogEngine.ScreenSystem {
+namespace CatdogEngine.ScreenSystem
+{
     /// <summary>
     /// GameScreen의 현재 상태를 표현하는 열거형
     /// </summary>

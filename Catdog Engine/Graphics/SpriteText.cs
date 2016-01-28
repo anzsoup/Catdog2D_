@@ -5,7 +5,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace CatdogEngine.Graphics {
+namespace CatdogEngine.Graphics
+{
 	/// <summary>
 	/// SpriteFont와 문자열로 구성되는 글자 요소.
 	/// </summary>

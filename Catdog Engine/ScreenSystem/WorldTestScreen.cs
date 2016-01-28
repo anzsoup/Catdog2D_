@@ -5,7 +5,8 @@ using CatdogEngine.Playground.Object.Component;
 using Microsoft.Xna.Framework.Graphics;
 using CatdogEngine.Graphics;
 
-namespace CatdogEngine.ScreenSystem {
+namespace CatdogEngine.ScreenSystem
+{
 	public class WorldTestScreen : GameScreen
 	{
 		World world;

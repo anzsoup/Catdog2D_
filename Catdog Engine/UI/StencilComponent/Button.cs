@@ -6,7 +6,8 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Diagnostics;
 
-namespace CatdogEngine.UI.StencilComponent {
+namespace CatdogEngine.UI.StencilComponent
+{
 
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// 이벤트 콜백을 위한 대리자

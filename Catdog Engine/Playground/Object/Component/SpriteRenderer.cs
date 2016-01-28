@@ -3,7 +3,8 @@ using CatdogEngine.ScreenSystem;
 using Microsoft.Xna.Framework;
 using System;
 
-namespace CatdogEngine.Playground.Object.Component {
+namespace CatdogEngine.Playground.Object.Component
+{
 	public class SpriteRenderer : BehaviorComponent
 	{
 		private Camera _camera;

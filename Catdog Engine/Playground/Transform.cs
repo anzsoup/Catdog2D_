@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CatdogEngine.Playground {
+namespace CatdogEngine.Playground
+{
 	/// <summary>
 	/// World 상의 Behavior의 상태를 나타내는 클래스.
 	/// 윈도우 좌표와는 분리 된 가상의 좌표계에 존재한다.

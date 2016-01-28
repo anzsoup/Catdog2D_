@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace CatdogEngine.Playground.Object.Component {
+namespace CatdogEngine.Playground.Object.Component
+{
 
 	public delegate void LOCATION__TRIGGER_EVENT(Location other);
 

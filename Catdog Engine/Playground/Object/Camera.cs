@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CatdogEngine.Playground.Object {
+namespace CatdogEngine.Playground.Object
+{
 	/// <summary>
 	/// World에 존재하는 카메라. Rotation은 사용하지 않는다.
 	/// Behavior와 Camera간의 상대적 위치, 그리고 Zoom 값을 통해 화면에 그려질 위치가 결정된다.

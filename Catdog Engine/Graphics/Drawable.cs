@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CatdogEngine.Graphics {
+namespace CatdogEngine.Graphics
+{
 	/// <summary>
 	/// 윈도우의 렌더링 과정에 포함되는 그래픽 요소.
 	/// </summary>

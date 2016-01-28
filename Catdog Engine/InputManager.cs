@@ -1,7 +1,8 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
-namespace CatdogEngine {
+namespace CatdogEngine
+{
 	/// <summary>
 	/// 윈도우 이벤트를 감지하고 적절한 타이밍에 함수를 호출해 주는 모듈.
 	/// 윈도우 이벤트를 사용하고 싶은 클래스는 InputListener 인터페이스를 상속하고

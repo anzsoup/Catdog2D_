@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CatdogEngine.Playground {
+namespace CatdogEngine.Playground
+{
 	public class Collision
 	{
 		private Location _l1, _l2;              // 충돌한 두 로케이션

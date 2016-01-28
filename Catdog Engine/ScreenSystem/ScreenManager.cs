@@ -3,7 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
 
-namespace CatdogEngine.ScreenSystem {
+namespace CatdogEngine.ScreenSystem
+{
     /// <summary>
     /// This is the main type for your game.
     /// </summary>

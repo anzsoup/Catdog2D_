@@ -4,7 +4,8 @@ using CatdogEngine.Graphics;
 using Microsoft.Xna.Framework.Graphics;
 using System.Diagnostics;
 
-namespace CatdogEngine.Playground.Object {
+namespace CatdogEngine.Playground.Object
+{
 	public class TestObject : Behavior
 	{
 		public override void Start()

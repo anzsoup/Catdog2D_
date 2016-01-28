@@ -2,7 +2,8 @@
 using Microsoft.Xna.Framework;
 using System;
 
-namespace CatdogEngine.Playground {
+namespace CatdogEngine.Playground
+{
 	/// <summary>
 	/// Farseer Physics Engine 기반 2D 물리 효과를 지원해 주는 월드.
 	/// 전용 BehaviorComponent들을 사용할 수 있다.

@@ -5,7 +5,8 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace CatdogEngine.Playground {
+namespace CatdogEngine.Playground
+{
 	/// <summary>
 	/// 플레이 가능한 실제 게임 세계의 기본단위. 모든 Behavior들의 로직을 관리한다.
 	/// </summary>

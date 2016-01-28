@@ -5,7 +5,8 @@ using Microsoft.Xna.Framework.Graphics;
 using CatdogEngine.UI.StencilComponent;
 using CatdogEngine.ScreenSystem;
 
-namespace CatdogEngine.UI {
+namespace CatdogEngine.UI
+{
 
 	/// <summary>
 	/// 윈도우 크기에 대해 상대적으로 UI의 크기를 어떻게 처리할 것인지에 대한 옵션

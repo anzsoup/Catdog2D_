@@ -9,7 +9,8 @@ using CatdogEngine.ScreenSystem;
 using System.Diagnostics;
 using CatdogEngine.Graphics;
 
-namespace CatdogEngine.UI.StencilComponent {
+namespace CatdogEngine.UI.StencilComponent
+{
 	/// <summary>
 	/// 한 줄로 이루어진 UI 텍스트
 	/// </summary>

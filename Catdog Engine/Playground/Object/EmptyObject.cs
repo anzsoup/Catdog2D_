@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace CatdogEngine.Playground.Object {
+namespace CatdogEngine.Playground.Object
+{
 	public delegate void EMPTYOBJECT__BEHAVIOR_START();
 	public delegate void EMPTYOBJECT__BEHAVIOR_UPDATE(GameTime gameTime);
 

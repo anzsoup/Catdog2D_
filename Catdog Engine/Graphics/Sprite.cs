@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace CatdogEngine.Graphics {
+namespace CatdogEngine.Graphics
+{
 	/// <summary>
 	/// 그리기의 기본 단위. Texture2D의 래퍼.
 	/// 윈도우 좌표상의 그려질 위치, 스케일, 회전각을 갖고 있다.

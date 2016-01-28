@@ -7,7 +7,8 @@ using System;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Input;
 
-namespace CatdogEngine.ScreenSystem {
+namespace CatdogEngine.ScreenSystem
+{
     public class LogoScreen : GameScreen, InputListener
 	{
 

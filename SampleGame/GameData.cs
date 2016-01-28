@@ -1,5 +1,6 @@
 ﻿
-namespace SampleGame {
+namespace SampleGame
+{
 	/// <summary>
 	/// 게임 진행에 필요한 모든 데이터들을 저장한다. 싱글톤이다.
 	/// </summary>

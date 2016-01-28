@@ -1,7 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using CatdogEngine.ScreenSystem;
 
-namespace MyGame {
+namespace MyGame
+{
 	public class MyScreen : GameScreen 
 	{
 		public override void LoadContent() 

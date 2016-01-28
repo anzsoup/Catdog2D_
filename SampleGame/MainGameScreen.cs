@@ -9,7 +9,8 @@ using Microsoft.Xna.Framework.Media;
 using SampleGame.Prefab;
 using System;
 
-namespace SampleGame {
+namespace SampleGame
+{
 	public enum Difficulty
 	{
 		Easy,

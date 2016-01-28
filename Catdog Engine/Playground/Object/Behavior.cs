@@ -2,7 +2,8 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace CatdogEngine.Playground.Object {
+namespace CatdogEngine.Playground.Object
+{
 	/// <summary>
 	/// World에 존재하는 게임 오브젝트. 각 Behavior는 독립적으로 행동한다.
 	/// 여러개의 BehaviorComponent를 가질 수 있다.

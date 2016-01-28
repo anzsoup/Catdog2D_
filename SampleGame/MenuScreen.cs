@@ -6,7 +6,8 @@ using CatdogEngine.Graphics;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 
-namespace SampleGame {
+namespace SampleGame
+{
 	public class MenuScreen : GameScreen
 	{
 		Canvas canvas;

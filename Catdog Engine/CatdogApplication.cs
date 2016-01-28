@@ -6,7 +6,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-namespace CatdogEngine {
+namespace CatdogEngine
+{
 	public class CatdogApplication : ScreenManager
 	{
 
