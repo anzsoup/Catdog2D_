@@ -8,7 +8,8 @@ using CatdogEngine.Graphics;
 using Microsoft.Xna.Framework.Graphics;
 using CatdogEngine.Playground.Object.Component;
 
-namespace SampleGame.Prefab {
+namespace SampleGame.Prefab
+{
 	public class NormalBullet : Bullet
 	{
 		public NormalBullet(Vector2 focus)
@@ -17,17 +18,20 @@ namespace SampleGame.Prefab {
 			Focus.Normalize();
 			Speed = 400f;
 
+			Location location = new Location(36f, 39.5f);
+			location.RelativePosition = new Vector2(18f, -19.75f);
+			AddComponent(location);
+
+			SpriteRenderer renderer = new SpriteRenderer("hasami1", new Vector2(0.5f));
+			AddComponent(renderer);
+
 			Transform.Velocity = new Vector2(0, Speed);
 			Transform.Up = Focus;
 		}
 
 		public override void Start()
 		{
-			Sprite sprite = new Sprite(World.CurrentScreen.Content.Load<Texture2D>("hasami1"));
-			sprite.Scale = new Vector2(0.5f);
-			SpriteRenderer renderer = new SpriteRenderer(sprite);
-
-			AddComponent(renderer);
+			
 		}
 
 		public override void Update(GameTime gameTime)

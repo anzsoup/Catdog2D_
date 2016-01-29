@@ -49,10 +49,6 @@ namespace SampleGame
 			bgm = this.Content.Load<Song>("bgm2");
 			MediaPlayer.Play(bgm);
 
-			// 점수판
-			score = new TextLine(this, this.Content.Load<SpriteFont>("score"));
-			canvas.Add(score);
-
 			// 유즈키
 			Yuzuki yuzuki = new Yuzuki();
 			yuzuki.Transform.Position = new Vector2(-400 + 32, -240 + 72 + 32);
@@ -62,6 +58,19 @@ namespace SampleGame
 			Maki maki = new Maki(yuzuki);
 			maki.Transform.Position = new Vector2(400 - 52 - 32, 240 - 32);
 			world.Instantiate(maki);
+
+			// 마키 컨트롤러
+			MakiController controller = new MakiController(maki, difficulty);
+			world.Instantiate(controller);
+
+			// 점수판
+			score = new TextLine(this, this.Content.Load<SpriteFont>("score"));
+			canvas.Add(score);
+
+			// HP 미터
+			HPMeter hpMeter = new HPMeter(this, yuzuki);
+			hpMeter.Position = new Vector2(0, 20);
+			canvas.Add(hpMeter);
 		}
 
 		public override void Update(GameTime gameTime)

@@ -1,4 +1,5 @@
 ﻿using CatdogEngine.Playground.Object.Component;
+using CatdogEngine.ScreenSystem;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
@@ -14,7 +15,8 @@ namespace CatdogEngine.Playground.Object
 
 		private List<BehaviorComponent> _components;
 
-		private World _world;								// 현재 속한 월드
+		private World _world;                               // 현재 속한 월드
+		private GameScreen _currentScreen;					// 현재 속한 스크린
 
 		#region Properties
 		public Transform Transform { get { return _transform; } set { _transform = value; } }

@@ -6,27 +6,35 @@ using Microsoft.Xna.Framework.Graphics;
 using CatdogEngine;
 using Microsoft.Xna.Framework.Input;
 
-namespace SampleGame.Prefab {
+namespace SampleGame.Prefab
+{
 	public class Yuzuki : Behavior, InputListener
 	{
 		private bool _up, _down, _left, _right;
 		private readonly float SPEED = 300f;
 
+		private int _hp;
+
+		#region Properties
+		public int HP { get { return _hp; } set { _hp = value; } }
+		#endregion
+
 		public Yuzuki()
 		{
 			InputManager.SetListener(this);
+			_hp = 3;
+
+			SpriteRenderer renderer = new SpriteRenderer("yuzuki", new Vector2(0.5f));
+			AddComponent(renderer);
+
+			Location location = new Location(16f, 32f);
+			location.RelativePosition = new Vector2(9f, -36f);
+			AddComponent(location);
 		}
 
 		public override void Start()
 		{
-			Sprite sprite = new Sprite(World.CurrentScreen.Content.Load<Texture2D>("yuzuki"));
-			sprite.Scale = new Vector2(0.5f);
-			SpriteRenderer renderer = new SpriteRenderer(sprite);
-
-			Location location = new Location(sprite.Width, sprite.Height);
-
-			AddComponent(renderer);
-			AddComponent(location);
+			
 		}
 
 		public override void Update(GameTime gameTime)
@@ -55,6 +63,11 @@ namespace SampleGame.Prefab {
 			x = MathHelper.Clamp(x, -400, 400 - 44);
 			y = MathHelper.Clamp(y, -240 + 72, 240);
 			Transform.Position = new Vector2(x, y);
+		}
+
+		public void GetDamaged()
+		{
+			_hp--;
 		}
 
 		public void OnKeyDown(Keys key)

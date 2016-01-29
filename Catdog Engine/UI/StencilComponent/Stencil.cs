@@ -70,19 +70,19 @@ namespace CatdogEngine.UI.StencilComponent
 				}
 			}
 		}
-		public GameScreen Screen { get { return _screen; } set { _screen = value; } }
+		public GameScreen CurrentScreen { get { return _screen; } set { _screen = value; } }
 		public Canvas Canvas { get { return _canvas; } set { _canvas = value; } }
 		public List<Stencil> InnerStencils { get { return _innerStencils; } }
 		public float ChangedWindowWidthRate { get { return _changedWindowWidthRate; } set { _changedWindowWidthRate = value; } }
 		public float ChangedWindowHeightRate { get { return _changedWindowHeightRate; } set { _changedWindowHeightRate = value; } }
 		#endregion
 
-		public Stencil(GameScreen screen)
+		public Stencil(GameScreen currentScreen)
 		{
 			Position = new Vector2(0, 0);
 			BufferRegion = new Rectangle();
 
-			Screen = screen;
+			CurrentScreen = currentScreen;
 
 			_innerStencils = new List<Stencil>();
 

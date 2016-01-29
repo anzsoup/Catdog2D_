@@ -25,7 +25,7 @@ namespace CatdogEngine.UI.StencilComponent
 			set
 			{
 				if (value != null) _spriteText.Font = value;
-				else _spriteText.Font = Screen.Content.Load<SpriteFont>("DefaultText");
+				else _spriteText.Font = CurrentScreen.Content.Load<SpriteFont>("DefaultText");
 
 				// 텍스트가 차지하는 영역 다시 계산
 				Vector2 textRegion = _spriteText.MeasureString();
@@ -59,7 +59,7 @@ namespace CatdogEngine.UI.StencilComponent
 
 		public TextLine(GameScreen screen, SpriteFont font, String text = "Text") : base(screen)
 		{
-			if (font == null) _spriteText = new SpriteText(Screen.Content.Load<SpriteFont>("DefaultText"));
+			if (font == null) _spriteText = new SpriteText(CurrentScreen.Content.Load<SpriteFont>("DefaultText"));
 			else _spriteText = new SpriteText(font);
 
 			Text = text;

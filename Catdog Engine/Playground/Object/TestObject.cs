@@ -8,11 +8,18 @@ namespace CatdogEngine.Playground.Object
 {
 	public class TestObject : Behavior
 	{
-		public override void Start()
+		public TestObject()
 		{
-			AddComponent(new SpriteRenderer(new Sprite(World.CurrentScreen.Content.Load<Texture2D>("gojam"))));
+			SpriteRenderer renderer = new SpriteRenderer("gojam");
+			AddComponent(renderer);
+
 			Location location = new Location(300f, 300f);
 			AddComponent(location);
+		}
+
+		public override void Start()
+		{
+			
 		}
 
 		public override void Update(GameTime gameTime)

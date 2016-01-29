@@ -1,6 +1,7 @@
 ﻿using CatdogEngine.Graphics;
 using CatdogEngine.ScreenSystem;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 
 namespace CatdogEngine.Playground.Object.Component
@@ -9,6 +10,7 @@ namespace CatdogEngine.Playground.Object.Component
 	{
 		private Camera _camera;
 		private Sprite _sprite;
+		private string _initSpriteName;
 
 		private bool _enable;                   // true : 그린다. false : 그리지 않는다.
 
@@ -25,16 +27,39 @@ namespace CatdogEngine.Playground.Object.Component
 			IsEnabled = true;
 		}
 
+		// Don't use it
+		/*
 		public SpriteRenderer(Sprite sprite)
 		{
 			IsEnabled = true;
 			Sprite = sprite;
 			_initialSpriteScale = Sprite.Scale;
 		}
+		*/
+
+		public SpriteRenderer(string spriteName)
+		{
+			IsEnabled = true;
+			_initSpriteName = spriteName;
+			_initialSpriteScale = new Vector2(1, 1);
+		}
+
+		public SpriteRenderer(string spriteName, Vector2 scale)
+		{
+			IsEnabled = true;
+			_initSpriteName = spriteName;
+			_initialSpriteScale = scale;
+		}
 
 		public override void Initialize(World world)
 		{
 			Camera = world.Camera;
+
+			if(_initSpriteName != null)
+			{
+				Sprite = new Sprite(world.CurrentScreen.Content.Load<Texture2D>(_initSpriteName));
+				Sprite.Scale = _initialSpriteScale;
+			}
 		}
 
 		public override void Update(GameTime gameTime)

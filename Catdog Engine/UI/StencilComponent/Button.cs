@@ -98,7 +98,7 @@ namespace CatdogEngine.UI.StencilComponent
 			get { return _imageNormal; }
 			set
 			{
-				if(value == null) _imageNormal = new Sprite(Screen.Content.Load<Texture2D>("catdog/button_gray_1"));
+				if(value == null) _imageNormal = new Sprite(CurrentScreen.Content.Load<Texture2D>("catdog/button_gray_1"));
 				else _imageNormal = value;
 				_imageNormal.Position = Position;
 
@@ -111,7 +111,7 @@ namespace CatdogEngine.UI.StencilComponent
 			get { return _imageClicked; }
 			set
 			{
-				if(value == null) _imageClicked = new Sprite(Screen.Content.Load<Texture2D>("catdog/button_gray_2"));
+				if(value == null) _imageClicked = new Sprite(CurrentScreen.Content.Load<Texture2D>("catdog/button_gray_2"));
 				else _imageClicked = value;
 				_imageClicked.Position = Position;
 			}

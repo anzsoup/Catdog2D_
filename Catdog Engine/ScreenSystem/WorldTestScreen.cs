@@ -39,7 +39,7 @@ namespace CatdogEngine.ScreenSystem
 			EmptyObject object1 = new EmptyObject();
 			object1.Transform.Scale = new Vector2(0.5f);
 			object1.Transform.Position = new Vector2(-400, 0);
-			object1.AddComponent(new SpriteRenderer(new Sprite(this.Content.Load<Texture2D>("gojam"))));
+			object1.AddComponent(new SpriteRenderer("gojam"));
 			Location location = new Location(300f, 300f);
 			location.ON_TRIGGER_ENTER = delegate (Location other) 
 			{

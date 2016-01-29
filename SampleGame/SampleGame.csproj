@@ -40,6 +40,8 @@
   <ItemGroup>
     <Compile Include="GameData.cs" />
     <Compile Include="MainGameScreen.cs" />
+    <Compile Include="Prefab\HPMeter.cs" />
+    <Compile Include="Prefab\MakiController.cs" />
     <Compile Include="MenuScreen.cs" />
     <Compile Include="Prefab\Bullet.cs" />
     <Compile Include="Prefab\NormalBullet.cs" />
