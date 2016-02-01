@@ -5,6 +5,7 @@ using CatdogEngine.Graphics;
 using Microsoft.Xna.Framework.Graphics;
 using CatdogEngine;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace SampleGame.Prefab
 {
@@ -42,24 +43,29 @@ namespace SampleGame.Prefab
 			float deltaTime = gameTime.ElapsedGameTime.Milliseconds / 1000f;
 			float x = Transform.Position.X;
 			float y = Transform.Position.Y;
+			Vector2 unit = new Vector2(0);
 
             if (_up)
 			{
-				y = Transform.Position.Y + SPEED * deltaTime;
+				unit += Vector2.UnitY;
 			}
 			if(_down)
 			{
-				y = Transform.Position.Y - SPEED * deltaTime;
+				unit -= Vector2.UnitY;
 			}
 			if(_left)
 			{
-				x = Transform.Position.X - SPEED * deltaTime;
+				unit -= Vector2.UnitX;
 			}
 			if(_right)
 			{
-				x = Transform.Position.X + SPEED * deltaTime;
+				unit += Vector2.UnitX;
 			}
+			if(unit.LengthSquared() > 0) unit.Normalize();
+			unit *= SPEED * deltaTime;
 
+			x += unit.X;
+			y += unit.Y;
 			x = MathHelper.Clamp(x, -400, 400 - 44);
 			y = MathHelper.Clamp(y, -240 + 72, 240);
 			Transform.Position = new Vector2(x, y);

@@ -28,12 +28,15 @@ namespace SampleGame
 		Canvas canvas;
 		TextLine score;
 
+		int milliseconds;
+
 		public MainGameScreen(Difficulty difficulty)
 		{
 			this.difficulty = difficulty;
 			currentScore = 0f;
 			world = new World(this);
 			canvas = new Canvas();
+			milliseconds = 0;
 
 			TransitionTime = new TimeSpan(0, 0, 2);
 		}
@@ -77,10 +80,27 @@ namespace SampleGame
 		{
 			base.Update(gameTime);
 
+			milliseconds += gameTime.ElapsedGameTime.Milliseconds;
+
+			switch(difficulty)
+			{
+				case Difficulty.Easy:
+					currentScore += milliseconds / 10000f;
+					break;
+
+				case Difficulty.Normal:
+					currentScore += milliseconds / 1000f;
+					break;
+
+				case Difficulty.Hard:
+					currentScore += milliseconds / 100f;
+					break;
+			}
+
 			// 월드의 Update 로직 추가
 			world.Update(gameTime);
 			
-			if (score != null) score.Text = "Score : " + currentScore;
+			if (score != null) score.Text = "Score : " + (int)currentScore;
 			canvas.Update(gameTime);
 		}
 

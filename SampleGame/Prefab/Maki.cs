@@ -14,7 +14,7 @@ namespace SampleGame.Prefab
 
 	public class Maki : Behavior
 	{
-		private double _seconds;
+		private float _seconds;
 		private Yuzuki _yuzuki;
 		private int _phase;
 		private int _state;
@@ -42,7 +42,9 @@ namespace SampleGame.Prefab
 
 		public override void Update(GameTime gameTime)
 		{
-			if(State > 0)
+			_seconds += gameTime.ElapsedGameTime.Milliseconds / 1000f;
+
+			if (State > 0)
 			{
 				int test = State & MakiState.AimShot;
 				if (test > 0) AimShot(gameTime);
@@ -63,8 +65,6 @@ namespace SampleGame.Prefab
 
 				_seconds = 0;
 			}
-
-			_seconds += gameTime.ElapsedGameTime.Milliseconds / 1000f;
 		}
 
 		private void Chase(GameTime gameTime)
