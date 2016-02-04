@@ -96,8 +96,8 @@ namespace SampleGame
 					break;
 
 				case Difficulty.Hard:
-					currentScore += milliseconds / 100f;
-					text = "Score(x100) : ";
+					currentScore += milliseconds / 200f;
+					text = "Score(x50) : ";
 					break;
 			}
 

@@ -9,7 +9,7 @@ namespace SampleGame.Prefab
 {
 	public class MakiController : Behavior
 	{
-		private List<Maki> _maki;
+		private Maki _maki;
 		private Difficulty _difficulty;
 		private double _seconds;
 
@@ -17,8 +17,7 @@ namespace SampleGame.Prefab
 
 		public MakiController(Maki maki, Difficulty difficulty)
 		{
-			_maki = new List<Maki>();
-			_maki.Add(maki);
+			_maki = maki;
 			_seconds = 0;
 			_difficulty = difficulty;
 			_phase = 1;
@@ -35,10 +34,7 @@ namespace SampleGame.Prefab
 			if(_seconds > 10)
 			{
 				_phase++;
-				foreach(Maki maki in _maki)
-				{
-					maki.Phase = _phase;
-				}
+				_maki.Phase = _phase;
 
 				_seconds = 0;
 
@@ -50,14 +46,15 @@ namespace SampleGame.Prefab
 					case Difficulty.Normal:
 						if(_phase == 2)
 						{
-							foreach(Maki maki in _maki)
-							{
-								maki.State = MakiState.Chase | MakiState.AimShot | MakiState.BallBulletShot;
-							}
+							_maki.State = MakiState.Chase | MakiState.AimShot | MakiState.BallBulletShot;
 						}
 						break;
 
 					case Difficulty.Hard:
+						if (_phase == 2)
+						{
+							_maki.State = MakiState.Chase | MakiState.AimShot | MakiState.BallBulletShot | MakiState.FastShot;
+						}
 						break;
 				}
 			}

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <SourceFile>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/ballbullet.png</SourceFile>
-  <SourceTime>2016-02-04T10:16:56.5800596+09:00</SourceTime>
+  <SourceTime>2016-02-04T11:21:59.005946+09:00</SourceTime>
   <DestFile>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/bin/Windows/ballbullet.xnb</DestFile>
-  <DestTime>2016-02-04T10:17:28.3014902+09:00</DestTime>
+  <DestTime>2016-02-04T11:22:30.5350247+09:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2015-04-30T02:14:44+09:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

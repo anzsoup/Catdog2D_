@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using CatdogEngine.Graphics;
 using Microsoft.Xna.Framework.Graphics;
 using CatdogEngine.Playground.Object.Component;
+using System;
 
 namespace SampleGame.Prefab
 {
@@ -11,6 +12,7 @@ namespace SampleGame.Prefab
 		public static int AimShot = 1;
 		public static int Chase = 2;
 		public static int BallBulletShot = 4;
+		public static int FastShot = 8;
 	}
 
 	public class Maki : Behavior
@@ -82,6 +84,18 @@ namespace SampleGame.Prefab
 				else
 				{
 					bullet = new NormalBullet(focus);
+				}
+
+				test = State & MakiState.FastShot;
+				if(test > 0)
+				{
+					Random r = new Random();
+					int random = r.Next(0, 100);
+
+					if(random < 20)
+					{
+						bullet = new FastBullet(focus);
+					}
 				}
 
 				bullet.Transform.Position = new Vector2(this.Transform.Position.X, this.Transform.Position.Y);
