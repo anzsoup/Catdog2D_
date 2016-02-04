@@ -21,7 +21,9 @@ namespace CatdogEngine.Playground
 
 		private Vector2 _gravity;                               // 중력
 
-		private TriggerManager _trigger;						// 트리거
+		private TriggerManager _trigger;                        // 트리거
+
+		private bool _isPaused;									// 일시정지
 
 		#region Properties
 		/// <summary>
@@ -41,6 +43,8 @@ namespace CatdogEngine.Playground
 			_trigger = new TriggerManager();
 			SetCamera(new Camera());
 			CurrentScreen = currentScreen;
+
+			_isPaused = false;
 		}
 
 		/// <summary>
@@ -96,6 +100,16 @@ namespace CatdogEngine.Playground
 				_camera = camera;
 			}
 		}
+
+		public void Pause()
+		{
+			_isPaused = true;
+		}
+
+		public void Unpause()
+		{
+			_isPaused = false;
+		}
 		
 		/// <summary>
 		/// 스크린의 Update 로직에 반드시 포함되어야 한다.
@@ -113,8 +127,10 @@ namespace CatdogEngine.Playground
 			// Destroy 된 Behavior들을 리스트에서 제거
 			foreach(Behavior behavior in _deadBehaviors)
 			{
-				if(_behaviors.Contains(behavior))
+				if (_behaviors.Contains(behavior))
+				{
 					_behaviors.Remove(behavior);
+				}
 			}
 
 			// 리스트 비우기
@@ -122,32 +138,36 @@ namespace CatdogEngine.Playground
 			_deadBehaviors.Clear();
 
 			// Behavior 로직 진행
-			foreach(Behavior behavior in _behaviors)
+			if (!_isPaused)
 			{
-				// Update Components.
-				// It is followed by Behavior's Update Logic.
-				foreach(BehaviorComponent component in behavior.Components)
+
+				foreach (Behavior behavior in _behaviors)
 				{
-					component.Update(gameTime);
-					if(component is Location)
+					// Update Components.
+					// It is followed by Behavior's Update Logic.
+					foreach (BehaviorComponent component in behavior.Components)
 					{
-						locationBucket.Add((Location)component);
+						component.Update(gameTime);
+						if (component is Location)
+						{
+							locationBucket.Add((Location)component);
+						}
 					}
+
+					// Update Behavior.
+					Vector2 worldVelocity = (behavior.Transform.Right * behavior.Transform.Velocity.X) + (behavior.Transform.Up * behavior.Transform.Velocity.Y);
+					behavior.Transform.Position += worldVelocity * (gameTime.ElapsedGameTime.Milliseconds / 1000f);
+					behavior.Update(gameTime);
 				}
 
-				// Update Behavior.
-				Vector2 worldVelocity = (behavior.Transform.Right * behavior.Transform.Velocity.X) + (behavior.Transform.Up * behavior.Transform.Velocity.Y);
-				behavior.Transform.Position += worldVelocity * (gameTime.ElapsedGameTime.Milliseconds/1000f);
-				behavior.Update(gameTime);
+				// Listen Trigger Event
+				Location[] allLocations = new Location[locationBucket.Count];
+				locationBucket.CopyTo(allLocations);
+				_trigger.CollisionCheck(allLocations);
+
+				// Camera 로직 진행
+				if (_camera != null) _camera.Update(gameTime);
 			}
-
-			// Listen Trigger Event
-			Location[] allLocations = new Location[locationBucket.Count];
-			locationBucket.CopyTo(allLocations);
-			_trigger.CollisionCheck(allLocations);
-
-			// Camera 로직 진행
-			if (_camera != null) _camera.Update(gameTime);
 		}
 
 		/// <summary>

@@ -26,6 +26,7 @@ namespace CatdogEngine.UI.StencilComponent
 
 		// 스텐실은 여러개의 내부 스텐실을 포함할 수 있다.
 		protected List<Stencil> _innerStencils;
+		private Stencil _parent;
 
 		// 윈도우 사이즈가 변했을 때 캔버스에서 계산한 이전 사이즈와 현재 사이즈의 비율
 		float _changedWindowWidthRate, _changedWindowHeightRate;
@@ -45,8 +46,24 @@ namespace CatdogEngine.UI.StencilComponent
 
 		/// <summary>
 		/// 버퍼에 그려지는 실제 위치
+		/// Inner Stencil일 경우 부모의 위치에 대한 상대적 위치를 나타낸다.
 		/// </summary>
-		public Rectangle BufferRegion { get { return _region; } set { _region = value; } }
+		public Rectangle BufferRegion {
+			get
+			{
+				if(Parent == null)
+				{
+					return _region;
+				}
+				else
+				{
+					return new Rectangle(x: Parent.BufferRegion.X + _region.X,
+					y: Parent.BufferRegion.Y + _region.Y,
+					width: Parent.BufferRegion.Width + _region.Width,
+					height: Parent.BufferRegion.Height + _region.Height);
+				}
+			}
+			set { _region = value; } }
 
 		/// <summary>
 		/// 윈도우 좌표로 환산 된 값. 입력 처리 등의 작업 시 실제로 사용하는 값.
@@ -59,14 +76,14 @@ namespace CatdogEngine.UI.StencilComponent
 				{
 					float widthRate = Canvas.WindowBufferWidthRate;
 					float heightRate = Canvas.WindowBufferHeightRate;
-					Rectangle temp = new Rectangle((int)(_region.X * widthRate), (int)(_region.Y * heightRate), 
-						(int)(_region.Width * widthRate), (int)(_region.Height * heightRate));
+					Rectangle temp = new Rectangle((int)(BufferRegion.X * widthRate), (int)(BufferRegion.Y * heightRate), 
+						(int)(BufferRegion.Width * widthRate), (int)(BufferRegion.Height * heightRate));
 
 					return temp;
 				}
 				else
 				{
-					return _region;
+					return BufferRegion;
 				}
 			}
 		}
@@ -75,6 +92,8 @@ namespace CatdogEngine.UI.StencilComponent
 		public List<Stencil> InnerStencils { get { return _innerStencils; } }
 		public float ChangedWindowWidthRate { get { return _changedWindowWidthRate; } set { _changedWindowWidthRate = value; } }
 		public float ChangedWindowHeightRate { get { return _changedWindowHeightRate; } set { _changedWindowHeightRate = value; } }
+
+		public Stencil Parent { get { return _parent; } set { _parent = value; } }
 		#endregion
 
 		public Stencil(GameScreen currentScreen)
@@ -96,7 +115,11 @@ namespace CatdogEngine.UI.StencilComponent
 
 		protected void AddInnerStencil(Stencil stencil)
 		{
-			if(stencil != null) _innerStencils.Add(stencil);
+			if (stencil != null)
+			{
+				stencil.Parent = this;
+				_innerStencils.Add(stencil);
+			}
 		}
 
 		/// <summary>

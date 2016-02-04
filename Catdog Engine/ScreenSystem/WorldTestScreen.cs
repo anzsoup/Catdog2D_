@@ -4,6 +4,8 @@ using CatdogEngine.Playground.Object;
 using CatdogEngine.Playground.Object.Component;
 using Microsoft.Xna.Framework.Graphics;
 using CatdogEngine.Graphics;
+using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace CatdogEngine.ScreenSystem
 {
@@ -69,6 +71,31 @@ namespace CatdogEngine.ScreenSystem
 		public override void Draw(GameTime gameTime)
 		{
 			if(world != null) world.Draw(gameTime);
+		}
+
+		public override void OnLeftMouseDown(int x, int y)
+		{
+			
+		}
+
+		public override void OnLeftMouseUp(int x, int y)
+		{
+			
+		}
+
+		public override void OnMouseMove(int x, int y)
+		{
+			
+		}
+
+		public override void OnKeyDown(Keys key)
+		{
+			
+		}
+
+		public override void OnKeyUp(Keys key)
+		{
+			
 		}
 	}
 }

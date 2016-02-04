@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace CatdogEngine.ScreenSystem
 {
-    public class LogoScreen : GameScreen, InputListener
+    public class LogoScreen : GameScreen
 	{
 
         Sprite logo;
@@ -23,10 +23,6 @@ namespace CatdogEngine.ScreenSystem
 		{
 			// It is Important!
 			base.LoadContent();
-
-			// Input Listener 등록.
-			// 등록하지 않으면 입력 이벤트를 사용할 수 없다.
-			InputManager.SetListener(this);
 
 			// 화면 전환 효과 시간 2초
 			TransitionTime = new System.TimeSpan(0, 0, 2);
@@ -54,22 +50,22 @@ namespace CatdogEngine.ScreenSystem
 			logo.Draw(ScreenManager.SpriteBatch);
         }
 
-		public void OnLeftMouseDown(int x, int y)
+		public override void OnLeftMouseDown(int x, int y)
 		{
 			
 		}
 
-		public void OnLeftMouseUp(int x, int y)
+		public override void OnLeftMouseUp(int x, int y)
 		{
 			
 		}
 
-		public void OnMouseMove(int x, int y)
+		public override void OnMouseMove(int x, int y)
 		{
 			
 		}
 
-		public void OnKeyDown(Keys key)
+		public override void OnKeyDown(Keys key)
 		{
 			if(key == Keys.Enter || key == Keys.Space || key == Keys.Escape)
 			{
@@ -78,7 +74,7 @@ namespace CatdogEngine.ScreenSystem
 			}
 		}
 
-		public void OnKeyUp(Keys key)
+		public override void OnKeyUp(Keys key)
 		{
 			
 		}

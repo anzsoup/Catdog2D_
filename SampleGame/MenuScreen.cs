@@ -5,6 +5,8 @@ using CatdogEngine.UI.StencilComponent;
 using CatdogEngine.Graphics;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace SampleGame
 {
@@ -133,6 +135,31 @@ namespace SampleGame
 		{
 			base.UnloadContent();
 			MediaPlayer.Stop();
+		}
+
+		public override void OnLeftMouseDown(int x, int y)
+		{
+			
+		}
+
+		public override void OnLeftMouseUp(int x, int y)
+		{
+			
+		}
+
+		public override void OnMouseMove(int x, int y)
+		{
+			
+		}
+
+		public override void OnKeyDown(Keys key)
+		{
+			
+		}
+
+		public override void OnKeyUp(Keys key)
+		{
+			
 		}
 	}
 }

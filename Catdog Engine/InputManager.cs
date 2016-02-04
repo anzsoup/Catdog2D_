@@ -13,6 +13,9 @@ namespace CatdogEngine
 	{
 		private static List<InputListener> _listeners = new List<InputListener>();
 
+		private static List<InputListener> _newListeners = new List<InputListener>();
+		private static List<InputListener> _deadListeners = new List<InputListener>();
+
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Cache
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -26,7 +29,12 @@ namespace CatdogEngine
 		/// </summary>
 		public static void SetListener(InputListener listener)
 		{
-			if(listener != null) _listeners.Add(listener);
+			_newListeners.Add(listener);
+		}
+
+		public static void RemoveListener(InputListener listener)
+		{
+			_deadListeners.Add(listener);
 		}
 
 		/// <summary>
@@ -34,6 +42,22 @@ namespace CatdogEngine
 		/// </summary>
 		public static void Update()
 		{
+			// 추가된 InputListener를 리스트에 추가
+			foreach(InputListener listener in _newListeners)
+			{
+				_listeners.Add(listener);
+			}
+
+			// 제거된 InputListener를 리스트에서 제거
+			foreach(InputListener listener in _deadListeners)
+			{
+				if (_listeners.Contains(listener)) _listeners.Remove(listener);
+			}
+
+			// 리스트 비우기
+			_newListeners.Clear();
+			_deadListeners.Clear();
+
 			// 마우스 이벤트 감지
 			ListenMouseEvent();
 

@@ -133,6 +133,9 @@ namespace CatdogEngine.ScreenSystem
 
                 // Transitin Start
                 _activeScreen.ScreenState = ScreenState.TransitionOn;
+
+				// Resister Input Listener
+				InputManager.SetListener(_activeScreen);
             }
 
             if (_nextScreen != null) _nextScreen.Update(gameTime);
@@ -193,6 +196,9 @@ namespace CatdogEngine.ScreenSystem
 				{
                     // Unload Content
                     _activeScreen.UnloadContent();
+
+					// End Input Listening
+					InputManager.RemoveListener(screen);
 
                     // Clear
                     _activeScreen = null;

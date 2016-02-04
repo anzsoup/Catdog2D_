@@ -1,4 +1,5 @@
-﻿using CatdogEngine.Graphics;
+﻿using CatdogEngine;
+using CatdogEngine.Graphics;
 using CatdogEngine.Playground;
 using CatdogEngine.ScreenSystem;
 using CatdogEngine.UI;
@@ -8,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using SampleGame.Prefab;
 using System;
+using Microsoft.Xna.Framework.Input;
 
 namespace SampleGame
 {
@@ -27,6 +29,11 @@ namespace SampleGame
 		World world;
 		Canvas canvas;
 		TextLine score;
+		string scoreText;
+
+		Stencil pausePopup;
+		Stencil gameoverPopup;
+		bool isPaused;
 
 		int milliseconds;
 
@@ -37,6 +44,21 @@ namespace SampleGame
 			world = new World(this);
 			canvas = new Canvas();
 			milliseconds = 0;
+			isPaused = false;
+			switch(difficulty)
+			{
+				case Difficulty.Easy:
+					scoreText = "Score(x1) : ";
+					break;
+
+				case Difficulty.Normal:
+					scoreText = "Score(x10) : ";
+					break;
+
+				case Difficulty.Hard:
+					scoreText = "Score(x50) : ";
+					break;
+			}
 
 			TransitionTime = new TimeSpan(0, 0, 2);
 		}
@@ -74,6 +96,9 @@ namespace SampleGame
 			HPMeter hpMeter = new HPMeter(this, yuzuki);
 			hpMeter.Position = new Vector2(0, 20);
 			canvas.Add(hpMeter);
+
+			// 팝업
+			pausePopup = new PausePopup(this);
 		}
 
 		public override void Update(GameTime gameTime)
@@ -82,29 +107,28 @@ namespace SampleGame
 
 			milliseconds += gameTime.ElapsedGameTime.Milliseconds;
 
-			string text = "Score(x1) : ";
-			switch(difficulty)
+			if (!isPaused)
 			{
-				case Difficulty.Easy:
-					currentScore += milliseconds / 10000f;
-					text = "Score(x1) : ";
-					break;
+				switch (difficulty)
+				{
+					case Difficulty.Easy:
+						currentScore += milliseconds / 10000f;
+						break;
 
-				case Difficulty.Normal:
-					currentScore += milliseconds / 1000f;
-					text = "Score(x10) : ";
-					break;
+					case Difficulty.Normal:
+						currentScore += milliseconds / 1000f;
+						break;
 
-				case Difficulty.Hard:
-					currentScore += milliseconds / 200f;
-					text = "Score(x50) : ";
-					break;
+					case Difficulty.Hard:
+						currentScore += milliseconds / 200f;
+						break;
+				}
 			}
 
 			// 월드의 Update 로직 추가
 			world.Update(gameTime);
 
-			if (score != null) score.Text = text + (int)currentScore;
+			if (score != null) score.Text = scoreText + (int)currentScore;
 			canvas.Update(gameTime);
 		}
 
@@ -125,6 +149,46 @@ namespace SampleGame
 			base.UnloadContent();
 
 			MediaPlayer.Stop();
+		}
+
+		public override void OnLeftMouseDown(int x, int y)
+		{
+			
+		}
+
+		public override void OnLeftMouseUp(int x, int y)
+		{
+			
+		}
+
+		public override void OnMouseMove(int x, int y)
+		{
+			
+		}
+
+		public override void OnKeyDown(Keys key)
+		{
+			if(key == Keys.Escape)
+			{
+				if(isPaused)
+				{
+					isPaused = false;
+					world.Unpause();
+					canvas.Remove(pausePopup);
+				}
+				else
+				{
+					isPaused = true;
+					world.Pause();
+					canvas.Add(pausePopup);
+				}
+				
+			}
+		}
+
+		public override void OnKeyUp(Keys key)
+		{
+			
 		}
 	}
 }

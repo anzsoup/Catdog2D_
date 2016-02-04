@@ -3,6 +3,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace CatdogEngine.ScreenSystem
 {
@@ -115,7 +116,7 @@ namespace CatdogEngine.ScreenSystem
 	/// 한 스크린 안에서 로드 된 리소스는 해당 스크린이 죽을 때 함께 해제된다.
 	/// 여러 스크린이 공유하는 리소스는 ScreenManager에서 로드해야 한다.
 	/// </summary>
-	public abstract class GameScreen
+	public abstract class GameScreen : InputListener
 	{
 
         private SCREEN_TRANSITION_EFFECT Screen_Transition_Effect;
@@ -200,5 +201,15 @@ namespace CatdogEngine.ScreenSystem
         /// </summary>
         /// <param name="gameTime">Delta Time</param>
         public virtual void Draw(GameTime gameTime) { }
-    }
+
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// Input Event
+		// 필요한 함수를 재정의 하여 사용
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////
+		public abstract void OnLeftMouseDown(int x, int y);
+		public abstract void OnLeftMouseUp(int x, int y);
+		public abstract void OnMouseMove(int x, int y);
+		public abstract void OnKeyDown(Keys key);
+		public abstract void OnKeyUp(Keys key);
+	}
 }

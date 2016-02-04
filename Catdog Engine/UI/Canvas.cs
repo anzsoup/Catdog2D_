@@ -28,12 +28,17 @@ namespace CatdogEngine.UI
         private List<Stencil> _stencils;										// 스텐실들을 담고 있는 리스트
 		private ScaleMode _scaleMode;											// 스케일모드
 		private int _bufferWidth, _bufferHeight;								// 버퍼 사이즈. 한번 결정 되면 변하지 않으므로 기억해 둔다.
-		private float _windowBufferWidthRate, _windowBufferHeightRate;			// 버퍼 사이즈와 윈도우 사이즈의 비율
+		private float _windowBufferWidthRate, _windowBufferHeightRate;          // 버퍼 사이즈와 윈도우 사이즈의 비율
+
+		private List<Stencil> _newStencils;
+		private List<Stencil> _deadStencils;
 
 
 		public Canvas()
 		{
             _stencils = new List<Stencil>();
+			_newStencils = new List<Stencil>();
+			_deadStencils = new List<Stencil>();
 
 			// 스케일 모드 기본값은 SCALE_WITH_WINDOW
 			ScaleMode = ScaleMode.SCALE_WITH_WINDOW;
@@ -71,12 +76,37 @@ namespace CatdogEngine.UI
 			if (stencil != null)
 			{
 				stencil.Canvas = this;
-				_stencils.Add(stencil);
+				_newStencils.Add(stencil);
 			}
         }
 
+		public void Remove(Stencil stencil)
+		{
+			if(stencil != null)
+			{
+				_deadStencils.Add(stencil);
+			}
+		}
+
 		public void Update(GameTime gameTime)
 		{
+			// 추가된 Stencil들을 리스트에 추가
+			foreach (Stencil stencil in _newStencils)
+			{
+				_stencils.Add(stencil);
+			}
+
+			// 제거된 Stencil들을 리스트에서 제거
+			foreach (Stencil stencil in _deadStencils)
+			{
+				if (_stencils.Contains(stencil))
+					_stencils.Remove(stencil);
+			}
+
+			// 리스트 비우기
+			_newStencils.Clear();
+			_deadStencils.Clear();
+
 			foreach (Stencil stencil in _stencils)
 			{
 				// Update Stencils
