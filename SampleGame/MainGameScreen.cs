@@ -82,25 +82,29 @@ namespace SampleGame
 
 			milliseconds += gameTime.ElapsedGameTime.Milliseconds;
 
+			string text = "Score(x1) : ";
 			switch(difficulty)
 			{
 				case Difficulty.Easy:
 					currentScore += milliseconds / 10000f;
+					text = "Score(x1) : ";
 					break;
 
 				case Difficulty.Normal:
 					currentScore += milliseconds / 1000f;
+					text = "Score(x10) : ";
 					break;
 
 				case Difficulty.Hard:
 					currentScore += milliseconds / 100f;
+					text = "Score(x100) : ";
 					break;
 			}
 
 			// 월드의 Update 로직 추가
 			world.Update(gameTime);
-			
-			if (score != null) score.Text = "Score : " + (int)currentScore;
+
+			if (score != null) score.Text = text + (int)currentScore;
 			canvas.Update(gameTime);
 		}
 

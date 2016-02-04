@@ -48,6 +48,13 @@ namespace SampleGame.Prefab
 						break;
 
 					case Difficulty.Normal:
+						if(_phase == 2)
+						{
+							foreach(Maki maki in _maki)
+							{
+								maki.State = MakiState.Chase | MakiState.AimShot | MakiState.BallBulletShot;
+							}
+						}
 						break;
 
 					case Difficulty.Hard:

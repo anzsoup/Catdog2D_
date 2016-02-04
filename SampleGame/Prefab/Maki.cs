@@ -10,6 +10,7 @@ namespace SampleGame.Prefab
 	{
 		public static int AimShot = 1;
 		public static int Chase = 2;
+		public static int BallBulletShot = 4;
 	}
 
 	public class Maki : Behavior
@@ -18,6 +19,8 @@ namespace SampleGame.Prefab
 		private Yuzuki _yuzuki;
 		private int _phase;
 		private int _state;
+
+		private int _bulletCount;
 
 		#region Properties
 		public int Phase { get { return _phase; } set { _phase = value; } }
@@ -30,6 +33,8 @@ namespace SampleGame.Prefab
 			_yuzuki = yuzuki;
 			_phase = 1;
 			_state = MakiState.AimShot;
+
+			_bulletCount = 0;
 
 			SpriteRenderer renderer = new SpriteRenderer("maki", new Vector2(0.5f));
 			AddComponent(renderer);
@@ -59,9 +64,28 @@ namespace SampleGame.Prefab
 			if (_seconds >= 2f / (2f * Phase))
 			{
 				Vector2 focus = _yuzuki.Transform.Position - this.Transform.Position;
-				Bullet normalBullet = new NormalBullet(focus);
-				normalBullet.Transform.Position = new Vector2(this.Transform.Position.X, this.Transform.Position.Y);
-				World.Instantiate(normalBullet);
+				Bullet bullet;
+				int test = State & MakiState.BallBulletShot;
+				if(test > 0)
+				{
+					if(_bulletCount == 4)
+					{
+						bullet = new BallBullet(focus);
+						_bulletCount = 0;
+					}
+					else
+					{
+						bullet = new NormalBullet(focus);
+						_bulletCount++;
+					}
+				}
+				else
+				{
+					bullet = new NormalBullet(focus);
+				}
+
+				bullet.Transform.Position = new Vector2(this.Transform.Position.X, this.Transform.Position.Y);
+				World.Instantiate(bullet);
 
 				_seconds = 0;
 			}
