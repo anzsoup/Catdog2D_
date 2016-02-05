@@ -109,6 +109,9 @@ namespace SampleGame
 			bgm = this.Content.Load<Song>("bgm1");
 			MediaPlayer.IsRepeating = true;
 			MediaPlayer.Play(bgm);
+
+			// 캔버스 등록
+			this.Canvas = canvas;
 		}
 
 		public override void Update(GameTime gameTime)
@@ -135,31 +138,6 @@ namespace SampleGame
 		{
 			base.UnloadContent();
 			MediaPlayer.Stop();
-		}
-
-		public override void OnLeftMouseDown(int x, int y)
-		{
-			
-		}
-
-		public override void OnLeftMouseUp(int x, int y)
-		{
-			
-		}
-
-		public override void OnMouseMove(int x, int y)
-		{
-			
-		}
-
-		public override void OnKeyDown(Keys key)
-		{
-			
-		}
-
-		public override void OnKeyUp(Keys key)
-		{
-			
 		}
 	}
 }

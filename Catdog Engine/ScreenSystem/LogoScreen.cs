@@ -50,33 +50,15 @@ namespace CatdogEngine.ScreenSystem
 			logo.Draw(ScreenManager.SpriteBatch);
         }
 
-		public override void OnLeftMouseDown(int x, int y)
-		{
-			
-		}
-
-		public override void OnLeftMouseUp(int x, int y)
-		{
-			
-		}
-
-		public override void OnMouseMove(int x, int y)
-		{
-			
-		}
-
 		public override void OnKeyDown(Keys key)
 		{
+			base.OnKeyDown(key);
+
 			if(key == Keys.Enter || key == Keys.Space || key == Keys.Escape)
 			{
 				if (startScreen != null) ScreenManager.SetScreen(startScreen);
 				else Debug.WriteLine("### Causion : There is no Start Screen. ###");
 			}
-		}
-
-		public override void OnKeyUp(Keys key)
-		{
-			
 		}
 	}
 }

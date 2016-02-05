@@ -21,30 +21,5 @@ namespace MyGame
 		{
 			
 		}
-
-		public override void OnLeftMouseDown(int x, int y)
-		{
-			
-		}
-
-		public override void OnLeftMouseUp(int x, int y)
-		{
-			
-		}
-
-		public override void OnMouseMove(int x, int y)
-		{
-			
-		}
-
-		public override void OnKeyDown(Keys key)
-		{
-			
-		}
-
-		public override void OnKeyUp(Keys key)
-		{
-			
-		}
 	}
 }

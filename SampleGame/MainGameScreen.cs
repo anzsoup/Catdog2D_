@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Media;
 using SampleGame.Prefab;
 using System;
 using Microsoft.Xna.Framework.Input;
+using System.Diagnostics;
 
 namespace SampleGame
 {
@@ -99,6 +100,12 @@ namespace SampleGame
 
 			// 팝업
 			pausePopup = new PausePopup(this);
+
+			// 월드 등록
+			this.World = world;
+
+			// 캔버스 등록
+			this.Canvas = canvas;
 		}
 
 		public override void Update(GameTime gameTime)
@@ -125,23 +132,12 @@ namespace SampleGame
 				}
 			}
 
-			// 월드의 Update 로직 추가
-			world.Update(gameTime);
-
 			if (score != null) score.Text = scoreText + (int)currentScore;
-			canvas.Update(gameTime);
 		}
 
 		public override void Draw(GameTime gameTime)
 		{
-			base.Draw(gameTime);
-
 			if(background != null) background.Draw(ScreenManager.SpriteBatch);
-
-			// 월드의 Draw 로직 추가
-			world.Draw(gameTime);
-
-			canvas.Draw(gameTime);
 		}
 
 		public override void UnloadContent()
@@ -151,44 +147,28 @@ namespace SampleGame
 			MediaPlayer.Stop();
 		}
 
-		public override void OnLeftMouseDown(int x, int y)
-		{
-			
-		}
 
-		public override void OnLeftMouseUp(int x, int y)
-		{
-			
-		}
-
-		public override void OnMouseMove(int x, int y)
-		{
-			
-		}
 
 		public override void OnKeyDown(Keys key)
 		{
+			base.OnKeyDown(key);
+
 			if(key == Keys.Escape)
 			{
 				if(isPaused)
 				{
 					isPaused = false;
-					world.Unpause();
-					canvas.Remove(pausePopup);
+					this.World.Unpause();
+					this.Canvas.Remove(pausePopup);
 				}
 				else
 				{
 					isPaused = true;
-					world.Pause();
-					canvas.Add(pausePopup);
+					this.World.Pause();
+					this.Canvas.Add(pausePopup);
 				}
 				
 			}
-		}
-
-		public override void OnKeyUp(Keys key)
-		{
-			
 		}
 	}
 }

@@ -26,6 +26,7 @@ namespace CatdogEngine
 		/// <summary>
 		/// 리스너를 등록한다.
 		/// 리스너로 등록한 클래스는 각 윈도우 이벤트의 콜백 함수를 사용할 수 있다.
+		/// 한 번 등록한 리스너는 필요 없어졌을 때 반드시 해제해야한다.
 		/// </summary>
 		public static void SetListener(InputListener listener)
 		{

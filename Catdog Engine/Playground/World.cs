@@ -4,13 +4,15 @@ using CatdogEngine.ScreenSystem;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace CatdogEngine.Playground
 {
 	/// <summary>
 	/// 플레이 가능한 실제 게임 세계의 기본단위. 모든 Behavior들의 로직을 관리한다.
 	/// </summary>
-	public class World
+	public class World : InputListener
 	{
 		private List<Behavior> _behaviors;
 		private List<Behavior> _newBehaviors;
@@ -111,9 +113,6 @@ namespace CatdogEngine.Playground
 			_isPaused = false;
 		}
 		
-		/// <summary>
-		/// 스크린의 Update 로직에 반드시 포함되어야 한다.
-		/// </summary>
 		public virtual void Update(GameTime gameTime)
 		{
 			List<Location> locationBucket = new List<Location>();
@@ -170,9 +169,6 @@ namespace CatdogEngine.Playground
 			}
 		}
 
-		/// <summary>
-		/// 스크린의 Draw 로직에 반드시 포함되어야 한다.
-		/// </summary>
 		public virtual void Draw(GameTime gameTime)
 		{
 			// Component 그리기
@@ -184,6 +180,46 @@ namespace CatdogEngine.Playground
 				{
 					component.Draw(gameTime);
 				}
+			}
+		}
+
+		public void OnLeftMouseDown(int x, int y)
+		{
+			foreach(Behavior behavior in _behaviors)
+			{
+				if(!behavior.HasSeparateInputProcess) behavior.OnLeftMouseDown(x, y);
+			}
+		}
+
+		public void OnLeftMouseUp(int x, int y)
+		{
+			foreach (Behavior behavior in _behaviors)
+			{
+				if (!behavior.HasSeparateInputProcess) behavior.OnLeftMouseUp(x, y);
+			}
+		}
+
+		public void OnMouseMove(int x, int y)
+		{
+			foreach (Behavior behavior in _behaviors)
+			{
+				if (!behavior.HasSeparateInputProcess) behavior.OnMouseMove(x, y);
+			}
+		}
+
+		public void OnKeyDown(Keys key)
+		{
+			foreach (Behavior behavior in _behaviors)
+			{
+				if (!behavior.HasSeparateInputProcess) behavior.OnKeyDown(key);
+			}
+		}
+
+		public void OnKeyUp(Keys key)
+		{
+			foreach (Behavior behavior in _behaviors)
+			{
+				if (!behavior.HasSeparateInputProcess) behavior.OnKeyUp(key);
 			}
 		}
 	}

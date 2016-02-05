@@ -108,9 +108,6 @@ namespace CatdogEngine.UI.StencilComponent
 			// 초기값을 1로 하는 것이 타당하다.
 			ChangedWindowWidthRate = 1f;
 			ChangedWindowHeightRate = 1f;
-
-			// InputListener 등록
-			InputManager.SetListener(this);
 		}
 
 		protected void AddInnerStencil(Stencil stencil)
@@ -133,7 +130,7 @@ namespace CatdogEngine.UI.StencilComponent
 		public abstract void Draw(GameTime gameTime);
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////
-		// Input Event
+		// Input Events
 		// 필요한 함수를 재정의 하여 사용
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////
 		public abstract void OnLeftMouseDown(int x, int y);

@@ -4,6 +4,8 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework.Graphics;
 using CatdogEngine.UI.StencilComponent;
 using CatdogEngine.ScreenSystem;
+using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace CatdogEngine.UI
 {
@@ -23,7 +25,7 @@ namespace CatdogEngine.UI
 	/// 캔버스의 사이즈는 항상 윈도우의 크기와 같다.
 	/// 스텐실의 사이즈와 위치는 캔버스 사이즈에 대해 상대적으로 표현되며 0 이상 1 이하의 값을 갖는다.
 	/// </summary>
-	public class Canvas
+	public class Canvas : InputListener
 	{
         private List<Stencil> _stencils;										// 스텐실들을 담고 있는 리스트
 		private ScaleMode _scaleMode;											// 스케일모드
@@ -145,5 +147,65 @@ namespace CatdogEngine.UI
 				}
 			}
 		}
-    }
+
+		public void OnLeftMouseDown(int x, int y)
+		{
+			foreach (Stencil stencil in _stencils)
+			{
+				stencil.OnLeftMouseDown(x, y);
+				foreach(Stencil innerStencil in stencil.InnerStencils)
+				{
+					innerStencil.OnLeftMouseDown(x, y);
+				}
+			}
+		}
+
+		public void OnLeftMouseUp(int x, int y)
+		{
+			foreach (Stencil stencil in _stencils)
+			{
+				stencil.OnLeftMouseUp(x, y);
+				foreach (Stencil innerStencil in stencil.InnerStencils)
+				{
+					innerStencil.OnLeftMouseUp(x, y);
+				}
+			}
+		}
+
+		public void OnMouseMove(int x, int y)
+		{
+			foreach (Stencil stencil in _stencils)
+			{
+				stencil.OnMouseMove(x, y);
+				foreach (Stencil innerStencil in stencil.InnerStencils)
+				{
+					innerStencil.OnMouseMove(x, y);
+				}
+			}
+		}
+
+		public void OnKeyDown(Keys key)
+		{
+			foreach (Stencil stencil in _stencils)
+			{
+				stencil.OnKeyDown(key);
+				foreach (Stencil innerStencil in stencil.InnerStencils)
+				{
+					innerStencil.OnKeyDown(key);
+				}
+			}
+		}
+
+		public void OnKeyUp(Keys key)
+		{
+			foreach (Stencil stencil in _stencils)
+			{
+				stencil.OnKeyUp(key);
+				foreach (Stencil innerStencil in stencil.InnerStencils)
+				{
+					innerStencil.OnKeyUp(key);
+				}
+			}
+		}
+	}
 }

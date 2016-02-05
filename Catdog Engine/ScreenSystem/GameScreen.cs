@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using CatdogEngine.UI;
+using CatdogEngine.Playground;
 
 namespace CatdogEngine.ScreenSystem
 {
@@ -130,6 +132,10 @@ namespace CatdogEngine.ScreenSystem
 		// 스크린의 수명이 다하면 모든 리소스를 해제한다.
 		protected ContentManager _content;
 
+		// 캔버스와 월드
+		private Canvas _canvas;
+		private World _world;
+
         public GameScreen()
 		{
             _screenState = ScreenState.Waiting;
@@ -149,7 +155,37 @@ namespace CatdogEngine.ScreenSystem
 		public SCREEN_TRANSITION_EFFECT ScreenTransitionEffect { get; set; }
 
 		public ContentManager Content { get { return _content; } private set { _content = value; } }
-        #endregion
+
+		/// <summary>
+		/// 캔버스
+		/// </summary>
+		public Canvas Canvas
+		{
+			protected get { return _canvas; }
+			set
+			{
+				if (value != null)
+				{
+					_canvas = value;
+				}
+			}
+		}
+
+		/// <summary>
+		/// 월드
+		/// </summary>
+		public World World
+		{
+			protected get { return _world; }
+			set
+			{
+				if (value != null)
+				{
+					_world = value;
+				}
+			}
+		}
+		#endregion
 
         /// <summary>
         /// GameScreen이 생성된 후 리소스를 할당하는 타이밍에 한 번 호출된다.
@@ -159,6 +195,9 @@ namespace CatdogEngine.ScreenSystem
 		{
 			// 스크린이 활성화 되고 리소스 할당 및 초기화가 이루어질 때 Content Manager를 생성한다.
 			Content = new ContentManager(ScreenManager.Services, ScreenManager.Content.RootDirectory);
+
+			// Input Listener 등록
+			InputManager.SetListener(this);
 		}
 
         /// <summary>
@@ -169,6 +208,9 @@ namespace CatdogEngine.ScreenSystem
 		{
 			// Content Manager clears the resources loaded by this screen.
 			Content.Unload();
+
+			// Input Listener 해제
+			InputManager.RemoveListener(this);
 		}
 
         /// <summary>
@@ -193,7 +235,11 @@ namespace CatdogEngine.ScreenSystem
 			{
 				ScreenManager.RemoveScreen(this);
 			}
-        }
+
+			// Update Canvas & World
+			if (World != null) World.Update(gameTime);
+			if (Canvas != null) Canvas.Update(gameTime);
+		}
 
         /// <summary>
         /// GameScreen을 그려야 할 때 호출 된다.
@@ -202,14 +248,55 @@ namespace CatdogEngine.ScreenSystem
         /// <param name="gameTime">Delta Time</param>
         public virtual void Draw(GameTime gameTime) { }
 
+		/// <summary>
+		/// Canvas를 그려야 할 때 ScreenManager가 호출한다. Canvas는 가장 마지막에 그려진다.
+		/// </summary>
+		public void DrawCanvas(GameTime gameTime)
+		{
+			if(Canvas != null) Canvas.Draw(gameTime);
+		}
+
+		/// <summary>
+		/// World의 Draw로직을 ScreenManager가 호출한다.
+		/// </summary>
+		public void DrawWorld(GameTime gameTime)
+		{
+			if(World != null) World.Draw(gameTime);
+		}
+
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Input Event
 		// 필요한 함수를 재정의 하여 사용
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////
-		public abstract void OnLeftMouseDown(int x, int y);
-		public abstract void OnLeftMouseUp(int x, int y);
-		public abstract void OnMouseMove(int x, int y);
-		public abstract void OnKeyDown(Keys key);
-		public abstract void OnKeyUp(Keys key);
+
+		public virtual void OnLeftMouseDown(int x, int y)
+		{
+			if(World != null) World.OnLeftMouseDown(x, y);
+			if(Canvas != null) Canvas.OnLeftMouseDown(x, y);
+		}
+
+		public virtual void OnLeftMouseUp(int x, int y)
+		{
+			if (World != null) World.OnLeftMouseUp(x, y);
+			if (Canvas != null) Canvas.OnLeftMouseUp(x, y);
+		}
+
+		public virtual void OnMouseMove(int x, int y)
+		{
+			if (World != null) World.OnMouseMove(x, y);
+			if (Canvas != null) Canvas.OnMouseMove(x, y);
+		}
+
+		public virtual void OnKeyDown(Keys key)
+		{
+			if (World != null) World.OnKeyDown(key);
+			if (Canvas != null) Canvas.OnKeyDown(key);
+		}
+
+		public virtual void OnKeyUp(Keys key)
+		{
+			if (World != null) World.OnKeyUp(key);
+			if (Canvas != null) Canvas.OnKeyUp(key);
+		}
 	}
 }

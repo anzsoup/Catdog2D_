@@ -133,9 +133,6 @@ namespace CatdogEngine.ScreenSystem
 
                 // Transitin Start
                 _activeScreen.ScreenState = ScreenState.TransitionOn;
-
-				// Resister Input Listener
-				InputManager.SetListener(_activeScreen);
             }
 
             if (_nextScreen != null) _nextScreen.Update(gameTime);
@@ -156,8 +153,18 @@ namespace CatdogEngine.ScreenSystem
             base.Draw(gameTime);
 
 			SpriteBatch.Begin();
-            if (_nextScreen != null) _nextScreen.Draw(gameTime);
-            if (_activeScreen != null) _activeScreen.Draw(gameTime);
+			if (_nextScreen != null)
+			{
+				_nextScreen.Draw(gameTime);
+				_nextScreen.DrawWorld(gameTime);
+				_nextScreen.DrawCanvas(gameTime);
+			}
+			if (_activeScreen != null)
+			{
+				_activeScreen.Draw(gameTime);
+				_activeScreen.DrawWorld(gameTime);
+				_activeScreen.DrawCanvas(gameTime);
+			}
 
 			// 화면 효과 처리
 			ScreenTransitionEffectPackage.PostProcess();
@@ -196,9 +203,6 @@ namespace CatdogEngine.ScreenSystem
 				{
                     // Unload Content
                     _activeScreen.UnloadContent();
-
-					// End Input Listening
-					InputManager.RemoveListener(screen);
 
                     // Clear
                     _activeScreen = null;

@@ -59,41 +59,17 @@ namespace CatdogEngine.ScreenSystem
 			testObject.Transform.Scale = new Vector2(0.5f);
 			testObject.Transform.Position = new Vector2(0, 0);
 			world.Instantiate(testObject);
+
+			// Register world
+			this.World = world;
 		}
 
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
-
-			if(world != null) world.Update(gameTime);
 		}
 
 		public override void Draw(GameTime gameTime)
-		{
-			if(world != null) world.Draw(gameTime);
-		}
-
-		public override void OnLeftMouseDown(int x, int y)
-		{
-			
-		}
-
-		public override void OnLeftMouseUp(int x, int y)
-		{
-			
-		}
-
-		public override void OnMouseMove(int x, int y)
-		{
-			
-		}
-
-		public override void OnKeyDown(Keys key)
-		{
-			
-		}
-
-		public override void OnKeyUp(Keys key)
 		{
 			
 		}
