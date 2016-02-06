@@ -1,33 +1,36 @@
 ﻿using CatdogEngine.UI.StencilComponent;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using CatdogEngine.ScreenSystem;
 using CatdogEngine.Graphics;
 using Microsoft.Xna.Framework.Graphics;
-using CatdogEngine.Playground;
-using CatdogEngine.UI;
+using CatdogEngine.ScreenSystem;
 
 namespace SampleGame.Prefab
 {
-	public class PausePopup : Stencil
+	public class GameoverPopup : Stencil
 	{
 		Sprite popup;
-		Button resume;
+		Button retry;
 		Button back;
 
-		public PausePopup(MainGameScreen currentScreen) : base(currentScreen)
+		public GameoverPopup(MainGameScreen currentScreen) : base(currentScreen)
 		{
-			popup = new Sprite(currentScreen.Content.Load<Texture2D>("pausepopup"));
-			resume = new Button(currentScreen, ButtonType.Purple);
-			resume.Position = new Vector2(340, 270);
-			resume.Text = "Resume";
-			Stencil thisPopup = this;
-			resume.ON_CLICK = delegate ()
+			popup = new Sprite(currentScreen.Content.Load<Texture2D>("gameoverpopup"));
+
+			retry = new Button(currentScreen, ButtonType.Purple);
+			retry.Position = new Vector2(300, 300);
+			retry.Text = "Retry";
+			retry.ON_CLICK = delegate ()
 			{
-				currentScreen.Unpause();
+				currentScreen.ScreenManager.SetScreen(new MainGameScreen(currentScreen.Difficulty));
 			};
-			back = new Button(currentScreen, ButtonType.Yellow);
-			back.Position = new Vector2(440, 270);
+
+			back = new Button(currentScreen, ButtonType.AshBlue);
+			back.Position = new Vector2(400, 300);
 			back.Text = "Back";
 			back.ON_CLICK = delegate ()
 			{
@@ -37,14 +40,14 @@ namespace SampleGame.Prefab
 
 		public override void Update(GameTime gameTime)
 		{
-			resume.Update(gameTime);
+			retry.Update(gameTime);
 			back.Update(gameTime);
 		}
 
 		public override void Draw(GameTime gameTime)
 		{
 			popup.Draw(ScreenManager.SpriteBatch);
-			resume.Draw(gameTime);
+			retry.Draw(gameTime);
 			back.Draw(gameTime);
 		}
 
@@ -60,19 +63,19 @@ namespace SampleGame.Prefab
 
 		public override void OnLeftMouseDown(int x, int y)
 		{
-			resume.OnLeftMouseDown(x, y);
+			retry.OnLeftMouseDown(x, y);
 			back.OnLeftMouseDown(x, y);
 		}
 
 		public override void OnLeftMouseUp(int x, int y)
 		{
-			resume.OnLeftMouseUp(x, y);
+			retry.OnLeftMouseUp(x, y);
 			back.OnLeftMouseUp(x, y);
 		}
 
 		public override void OnMouseMove(int x, int y)
 		{
-			resume.OnMouseMove(x, y);
+			retry.OnMouseMove(x, y);
 			back.OnMouseMove(x, y);
 		}
 	}

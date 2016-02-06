@@ -46,22 +46,11 @@ namespace CatdogEngine.UI.StencilComponent
 
 		/// <summary>
 		/// 버퍼에 그려지는 실제 위치
-		/// Inner Stencil일 경우 부모의 위치에 대한 상대적 위치를 나타낸다.
 		/// </summary>
 		public Rectangle BufferRegion {
 			get
 			{
-				if(Parent == null)
-				{
-					return _region;
-				}
-				else
-				{
-					return new Rectangle(x: Parent.BufferRegion.X + _region.X,
-					y: Parent.BufferRegion.Y + _region.Y,
-					width: Parent.BufferRegion.Width + _region.Width,
-					height: Parent.BufferRegion.Height + _region.Height);
-				}
+				return _region;
 			}
 			set { _region = value; } }
 
@@ -128,6 +117,7 @@ namespace CatdogEngine.UI.StencilComponent
 		/// 해당 스텐실을 화면에 그려야 할 때 호출된다.
 		/// </summary>
 		public abstract void Draw(GameTime gameTime);
+
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////
 		// Input Events

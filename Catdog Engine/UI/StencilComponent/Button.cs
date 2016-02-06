@@ -198,7 +198,7 @@ namespace CatdogEngine.UI.StencilComponent
 
 		public override void Update(GameTime gameTime)
 		{
-			
+			_text.Update(gameTime);
 		}
 
 		public override void Draw(GameTime gameTime)
@@ -211,6 +211,8 @@ namespace CatdogEngine.UI.StencilComponent
 			{
 				if (_imageNormal != null) _imageNormal.Draw(ScreenManager.SpriteBatch);
 			}
+
+			_text.Draw(gameTime);
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////

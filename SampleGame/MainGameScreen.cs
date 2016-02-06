@@ -36,7 +36,13 @@ namespace SampleGame
 		Stencil gameoverPopup;
 		bool isPaused;
 
+		Yuzuki yuzuki;
+
 		int milliseconds;
+
+		#region Properties
+		public Difficulty Difficulty { get { return difficulty; } }
+		#endregion
 
 		public MainGameScreen(Difficulty difficulty)
 		{
@@ -76,7 +82,7 @@ namespace SampleGame
 			MediaPlayer.Play(bgm);
 
 			// 유즈키
-			Yuzuki yuzuki = new Yuzuki();
+			yuzuki = new Yuzuki();
 			yuzuki.Transform.Position = new Vector2(-400 + 32, -240 + 72 + 32);
 			world.Instantiate(yuzuki);
 
@@ -100,6 +106,7 @@ namespace SampleGame
 
 			// 팝업
 			pausePopup = new PausePopup(this);
+			gameoverPopup = new GameoverPopup(this);
 
 			// 월드 등록
 			this.World = world;
@@ -133,6 +140,11 @@ namespace SampleGame
 			}
 
 			if (score != null) score.Text = scoreText + (int)currentScore;
+
+			if(yuzuki != null && yuzuki.HP <= 0)
+			{
+				if(!isPaused) GameOver();
+			}
 		}
 
 		public override void Draw(GameTime gameTime)
@@ -157,18 +169,35 @@ namespace SampleGame
 			{
 				if(isPaused)
 				{
-					isPaused = false;
-					this.World.Unpause();
-					this.Canvas.Remove(pausePopup);
+					Unpause();
 				}
 				else
 				{
-					isPaused = true;
-					this.World.Pause();
-					this.Canvas.Add(pausePopup);
+					Pause();
 				}
 				
 			}
+		}
+
+		public void Pause()
+		{
+			isPaused = true;
+			this.World.Pause();
+			this.Canvas.Add(pausePopup);
+		}
+
+		public void Unpause()
+		{
+			isPaused = false;
+			this.World.Unpause();
+			this.Canvas.Remove(pausePopup);
+		}
+
+		private void GameOver()
+		{
+			isPaused = true;
+			this.World.Pause();
+			this.Canvas.Add(gameoverPopup);
 		}
 	}
 }

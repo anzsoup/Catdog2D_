@@ -139,5 +139,15 @@ namespace SampleGame
 			base.UnloadContent();
 			MediaPlayer.Stop();
 		}
+
+		public override void OnKeyDown(Keys key)
+		{
+			base.OnKeyDown(key);
+
+			if(key == Keys.Escape)
+			{
+				ScreenManager.Exit();
+			}
+		}
 	}
 }

@@ -113,12 +113,6 @@ namespace CatdogEngine.UI
 			{
 				// Update Stencils
 				stencil.Update(gameTime);
-
-				// Update Inner Stencils of each Stencil
-				foreach(Stencil innerStencil in stencil.InnerStencils)
-				{
-					innerStencil.Update(gameTime);
-				}
 			}
 			
 			// 윈도우 사이즈가 변하면
@@ -139,12 +133,6 @@ namespace CatdogEngine.UI
 			{
 				// Draw Stencils
 				stencil.Draw(gameTime);
-
-				// Draw Inner Stencils of each Stencil
-				foreach(Stencil innerStencil in stencil.InnerStencils)
-				{
-					innerStencil.Draw(gameTime);
-				}
 			}
 		}
 
@@ -153,10 +141,6 @@ namespace CatdogEngine.UI
 			foreach (Stencil stencil in _stencils)
 			{
 				stencil.OnLeftMouseDown(x, y);
-				foreach(Stencil innerStencil in stencil.InnerStencils)
-				{
-					innerStencil.OnLeftMouseDown(x, y);
-				}
 			}
 		}
 
@@ -165,10 +149,6 @@ namespace CatdogEngine.UI
 			foreach (Stencil stencil in _stencils)
 			{
 				stencil.OnLeftMouseUp(x, y);
-				foreach (Stencil innerStencil in stencil.InnerStencils)
-				{
-					innerStencil.OnLeftMouseUp(x, y);
-				}
 			}
 		}
 
@@ -177,10 +157,6 @@ namespace CatdogEngine.UI
 			foreach (Stencil stencil in _stencils)
 			{
 				stencil.OnMouseMove(x, y);
-				foreach (Stencil innerStencil in stencil.InnerStencils)
-				{
-					innerStencil.OnMouseMove(x, y);
-				}
 			}
 		}
 
@@ -189,10 +165,6 @@ namespace CatdogEngine.UI
 			foreach (Stencil stencil in _stencils)
 			{
 				stencil.OnKeyDown(key);
-				foreach (Stencil innerStencil in stencil.InnerStencils)
-				{
-					innerStencil.OnKeyDown(key);
-				}
 			}
 		}
 
@@ -201,10 +173,6 @@ namespace CatdogEngine.UI
 			foreach (Stencil stencil in _stencils)
 			{
 				stencil.OnKeyUp(key);
-				foreach (Stencil innerStencil in stencil.InnerStencils)
-				{
-					innerStencil.OnKeyUp(key);
-				}
 			}
 		}
 	}

@@ -42,6 +42,7 @@
     <Compile Include="MainGameScreen.cs" />
     <Compile Include="Prefab\BallBullet.cs" />
     <Compile Include="Prefab\FastBullet.cs" />
+    <Compile Include="Prefab\GameoverPopup.cs" />
     <Compile Include="Prefab\HPMeter.cs" />
     <Compile Include="Prefab\MakiController.cs" />
     <Compile Include="MenuScreen.cs" />
