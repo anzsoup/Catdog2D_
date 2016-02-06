@@ -44,10 +44,10 @@ namespace CatdogEngine.ScreenSystem
 			}
         }
 
-        public override void Draw(GameTime gameTime)
+        public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
 		{
 			// Draw Textures.
-			logo.Draw(ScreenManager.SpriteBatch);
+			logo.Draw(spriteBatch);
         }
 
 		public override void OnKeyDown(Keys key)

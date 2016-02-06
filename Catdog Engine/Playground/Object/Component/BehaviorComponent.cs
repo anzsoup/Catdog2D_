@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,6 @@ namespace CatdogEngine.Playground.Object.Component
 		/// <summary>
 		/// World의 Draw 로직에서 호출된다.
 		/// </summary>
-		public abstract void Draw(GameTime gameTime);
+		public abstract void Draw(SpriteBatch spriteBatch, GameTime gameTime);
 	}
 }

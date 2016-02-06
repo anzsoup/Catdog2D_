@@ -127,12 +127,12 @@ namespace CatdogEngine.UI
 			}
 		}
 
-		public void Draw(GameTime gameTime)
+		public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
 		{
 			foreach(Stencil stencil in _stencils)
 			{
 				// Draw Stencils
-				stencil.Draw(gameTime);
+				stencil.Draw(spriteBatch, gameTime);
 			}
 		}
 

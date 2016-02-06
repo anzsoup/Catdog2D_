@@ -245,23 +245,24 @@ namespace CatdogEngine.ScreenSystem
         /// GameScreen을 그려야 할 때 호출 된다.
         /// 그리기 작업을 여기서 한다.
         /// </summary>
+		/// <param name="spriteBatch">SpriteBatch</param>
         /// <param name="gameTime">Delta Time</param>
-        public virtual void Draw(GameTime gameTime) { }
+        public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime) { }
 
 		/// <summary>
 		/// Canvas를 그려야 할 때 ScreenManager가 호출한다. Canvas는 가장 마지막에 그려진다.
 		/// </summary>
-		public void DrawCanvas(GameTime gameTime)
+		public void DrawCanvas(SpriteBatch spriteBatch, GameTime gameTime)
 		{
-			if(Canvas != null) Canvas.Draw(gameTime);
+			if(Canvas != null) Canvas.Draw(spriteBatch, gameTime);
 		}
 
 		/// <summary>
 		/// World의 Draw로직을 ScreenManager가 호출한다.
 		/// </summary>
-		public void DrawWorld(GameTime gameTime)
+		public void DrawWorld(SpriteBatch spriteBatch, GameTime gameTime)
 		{
-			if(World != null) World.Draw(gameTime);
+			if(World != null) World.Draw(spriteBatch, gameTime);
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////

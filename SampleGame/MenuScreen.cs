@@ -6,7 +6,6 @@ using CatdogEngine.Graphics;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Input;
-using System;
 
 namespace SampleGame
 {
@@ -110,6 +109,10 @@ namespace SampleGame
 			MediaPlayer.IsRepeating = true;
 			MediaPlayer.Play(bgm);
 
+			// Max Score
+			TextLine maxScore = new TextLine(this, Content.Load<SpriteFont>("maxscore"), "Max Score : " + GameData.Instance.MaxScore);
+			canvas.Add(maxScore);
+
 			// 캔버스 등록
 			this.Canvas = canvas;
 		}
@@ -117,21 +120,14 @@ namespace SampleGame
 		public override void Update(GameTime gameTime)
 		{
 			base.Update(gameTime);
-
-			// 캔버스의 Update 로직 추가
-			canvas.Update(gameTime);
 		}
 
-		public override void Draw(GameTime gameTime)
+		public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
 		{
-			base.Draw(gameTime);
+			base.Draw(spriteBatch, gameTime);
 
 			// 뒷배경 이미지를 그린다
-			if(background != null) background.Draw(ScreenManager.SpriteBatch);
-
-			// 캔버스의 Draw 로직 추가
-			// 캔버스는 가장 마지막에 그려야 화면 최상단에 그려진다.
-			canvas.Draw(gameTime);
+			if(background != null) background.Draw(spriteBatch);
 		}
 
 		public override void UnloadContent()

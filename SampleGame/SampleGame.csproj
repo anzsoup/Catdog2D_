@@ -48,7 +48,7 @@
     <Compile Include="MenuScreen.cs" />
     <Compile Include="Prefab\Bullet.cs" />
     <Compile Include="Prefab\NormalBullet.cs" />
-    <Compile Include="Prefab\Maki.cs" />
+    <Compile Include="Prefab\Tsurumaki.cs" />
     <Compile Include="Prefab\PausePopup.cs" />
     <Compile Include="Prefab\Yuzuki.cs" />
     <Compile Include="Program.cs" />

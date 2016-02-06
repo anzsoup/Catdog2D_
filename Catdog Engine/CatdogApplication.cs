@@ -8,7 +8,7 @@ using System.Text;
 
 namespace CatdogEngine
 {
-	public class CatdogApplication : ScreenManager
+	public class CatdogApplication : ScreenSystem.ScreenManager
 	{
 
 		private bool _bufferSizeInitialized;

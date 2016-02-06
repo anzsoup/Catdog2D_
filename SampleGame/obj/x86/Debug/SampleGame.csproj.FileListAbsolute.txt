@@ -68,3 +68,4 @@ D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\ballbullet.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\pausepopup.xnb
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\gameoverpopup.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\SampleGame\bin\Windows\Debug\Content\maxscore.xnb

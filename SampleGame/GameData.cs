@@ -9,7 +9,7 @@ namespace SampleGame
 		#region Singleton
 		private GameData()
 		{
-			
+			_maxScore = 0;
 		}
 		private static GameData _instance;
 		public static GameData Instance
@@ -22,14 +22,10 @@ namespace SampleGame
 		}
 		#endregion
 
-		private float _maxEasyScore;
-		private float _maxNormalScore;
-		private float _maxHardScore;
+		private int _maxScore;
 
 		#region Properties
-		public float MaxEasyScore { get { return _maxEasyScore; } set { _maxEasyScore = value; } }
-		public float MaxNormalScore { get { return _maxNormalScore; } set { _maxNormalScore = value; } }
-		public float MaxHardScore { get { return _maxHardScore; } set { _maxHardScore = value; } }
+		public int MaxScore { get { return _maxScore; } set { _maxScore = value; } }
 		#endregion
 	}
 }

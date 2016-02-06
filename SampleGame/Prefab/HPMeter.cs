@@ -27,12 +27,12 @@ namespace SampleGame.Prefab
 			
 		}
 
-		public override void Draw(GameTime gameTime)
+		public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
 		{
 			for(int i=0; i< _yuzuki.HP; ++i)
 			{
 				_heart.Position = new Vector2(this.Position.X + (_heart.Width * 1.5f * i), this.Position.Y);
-				_heart.Draw(ScreenManager.SpriteBatch);
+				_heart.Draw(spriteBatch);
 			}
 		}
 

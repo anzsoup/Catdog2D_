@@ -9,13 +9,13 @@ namespace SampleGame.Prefab
 {
 	public class MakiController : Behavior
 	{
-		private Maki _maki;
+		private Tsurumaki _maki;
 		private Difficulty _difficulty;
 		private double _seconds;
 
 		private int _phase;
 
-		public MakiController(Maki maki, Difficulty difficulty)
+		public MakiController(Tsurumaki maki, Difficulty difficulty)
 		{
 			_maki = maki;
 			_seconds = 0;

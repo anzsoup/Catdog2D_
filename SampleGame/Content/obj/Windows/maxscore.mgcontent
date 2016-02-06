@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/score.spritefont</SourceFile>
-  <SourceTime>2016-02-06T12:16:59.2537602+09:00</SourceTime>
-  <DestFile>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/bin/Windows/score.xnb</DestFile>
-  <DestTime>2016-02-06T12:17:21.2968563+09:00</DestTime>
+  <SourceFile>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/maxscore.spritefont</SourceFile>
+  <SourceTime>2016-02-06T12:17:45.1740737+09:00</SourceTime>
+  <DestFile>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/SampleGame/Content/bin/Windows/maxscore.xnb</DestFile>
+  <DestTime>2016-02-06T12:17:47.9812295+09:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2015-04-30T02:14:44+09:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

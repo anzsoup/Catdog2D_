@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace CatdogEngine.Playground.Object.Component
 {
@@ -80,7 +81,7 @@ namespace CatdogEngine.Playground.Object.Component
 			
 		}
 
-		public override void Draw(GameTime gameTime)
+		public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
 		{
 			
 		}

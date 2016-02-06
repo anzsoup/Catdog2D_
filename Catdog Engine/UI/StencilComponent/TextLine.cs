@@ -72,9 +72,9 @@ namespace CatdogEngine.UI.StencilComponent
 			
 		}
 
-		public override void Draw(GameTime gameTime)
+		public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
 		{
-			_spriteText.Draw(ScreenManager.SpriteBatch);
+			_spriteText.Draw(spriteBatch);
 		}
 
 		public override void OnKeyDown(Keys key)

@@ -15,7 +15,7 @@ namespace SampleGame.Prefab
 		public static int FastShot = 8;
 	}
 
-	public class Maki : Behavior
+	public class Tsurumaki : Behavior
 	{
 		private float _seconds;
 		private Yuzuki _yuzuki;
@@ -29,10 +29,10 @@ namespace SampleGame.Prefab
 		public int State { get { return _state; } set { _state = value; } }
 		#endregion
 
-		public Maki(Yuzuki yuzuki)
+		public Tsurumaki(Yuzuki yukari)
 		{
 			_seconds = 0;
-			_yuzuki = yuzuki;
+			_yuzuki = yukari;
 			_phase = 1;
 			_state = MakiState.AimShot;
 

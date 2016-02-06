@@ -2,6 +2,7 @@
 using CatdogEngine.ScreenSystem;
 using Microsoft.Xna.Framework.Input;
 using System;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace MyGame
 {
@@ -17,7 +18,7 @@ namespace MyGame
 			base.Update(gameTime);
 		}
 
-		public override void Draw(GameTime gameTime) 
+		public override void Draw(SpriteBatch spriteBatch, GameTime gameTime) 
 		{
 			
 		}

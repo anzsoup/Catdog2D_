@@ -116,7 +116,7 @@ namespace CatdogEngine.UI.StencilComponent
 		/// <summary>
 		/// 해당 스텐실을 화면에 그려야 할 때 호출된다.
 		/// </summary>
-		public abstract void Draw(GameTime gameTime);
+		public abstract void Draw(SpriteBatch spriteBatch, GameTime gameTime);
 
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////

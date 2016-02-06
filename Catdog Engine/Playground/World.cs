@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace CatdogEngine.Playground
 {
@@ -169,7 +170,7 @@ namespace CatdogEngine.Playground
 			}
 		}
 
-		public virtual void Draw(GameTime gameTime)
+		public virtual void Draw(SpriteBatch spriteBatch, GameTime gameTime)
 		{
 			// Component 그리기
 			foreach (Behavior behavior in _behaviors)
@@ -178,7 +179,7 @@ namespace CatdogEngine.Playground
 				// Behaviors don't have Draw logic, but do Components have it.
 				foreach (BehaviorComponent component in behavior.Components)
 				{
-					component.Draw(gameTime);
+					component.Draw(spriteBatch, gameTime);
 				}
 			}
 		}

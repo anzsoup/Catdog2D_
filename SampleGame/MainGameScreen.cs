@@ -1,7 +1,5 @@
-﻿using CatdogEngine;
-using CatdogEngine.Graphics;
+﻿using CatdogEngine.Graphics;
 using CatdogEngine.Playground;
-using CatdogEngine.ScreenSystem;
 using CatdogEngine.UI;
 using CatdogEngine.UI.StencilComponent;
 using Microsoft.Xna.Framework;
@@ -11,6 +9,7 @@ using SampleGame.Prefab;
 using System;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
+using CatdogEngine.ScreenSystem;
 
 namespace SampleGame
 {
@@ -36,7 +35,7 @@ namespace SampleGame
 		Stencil gameoverPopup;
 		bool isPaused;
 
-		Yuzuki yuzuki;
+		Yuzuki yukari;
 
 		int milliseconds;
 
@@ -82,12 +81,12 @@ namespace SampleGame
 			MediaPlayer.Play(bgm);
 
 			// 유즈키
-			yuzuki = new Yuzuki();
-			yuzuki.Transform.Position = new Vector2(-400 + 32, -240 + 72 + 32);
-			world.Instantiate(yuzuki);
+			yukari = new Yuzuki();
+			yukari.Transform.Position = new Vector2(-400 + 32, -240 + 72 + 32);
+			world.Instantiate(yukari);
 
 			// 마키
-			Maki maki = new Maki(yuzuki);
+			Tsurumaki maki = new Tsurumaki(yukari);
 			maki.Transform.Position = new Vector2(400 - 52 - 32, 240 - 32);
 			world.Instantiate(maki);
 
@@ -100,7 +99,7 @@ namespace SampleGame
 			canvas.Add(score);
 
 			// HP 미터
-			HPMeter hpMeter = new HPMeter(this, yuzuki);
+			HPMeter hpMeter = new HPMeter(this, yukari);
 			hpMeter.Position = new Vector2(0, 20);
 			canvas.Add(hpMeter);
 
@@ -141,15 +140,15 @@ namespace SampleGame
 
 			if (score != null) score.Text = scoreText + (int)currentScore;
 
-			if(yuzuki != null && yuzuki.HP <= 0)
+			if(yukari != null && yukari.HP <= 0)
 			{
 				if(!isPaused) GameOver();
 			}
 		}
 
-		public override void Draw(GameTime gameTime)
+		public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
 		{
-			if(background != null) background.Draw(ScreenManager.SpriteBatch);
+			if(background != null) background.Draw(spriteBatch);
 		}
 
 		public override void UnloadContent()
@@ -195,6 +194,12 @@ namespace SampleGame
 
 		private void GameOver()
 		{
+			if (currentScore > GameData.Instance.MaxScore)
+			{
+				score.Text += "  <--- New Record!!";
+				GameData.Instance.MaxScore = (int)currentScore;
+			}
+
 			isPaused = true;
 			this.World.Pause();
 			this.Canvas.Add(gameoverPopup);

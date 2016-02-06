@@ -201,18 +201,18 @@ namespace CatdogEngine.UI.StencilComponent
 			_text.Update(gameTime);
 		}
 
-		public override void Draw(GameTime gameTime)
+		public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
 		{
 			if(_pressed)
 			{
-				if (_imageClicked != null) _imageClicked.Draw(ScreenManager.SpriteBatch);
+				if (_imageClicked != null) _imageClicked.Draw(spriteBatch);
 			}
 			else
 			{
-				if (_imageNormal != null) _imageNormal.Draw(ScreenManager.SpriteBatch);
+				if (_imageNormal != null) _imageNormal.Draw(spriteBatch);
 			}
 
-			_text.Draw(gameTime);
+			_text.Draw(spriteBatch, gameTime);
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////

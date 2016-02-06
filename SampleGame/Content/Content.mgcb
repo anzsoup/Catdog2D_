@@ -180,3 +180,9 @@
 /processorParam:TextureFormat=Color
 /build:gameoverpopup.png
 
+#begin maxscore.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:maxscore.spritefont
+

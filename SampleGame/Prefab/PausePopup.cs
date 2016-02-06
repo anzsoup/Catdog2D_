@@ -41,11 +41,11 @@ namespace SampleGame.Prefab
 			back.Update(gameTime);
 		}
 
-		public override void Draw(GameTime gameTime)
+		public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
 		{
-			popup.Draw(ScreenManager.SpriteBatch);
-			resume.Draw(gameTime);
-			back.Draw(gameTime);
+			popup.Draw(spriteBatch);
+			resume.Draw(spriteBatch, gameTime);
+			back.Draw(spriteBatch, gameTime);
 		}
 
 		public override void OnKeyDown(Keys key)

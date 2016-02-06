@@ -85,9 +85,9 @@ namespace CatdogEngine.Playground.Object.Component
 			}
 		}
 
-		public override void Draw(GameTime gameTime)
+		public override void Draw(SpriteBatch spriteBatch, GameTime gameTime)
 		{
-			if(IsEnabled && Sprite != null) Sprite.Draw(ScreenManager.SpriteBatch);
+			if(IsEnabled && Sprite != null) Sprite.Draw(spriteBatch);
 		}
 	}
 }

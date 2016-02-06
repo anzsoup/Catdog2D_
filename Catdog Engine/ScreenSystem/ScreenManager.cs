@@ -155,15 +155,15 @@ namespace CatdogEngine.ScreenSystem
 			SpriteBatch.Begin();
 			if (_nextScreen != null)
 			{
-				_nextScreen.Draw(gameTime);
-				_nextScreen.DrawWorld(gameTime);
-				_nextScreen.DrawCanvas(gameTime);
+				_nextScreen.Draw(_spriteBatch, gameTime);
+				_nextScreen.DrawWorld(_spriteBatch, gameTime);
+				_nextScreen.DrawCanvas(_spriteBatch, gameTime);
 			}
 			if (_activeScreen != null)
 			{
-				_activeScreen.Draw(gameTime);
-				_activeScreen.DrawWorld(gameTime);
-				_activeScreen.DrawCanvas(gameTime);
+				_activeScreen.Draw(_spriteBatch, gameTime);
+				_activeScreen.DrawWorld(_spriteBatch, gameTime);
+				_activeScreen.DrawCanvas(_spriteBatch, gameTime);
 			}
 
 			// 화면 효과 처리
