@@ -10,6 +10,7 @@ using System;
 using Microsoft.Xna.Framework.Input;
 using System.Diagnostics;
 using CatdogEngine.ScreenSystem;
+using CatdogEngine;
 
 namespace SampleGame
 {
@@ -196,7 +197,6 @@ namespace SampleGame
 		{
 			if (currentScore > GameData.Instance.MaxScore)
 			{
-				score.Text += "  <--- New Record!!";
 				GameData.Instance.MaxScore = (int)currentScore;
 			}
 
