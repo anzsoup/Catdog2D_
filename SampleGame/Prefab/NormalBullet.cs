@@ -1,11 +1,4 @@
-﻿using CatdogEngine.Playground.Object;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
-using CatdogEngine.Graphics;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
 using CatdogEngine.Playground.Object.Component;
 
 namespace SampleGame.Prefab
