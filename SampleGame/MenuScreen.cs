@@ -114,7 +114,7 @@ namespace SampleGame
 			canvas.Add(maxScore);
 
 			// 캔버스 등록
-			this.Canvas = canvas;
+			SetCanvas(canvas);
 		}
 
 		public override void Update(GameTime gameTime)

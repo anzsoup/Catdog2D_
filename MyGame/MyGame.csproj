@@ -39,6 +39,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Game1.cs" />
+    <Compile Include="GojamChan.cs" />
+    <Compile Include="MyComponent.cs" />
     <Compile Include="MyObject.cs" />
     <Compile Include="MyScreen.cs" />
     <Compile Include="Program.cs" />

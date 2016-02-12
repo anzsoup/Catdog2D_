@@ -1,5 +1,7 @@
 ﻿using CatdogEngine.ScreenSystem;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,10 +16,22 @@ namespace CatdogEngine
 		private bool _bufferSizeInitialized;
 		private GameScreen _startScreen;
 
+		private static GameWindow _windowConfig;
+
 		#region Properties
 		public string Title { get { return Window.Title; } set { Window.Title = value; } }
 		public GameScreen StartScreen { set { _startScreen = value; } }
+		public static int PreferredBackBufferWidth { get { return GraphicsDeviceManager.PreferredBackBufferWidth; } }
+		public static int PreferredBackBufferHeight { get { return GraphicsDeviceManager.PreferredBackBufferHeight; } }
+		public new static GraphicsDevice GraphicsDevice { get { return GraphicsDeviceManager.GraphicsDevice; } } 
+		public static GameWindow WindowConfig { get { return _windowConfig; } }
 		#endregion
+
+		public CatdogApplication()
+		{
+			// static 변수에 윈도우 정보를 복사
+			_windowConfig = Window;
+		}
 
 		protected override void Initialize()
 		{

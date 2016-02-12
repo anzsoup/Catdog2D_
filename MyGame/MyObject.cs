@@ -7,6 +7,13 @@ namespace MyGame
 {
 	public class MyObject : Behavior
 	{
+		public MyObject()
+		{
+			// SpriteRendere 컴포넌트를 추가
+			SpriteRenderer renderer = new SpriteRenderer("fileName");
+			AddComponent(renderer);
+		}
+
 		public override void Start()
 		{
 			// Instantiate 된 직후 호출된다.

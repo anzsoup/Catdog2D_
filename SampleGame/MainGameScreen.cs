@@ -48,7 +48,7 @@ namespace SampleGame
 		{
 			this.difficulty = difficulty;
 			currentScore = 0f;
-			world = new World(this);
+			world = new World();
 			canvas = new Canvas();
 			milliseconds = 0;
 			isPaused = false;
@@ -109,10 +109,10 @@ namespace SampleGame
 			gameoverPopup = new GameoverPopup(this);
 
 			// 월드 등록
-			this.World = world;
+			SetWorld(world);
 
 			// 캔버스 등록
-			this.Canvas = canvas;
+			SetCanvas(canvas);
 		}
 
 		public override void Update(GameTime gameTime)
@@ -182,15 +182,15 @@ namespace SampleGame
 		public void Pause()
 		{
 			isPaused = true;
-			this.World.Pause();
-			this.Canvas.Add(pausePopup);
+			world.Pause();
+			canvas.Add(pausePopup);
 		}
 
 		public void Unpause()
 		{
 			isPaused = false;
-			this.World.Unpause();
-			this.Canvas.Remove(pausePopup);
+			world.Unpause();
+			canvas.Remove(pausePopup);
 		}
 
 		private void GameOver()
@@ -201,8 +201,8 @@ namespace SampleGame
 			}
 
 			isPaused = true;
-			this.World.Pause();
-			this.Canvas.Add(gameoverPopup);
+			world.Pause();
+			canvas.Add(gameoverPopup);
 		}
 	}
 }

@@ -76,7 +76,7 @@ namespace SampleGame.Prefab
 			_hp--;
 		}
 
-		public void OnKeyDown(Keys key)
+		public override void OnKeyDown(Keys key)
 		{
 			switch(key)
 			{
@@ -98,7 +98,7 @@ namespace SampleGame.Prefab
 			}
 		}
 
-		public void OnKeyUp(Keys key)
+		public override void OnKeyUp(Keys key)
 		{
 			switch (key)
 			{
@@ -118,21 +118,6 @@ namespace SampleGame.Prefab
 					_right = false;
 					break;
 			}
-		}
-
-		public void OnLeftMouseDown(int x, int y)
-		{
-			
-		}
-
-		public void OnLeftMouseUp(int x, int y)
-		{
-			
-		}
-
-		public void OnMouseMove(int x, int y)
-		{
-			
 		}
 	}
 }

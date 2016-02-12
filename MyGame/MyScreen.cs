@@ -12,32 +12,19 @@ namespace MyGame
 
 		public MyScreen()
 		{
-			// World 인스턴스 생성
-			world = new World(this);
+			// 월드 등록
+			world = new World();
+			SetWorld(world);
 		}
 
 		public override void LoadContent() 
 		{
 			base.LoadContent();
 
-			// 스크린에 World를 등록한다.
-			this.World = world;
-
-			// 빈 오브젝트 생성
-			EmptyObject emptyObject = new EmptyObject();
-
-			emptyObject.START = delegate ()
-			{
-				// Start 메소드
-			};
-
-			emptyObject.UPDATE = delegate (GameTime gameTime)
-			{
-				// Update 메소드
-			};
-
-			// 정의한 오브젝트를 Instantiate
-			world.Instantiate(emptyObject);
+			// GojamChan을 생성하고 월드에 추가
+			Behavior gojamchan = new GojamChan();
+			gojamchan.Transform.Position = new Vector2(400f, 0f);
+			world.Instantiate(gojamchan);
 		}
 
 		public override void Update(GameTime gameTime) 

@@ -1,5 +1,4 @@
 ﻿using CatdogEngine.Graphics;
-using CatdogEngine.ScreenSystem;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -66,8 +65,8 @@ namespace CatdogEngine.Playground.Object.Component
 		{
 			// World상에서 카메라와의 상대적 위치로 버퍼에 그릴 위치를 계산.
 			Vector2 distance = (Owner.Transform.Position - Camera.Transform.Position) * Camera.Zoom;
-			int bufferWidth = ScreenManager.GraphicsDeviceManager.PreferredBackBufferWidth;
-			int bufferHeight = ScreenManager.GraphicsDeviceManager.PreferredBackBufferHeight;
+			int bufferWidth = CatdogApplication.PreferredBackBufferWidth;
+			int bufferHeight = CatdogApplication.PreferredBackBufferHeight;
 
 			Vector2 temp = new Vector2(distance.X + (bufferWidth / 2), bufferHeight - (distance.Y + (bufferHeight / 2)));
 			if (Sprite != null)

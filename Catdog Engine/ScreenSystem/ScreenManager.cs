@@ -18,7 +18,6 @@ namespace CatdogEngine.ScreenSystem
 		// 어디서든 접근이 가능하도록 static으로 선언했다.
 		// 초기화 시점보다 이른 시기에 접근 시도가 발생하면 안된다.
 		private static SpriteBatch _spriteBatch;
-		private static GameWindow _windowConfig;
 		private static GraphicsDeviceManager _graphics;
 		private static bool _isWindowSizeChanged;                  // 윈도우 사이즈가 변했는가
 
@@ -26,9 +25,6 @@ namespace CatdogEngine.ScreenSystem
 		public ScreenManager()
 		{
             _graphics = new GraphicsDeviceManager(this);
-			
-			// static 변수에 윈도우 정보를 복사
-			_windowConfig = this.Window;
 
 			// 윈도우 설정 초기화
 			_graphics.IsFullScreen = false;
@@ -46,8 +42,7 @@ namespace CatdogEngine.ScreenSystem
 
 		#region Properties
 		public static SpriteBatch SpriteBatch { get { return _spriteBatch; } }
-		public static GameWindow WindowConfig { get { return _windowConfig; } }
-		public static GraphicsDeviceManager GraphicsDeviceManager { get { return _graphics; } }
+		protected static GraphicsDeviceManager GraphicsDeviceManager { get { return _graphics; } }
 		public static bool IsWindowSizeChanged { get { return _isWindowSizeChanged; } }
 		#endregion
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Profile>Reach</Profile>
+  <Platform>Windows</Platform>
+  <Config />
+  <SourceFiles>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/MyGame/Content/Gojam_Chan_01.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/MyGame/Content/Gojam_Chan_02.png</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/MyGame/Content/Font.spritefont</File>
+    <File>D:/DeveloperAnz/Catdog Engine/Catdog-Engine/MyGame/Content/Gojam_Chan_00.png</File>
+  </SourceFiles>
+</SourceFileCollection>

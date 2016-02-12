@@ -37,7 +37,7 @@ namespace CatdogEngine.Playground
 		public GameScreen CurrentScreen { get { return _currentScreen; } set { _currentScreen = value; } }
 		#endregion
 
-		public World(GameScreen currentScreen)
+		public World()
 		{
 			_behaviors = new List<Behavior>();
 			_newBehaviors = new List<Behavior>();
@@ -45,7 +45,6 @@ namespace CatdogEngine.Playground
 			_gravity = new Vector2(0, -9.81f);
 			_trigger = new TriggerManager();
 			SetCamera(new Camera());
-			CurrentScreen = currentScreen;
 
 			_isPaused = false;
 		}

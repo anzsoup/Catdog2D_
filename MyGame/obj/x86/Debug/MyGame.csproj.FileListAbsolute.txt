@@ -51,3 +51,6 @@ D:\DeveloperAnz\Catdog Engine\Catdog-Engine\MyGame\bin\Windows\Debug\SharpDX.Dir
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\MyGame\obj\x86\Debug\MyGame.csprojResolveAssemblyReference.cache
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\MyGame\obj\x86\Debug\MyGame.exe
 D:\DeveloperAnz\Catdog Engine\Catdog-Engine\MyGame\obj\x86\Debug\MyGame.pdb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\MyGame\bin\Windows\Debug\Content\Gojam_Chan_01.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\MyGame\bin\Windows\Debug\Content\Gojam_Chan_02.xnb
+D:\DeveloperAnz\Catdog Engine\Catdog-Engine\MyGame\bin\Windows\Debug\Content\Gojam_Chan_00.xnb

@@ -17,7 +17,7 @@ namespace CatdogEngine.Playground
 		public Vector2 Gravity { get { return World.Gravity; } set { World.Gravity = value; } }
 		#endregion
 
-		public FarseerPhysicsWorld(GameScreen currentScreen) : base(currentScreen)
+		public FarseerPhysicsWorld()
 		{
 			if (World == null)
 				World = new FarseerPhysics.Dynamics.World(new Vector2(0, -9.81f));

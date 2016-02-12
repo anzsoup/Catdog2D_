@@ -50,8 +50,8 @@ namespace CatdogEngine.UI
 			_windowBufferHeightRate = 1f;
 
 			// 버퍼 사이즈 저장
-			_bufferWidth = ScreenManager.GraphicsDeviceManager.PreferredBackBufferWidth;
-			_bufferHeight = ScreenManager.GraphicsDeviceManager.PreferredBackBufferHeight;
+			_bufferWidth = CatdogApplication.PreferredBackBufferWidth;
+			_bufferHeight = CatdogApplication.PreferredBackBufferHeight;
 		}
 
 
@@ -118,8 +118,8 @@ namespace CatdogEngine.UI
 			// 윈도우 사이즈가 변하면
 			if (ScreenManager.IsWindowSizeChanged)
 			{
-				int windowWidth = ScreenManager.WindowConfig.ClientBounds.Width;
-				int windowHeight = ScreenManager.WindowConfig.ClientBounds.Height;
+				int windowWidth = CatdogApplication.WindowConfig.ClientBounds.Width;
+				int windowHeight = CatdogApplication.WindowConfig.ClientBounds.Height;
 
 				// 버퍼 사이즈와 윈도우 사이즈의 비율을 구한다.
 				WindowBufferWidthRate = (float)windowWidth / (float)_bufferWidth;

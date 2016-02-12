@@ -59,11 +59,11 @@ namespace CatdogEngine.ScreenSystem
 			// For Fade Effect. I don't like this :(
 			// I will find better solution soon.
 			Color[] colors = new Color[] { Color.Black };
-			Texture2D texture = new Texture2D(ScreenManager.GraphicsDeviceManager.GraphicsDevice, 1, 1);
+			Texture2D texture = new Texture2D(CatdogApplication.GraphicsDevice, 1, 1);
 			texture.SetData<Color>(colors);
 			ScreenManager.SpriteBatch.Draw(
 				texture: texture,
-				destinationRectangle: new Rectangle(0, 0, ScreenManager.WindowConfig.ClientBounds.Width, ScreenManager.WindowConfig.ClientBounds.Height),
+				destinationRectangle: new Rectangle(0, 0, CatdogApplication.WindowConfig.ClientBounds.Width, CatdogApplication.WindowConfig.ClientBounds.Height),
 				color: new Color(Color.Black, ScreenTransitionEffectPackage.FadeAlpha)
 				);
 		}
@@ -155,37 +155,18 @@ namespace CatdogEngine.ScreenSystem
 		public SCREEN_TRANSITION_EFFECT ScreenTransitionEffect { get; set; }
 
 		public ContentManager Content { get { return _content; } private set { _content = value; } }
-
-		/// <summary>
-		/// 캔버스
-		/// </summary>
-		public Canvas Canvas
-		{
-			protected get { return _canvas; }
-			set
-			{
-				if (value != null)
-				{
-					_canvas = value;
-				}
-			}
-		}
-
-		/// <summary>
-		/// 월드
-		/// </summary>
-		public World World
-		{
-			protected get { return _world; }
-			set
-			{
-				if (value != null)
-				{
-					_world = value;
-				}
-			}
-		}
 		#endregion
+
+		public void SetWorld(World world)
+		{
+			world.CurrentScreen = this;
+			_world = world;
+		}
+
+		public void SetCanvas(Canvas canvas)
+		{
+			_canvas = canvas;
+		}
 
         /// <summary>
         /// GameScreen이 생성된 후 리소스를 할당하는 타이밍에 한 번 호출된다.
@@ -237,8 +218,8 @@ namespace CatdogEngine.ScreenSystem
 			}
 
 			// Update Canvas & World
-			if (World != null) World.Update(gameTime);
-			if (Canvas != null) Canvas.Update(gameTime);
+			if (_world != null) _world.Update(gameTime);
+			if (_canvas != null) _canvas.Update(gameTime);
 		}
 
         /// <summary>
@@ -254,7 +235,7 @@ namespace CatdogEngine.ScreenSystem
 		/// </summary>
 		public void DrawCanvas(SpriteBatch spriteBatch, GameTime gameTime)
 		{
-			if(Canvas != null) Canvas.Draw(spriteBatch, gameTime);
+			if(_canvas != null) _canvas.Draw(spriteBatch, gameTime);
 		}
 
 		/// <summary>
@@ -262,7 +243,7 @@ namespace CatdogEngine.ScreenSystem
 		/// </summary>
 		public void DrawWorld(SpriteBatch spriteBatch, GameTime gameTime)
 		{
-			if(World != null) World.Draw(spriteBatch, gameTime);
+			if(_world != null) _world.Draw(spriteBatch, gameTime);
 		}
 
 		///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -272,32 +253,32 @@ namespace CatdogEngine.ScreenSystem
 
 		public virtual void OnLeftMouseDown(int x, int y)
 		{
-			if(World != null) World.OnLeftMouseDown(x, y);
-			if(Canvas != null) Canvas.OnLeftMouseDown(x, y);
+			if(_world != null) _world.OnLeftMouseDown(x, y);
+			if(_canvas != null) _canvas.OnLeftMouseDown(x, y);
 		}
 
 		public virtual void OnLeftMouseUp(int x, int y)
 		{
-			if (World != null) World.OnLeftMouseUp(x, y);
-			if (Canvas != null) Canvas.OnLeftMouseUp(x, y);
+			if (_world != null) _world.OnLeftMouseUp(x, y);
+			if (_canvas != null) _canvas.OnLeftMouseUp(x, y);
 		}
 
 		public virtual void OnMouseMove(int x, int y)
 		{
-			if (World != null) World.OnMouseMove(x, y);
-			if (Canvas != null) Canvas.OnMouseMove(x, y);
+			if (_world != null) _world.OnMouseMove(x, y);
+			if (_canvas != null) _canvas.OnMouseMove(x, y);
 		}
 
 		public virtual void OnKeyDown(Keys key)
 		{
-			if (World != null) World.OnKeyDown(key);
-			if (Canvas != null) Canvas.OnKeyDown(key);
+			if (_world != null) _world.OnKeyDown(key);
+			if (_canvas != null) _canvas.OnKeyDown(key);
 		}
 
 		public virtual void OnKeyUp(Keys key)
 		{
-			if (World != null) World.OnKeyUp(key);
-			if (Canvas != null) Canvas.OnKeyUp(key);
+			if (_world != null) _world.OnKeyUp(key);
+			if (_canvas != null) _canvas.OnKeyUp(key);
 		}
 	}
 }

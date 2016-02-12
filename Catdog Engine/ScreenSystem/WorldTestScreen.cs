@@ -17,7 +17,7 @@ namespace CatdogEngine.ScreenSystem
 		{
 			base.LoadContent();
 
-			world = new World(this);
+			world = new World();
 			world.Camera.Zoom = 1f;
 
 			/*
@@ -61,7 +61,7 @@ namespace CatdogEngine.ScreenSystem
 			world.Instantiate(testObject);
 
 			// Register world
-			this.World = world;
+			SetWorld(world);
 		}
 
 		public override void Update(GameTime gameTime)
