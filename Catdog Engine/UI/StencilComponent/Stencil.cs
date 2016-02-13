@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace CatdogEngine.UI.StencilComponent
 {
 	/// <summary>
-	/// 화면 최 상단에 그려지는 UI는 모두 이 인터페이스를 상속해야 한다.
+	/// 화면 최 상단에 그려지는 UI는 모두 이 클래스를 상속해야 한다.
 	/// Game Screen 내부에서 동작하는 Update와 Draw 로직을 갖는다.
 	/// </summary>
 	public abstract class Stencil : InputListener
@@ -45,7 +45,7 @@ namespace CatdogEngine.UI.StencilComponent
 		}
 
 		/// <summary>
-		/// 버퍼에 그려지는 실제 위치
+		/// 버퍼상에서 차지하는 영역
 		/// </summary>
 		public Rectangle BufferRegion {
 			get

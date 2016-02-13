@@ -1,11 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Microsoft.Xna.Framework.Graphics;
 using CatdogEngine.UI.StencilComponent;
 using CatdogEngine.ScreenSystem;
 using Microsoft.Xna.Framework.Input;
-using System;
 
 namespace CatdogEngine.UI
 {
@@ -23,7 +21,6 @@ namespace CatdogEngine.UI
 	/// UI를 관리한다.
 	/// Canvas Screen의 Update, Draw 로직 내에서 동작한다.
 	/// 캔버스의 사이즈는 항상 윈도우의 크기와 같다.
-	/// 스텐실의 사이즈와 위치는 캔버스 사이즈에 대해 상대적으로 표현되며 0 이상 1 이하의 값을 갖는다.
 	/// </summary>
 	public class Canvas : InputListener
 	{

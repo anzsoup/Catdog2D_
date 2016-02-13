@@ -25,9 +25,11 @@ namespace CatdogEngine.ScreenSystem
 
 
 	/// <summary>
-	/// GameScreen이 전환 되는 이펙트를 Update 로직에서 진행시키는 메소드를 받는다.
+	/// GameScreen이 전환 되는 이펙트를 진행시키는 메소드를 받는다.
+	/// 전달받은 메소드는 false를 반환할 때까지 Update 로직에서 매 프레임당 한 번씩 호출된다.
+	/// 현재 상태가 TransitionOn인지 TransitionOff인지 알기 위해서는 direction 인수의 값을 확인하면 된다.
 	/// </summary>
-	/// <param name="gameTime">Delta Time. Update 메소드의 gameTime을 넘겨주면 된다.</param>
+	/// <param name="gameTime">Delta Time</param>
 	/// <param name="transitionTime">화면전환효과 지속시간</param>
 	/// <param name="direction">-1 : TransitionOff, 1 : TransitionOn</param>
 	/// <returns>true : 스크린 전환이 진행중, false : 스크린 전환이 완료됨</returns>
