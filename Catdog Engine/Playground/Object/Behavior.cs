@@ -57,7 +57,6 @@ namespace CatdogEngine.Playground.Object
 
 		/// <summary>
 		/// 컴포넌트를 찾는다. 컴포넌트 리스트중에서 가장 먼저 검색되는 컴포넌트를 반환한다.
-		/// 같은 컴포넌트가 여러개 중복되지 않는다고 가정했다. 추후에 수정이 필요할 것이다.
 		/// </summary>
 		/// <typeparam name="T">찾고자 하는 컴포넌트</typeparam>
 		public BehaviorComponent GetComponent<T>()
@@ -68,6 +67,27 @@ namespace CatdogEngine.Playground.Object
 			}
 
 			return null;
+		}
+
+		/// <summary>
+		/// 컴포넌트를 찾는다. 주어진 타입(T)에 해당하는 모든 컴포넌트를 검색해서 리스트 형태로 반환한다.
+		/// 검색 된 컴포넌트가 하나도 없으면 null을 반환한다.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
+		public List<BehaviorComponent> GetComponents<T>()
+		{
+			List<BehaviorComponent> result = new List<BehaviorComponent>();
+			bool isNotEmpty = false;
+
+			foreach(BehaviorComponent component in Components)
+			{
+				if (component is T) result.Add(component);
+				isNotEmpty = true;
+			}
+
+			if (isNotEmpty) return result;
+			else return null;
 		}
 
 		/// <summary>
