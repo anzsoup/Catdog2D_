@@ -48,8 +48,15 @@ namespace SampleGame
 		{
 			this.difficulty = difficulty;
 			currentScore = 0f;
+
+			// 월드
 			world = new World();
+			SetWorld(world);
+
+			// 캔버스
 			canvas = new Canvas();
+			SetCanvas(canvas);
+
 			milliseconds = 0;
 			isPaused = false;
 			switch(difficulty)
@@ -107,12 +114,6 @@ namespace SampleGame
 			// 팝업
 			pausePopup = new PausePopup(this);
 			gameoverPopup = new GameoverPopup(this);
-
-			// 월드 등록
-			SetWorld(world);
-
-			// 캔버스 등록
-			SetCanvas(canvas);
 		}
 
 		public override void Update(GameTime gameTime)

@@ -20,6 +20,7 @@ namespace SampleGame
 		{
 			// 캔버스
 			canvas = new Canvas();
+			SetCanvas(canvas);
 		}
 
 		public override void LoadContent()
@@ -112,9 +113,6 @@ namespace SampleGame
 			// Max Score
 			TextLine maxScore = new TextLine(this, Content.Load<SpriteFont>("maxscore"), "Max Score : " + GameData.Instance.MaxScore);
 			canvas.Add(maxScore);
-
-			// 캔버스 등록
-			SetCanvas(canvas);
 		}
 
 		public override void Update(GameTime gameTime)
